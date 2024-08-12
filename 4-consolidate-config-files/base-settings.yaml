@@ -1,0 +1,192 @@
+# PERMISSION SETS
+- !LookerPermissionSet
+  permissions:
+    - access_data
+    - can_create_forecast
+    - clear_cache_refresh
+    - create_custom_fields
+    - create_table_calculations
+    - download_without_limit
+    - explore
+    - manage_spaces
+    - mobile_app_access
+    - save_content
+    - save_dashboards
+    - save_looks
+    - schedule_look_emails
+    - see_drill_overlay
+    - see_lookml
+    - see_lookml_dashboards
+    - see_looks
+    - see_sql
+    - see_user_dashboards
+    - send_to_integration
+  name: User
+- !LookerPermissionSet
+  permissions:
+    - access_data
+    - clear_cache_refresh
+    - download_without_limit
+    - mobile_app_access
+    - schedule_look_emails
+    - see_drill_overlay
+    - see_lookml_dashboards
+    - see_looks
+    - see_user_dashboards
+    - send_to_integration
+  name: Viewer
+- !LookerPermissionSet
+  permissions:
+    - access_data
+    - clear_cache_refresh
+    - download_with_limit
+    - mobile_app_access
+    - see_drill_overlay
+    - see_lookml_dashboards
+    - see_looks
+    - see_user_dashboards
+  name: Report Viewer
+- !LookerPermissionSet
+  permissions:
+    - access_data
+    - can_create_forecast
+    - clear_cache_refresh
+    - create_custom_fields
+    - create_table_calculations
+    - download_without_limit
+    - explore
+    - mobile_app_access
+    - save_content
+    - save_dashboards
+    - save_looks
+    - see_drill_overlay
+    - see_lookml_dashboards
+    - see_looks
+    - see_user_dashboards
+  name: Report Writer
+- !LookerPermissionSet
+  permissions:
+    - access_data
+    - can_create_forecast
+    - clear_cache_refresh
+    - create_custom_fields
+    - create_table_calculations
+    - deploy
+    - develop
+    - download_without_limit
+    - explore
+    - manage_groups
+    - manage_project_models
+    - manage_spaces
+    - mobile_app_access
+    - save_content
+    - save_dashboards
+    - save_looks
+    - schedule_external_look_emails
+    - schedule_look_emails
+    - see_drill_overlay
+    - see_lookml
+    - see_lookml_dashboards
+    - see_looks
+    - see_pdts
+    - see_queries
+    - see_sql
+    - see_user_dashboards
+    - see_users
+    - send_to_integration
+    - use_global_connections
+    - use_sql_runner
+  name: Developer
+
+# MODEL SETS
+- !LookerModelSet
+  models:
+    - bi_carelogic
+  name: bi_carelogic
+
+# LOOKER ROLES
+- !LookerRoles
+  permission_set: User
+  model_set: All
+  teams:
+    - User
+  name: User
+- !LookerRoles
+  permission_set: Developer
+  model_set: All
+  teams: []
+  name: Developer
+- !LookerRoles
+  permission_set: Viewer
+  model_set: All
+  teams: []
+  name: Viewer
+- !LookerRoles
+  permission_set: Report Viewer
+  model_set: bi_carelogic
+  teams: []
+  name: Report Viewer
+- !LookerRoles
+  permission_set: Report Writer
+  model_set: bi_carelogic
+  teams: []
+  name: Report Writer
+
+# USER ATTRIBUTES
+- !LookerUserAttribute
+  name: landing_page
+  uatype: relative_url
+  hidden_value: false
+  user_view: "True"
+  user_edit: "True"
+  default_value: /browse
+  teams: []
+- !LookerUserAttribute
+  name: locale
+  uatype: string
+  hidden_value: false
+  user_view: "True"
+  user_edit: "False"
+  default_value: ""
+  teams: []
+- !LookerUserAttribute
+  name: looker_internal_email_domain_allowlist
+  uatype: string
+  hidden_value: false
+  user_view: "False"
+  user_edit: "False"
+  default_value: ""
+  teams: []
+- !LookerUserAttribute
+  name: number_format
+  uatype: string
+  hidden_value: false
+  user_view: "True"
+  user_edit: "False"
+  default_value: ""
+  teams: []
+# Three Important Customer User Attributes
+- !LookerUserAttribute
+  name: signed_in_org
+  uatype: number
+  hidden_value: false
+  user_view: "False"
+  user_edit: "False"
+  default_value: ""
+  teams: []
+- !LookerUserAttribute
+  name: staff_id
+  uatype: number
+  hidden_value: false
+  user_view: "True"
+  user_edit: "False"
+  default_value: ""
+  teams: []
+- !LookerUserAttribute
+  name: allowed_customer_schemas
+  uatype: string
+  hidden_value: false
+  user_view: "False"
+  user_edit: "False"
+  default_value: ""
+  teams: []
