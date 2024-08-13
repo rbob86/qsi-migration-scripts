@@ -3,7 +3,6 @@ import looker_sdk
 import os
 import re
 import yaml
-from collections import defaultdict
 
 
 # Define YAML object classes
