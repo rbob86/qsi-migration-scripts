@@ -9,6 +9,21 @@ This repo contains custom-tailored scripts for migrating Qualifacts Looker custo
 5. Run lmanage configurator to execute migration
 6. Update owner for scheduled plans and alerts to original owner
 
+## Installation
+
+Create and activate the virtual environment:
+
+```
+python3 -m venv venv
+source venv/bin/activate
+```
+
+Install the required packages:
+
+```
+pip install -r requirements.txt
+```
+
 ## 1. Generating .ini files
 
 **lmanage** requires a .ini file to authenticate to the Looker API. Since we are pulling content from 150+ instances, we need to run lmanage that many times, and authenticate that many times. Create a file called `looker-api-keys.csv` with columns looker_url,client_id,client_secret and store all instance API keys for the desired user. Then run the following to generate an ini file for each instance in the `ini-files/` folder:
