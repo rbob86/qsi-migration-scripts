@@ -1,4 +1,7 @@
+import argparse
+import csv
 import json
+import sys
 import looker_sdk
 import os
 import re
@@ -507,7 +510,7 @@ def write_output(base_folder, folders, content):
         yaml.dump(content, file, default_flow_style=False)
 
 
-def get_user_info(owner_id):
+def get_user_info(sdk, owner_id):
     user = sdk.user(owner_id)
     external_user_id = (
         user.credentials_embed[0].external_user_id
@@ -539,178 +542,228 @@ def get_user_info(owner_id):
     }
 
 
-# Program execution
-SOURCE_FOLDERS = ["./input/config-011", "./input/config-089"]
 OUTPUT_FOLDER = "./output"
 MODEL_NAME = "bi_carelogic"
-INSTANCES = [
-    {
-        "url": "https://looker-011.qualifacts.org",
-        "client_id": "dwThq2pNKD78GvVBnRYC",
-        "client_secret": "vgdxJNDpyfDvNjXDr2nBJPSF",
-    },
-    {
-        "url": "https://looker-089.qualifacts.org",
-        "client_id": "qhP6XWDt3CxZ24YFWsCy",
-        "client_secret": "4sK3PBPPPtCXkgWGmn886hZr",
-    },
-]
 
 all_looker_folders = []
 all_content = []
 folder_counter = 0
 content_metadata_counter = 0
 all_owner_mapping = []
+include_list = []
 
-include_list = ["DEMO2"]  # -> EXCLUDE Meridian
 
-for base_folder in SOURCE_FOLDERS:
-    settings_path = os.path.join(base_folder, "settings.yaml")
-    content_path = os.path.join(base_folder, "content.yaml")
+def load_api_keys(csv_filename):
+    api_keys = {}
+    with open(csv_filename, mode="r") as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            # Extract the instance_id from the URL
+            instance_id = (
+                row["looker_url"].split("//")[1].split(".")[0]
+            )  # Extract 'qsi001' from 'https://qsi001.cloud.looker.com'
+            api_keys[instance_id] = {
+                "client_id": row["client_id"],
+                "client_secret": row["client_secret"],
+            }
+    return api_keys
 
-    # Extract folders and map new folder ids for content association
-    with open(settings_path, "r") as file:
-        settings_data = yaml.load(file, Loader=yaml.FullLoader)
 
-    looker_folders = [item for item in settings_data if isinstance(item, LookerFolder)]
-    folder_mapping = {}
+def main():
+    parser = argparse.ArgumentParser(
+        description="Read in customer account names to consolidate."
+    )
+    parser.add_argument(
+        "--customers",
+        nargs="+",
+        required=True,
+        help="List of customer accounts to consolidate",
+    )
+    parser.add_argument(
+        "--instances",
+        nargs="+",
+        required=True,
+        help="List of instance names to parse (e.g. qsi001 qsi002)",
+    )
+    args = parser.parse_args()
 
-    map_folders_to_new_ids(looker_folders[0])
+    include_list = args.customers
+    instance_list = args.instances
 
-    # Add folders to overall folder structure
-    shared_folder = looker_folders[0]
-    shared_folder.subfolders = [
-        s for s in shared_folder.subfolder if s.name in include_list
+    if len(include_list) == 0 or len(instance_list) == 0:
+        return
+
+    source_folders = [
+        f"../2-lmanage-capturator/config/config-{instance[-3:]}"
+        for instance in instance_list
+    ]
+    api_keys = load_api_keys("../1-create-ini-files/looker-api-keys.csv")
+    instances = [
+        {
+            "url": f"https://{instance}.cloud.looker.com",
+            "client_id": api_keys[instance]["client_id"],
+            "client_secret": api_keys[instance]["client_secret"],
+        }
+        for instance in instance_list
     ]
 
-    if len(all_looker_folders):
-        all_looker_folders[0].subfolder.extend(shared_folder.subfolders)
-        team_view = all_looker_folders[0].team_view + shared_folder.team_view
-        team_edit = all_looker_folders[0].team_edit + shared_folder.team_edit
-        all_looker_folders[0].team_view = team_view
-        all_looker_folders[0].team_edit = team_edit
-    else:
-        all_looker_folders.extend(looker_folders)
+    output_dir = "./output"
+    os.makedirs(output_dir, exist_ok=True)
 
-    def is_in_include_list(c):
-        if isinstance(c, LookObject):
-            return c.legacy_folder_id in folder_mapping
-        return c.legacy_folder_id["folder_id"] in folder_mapping
+    for base_folder in source_folders:
+        settings_path = os.path.join(base_folder, "settings.yaml")
+        content_path = os.path.join(base_folder, "content.yaml")
 
-    # Extract content and map to existing folder ids, combining team_view and team_edit values, and ignore content not in include_list
-    with open(content_path, "r") as file:
-        content = yaml.load(file, Loader=yaml.FullLoader)
-    content[:] = [c for c in content if is_in_include_list(c)]
+        # Extract folders and map new folder ids for content association
+        with open(settings_path, "r") as file:
+            settings_data = yaml.load(file, Loader=yaml.FullLoader)
 
-    # Retrieve scheduled plan and owner information and save to JSON file
-    instance_url = f"https://looker-{base_folder.split('-')[1]}.qualifacts.org"
-    instance = [i for i in INSTANCES if i["url"] == instance_url][0]
-    os.environ["LOOKERSDK_BASE_URL"] = instance_url
-    os.environ["LOOKERSDK_CLIENT_ID"] = instance["client_id"]
-    os.environ["LOOKERSDK_CLIENT_SECRET"] = instance["client_secret"]
-    sdk = looker_sdk.init40()
-    owner_mapping = {}
+        looker_folders = [
+            item for item in settings_data if isinstance(item, LookerFolder)
+        ]
+        folder_mapping = {}
 
-    for c in content:
-        if isinstance(c, LookObject):  # Only retrieve dashboard plans/alerts
-            continue
+        map_folders_to_new_ids(looker_folders[0])
 
-        scheduled_plans = c.scheduled_plans
-        alerts = c.alerts
+        # Add folders to overall folder structure
+        shared_folder = looker_folders[0]
+        shared_folder.subfolders = [
+            s for s in shared_folder.subfolder if s.name in include_list
+        ]
 
-        if len(scheduled_plans) or len(alerts):
-            dashboard_title_match = re.search(r"\btitle:\s*(.*)", c.lookml)
-            dashboard_title = dashboard_title_match.group(1).strip()
-            folder_id = c.legacy_folder_id["folder_id"]
-            folder_name = folder_mapping[folder_id]["name"]
-            parent_folder_id = folder_mapping[folder_id]["original_parent_id"]
+        if len(all_looker_folders):
+            all_looker_folders[0].subfolder.extend(shared_folder.subfolders)
+            team_view = all_looker_folders[0].team_view + shared_folder.team_view
+            team_edit = all_looker_folders[0].team_edit + shared_folder.team_edit
+            all_looker_folders[0].team_view = team_view
+            all_looker_folders[0].team_edit = team_edit
+        else:
+            all_looker_folders.extend(looker_folders)
 
-            if parent_folder_id == "1":
-                parent_folder_name = "Shared"
-            else:
-                parent_folder_name = folder_mapping[parent_folder_id]["name"]
+        def is_in_include_list(c):
+            if isinstance(c, LookObject):
+                return c.legacy_folder_id in folder_mapping
+            return c.legacy_folder_id["folder_id"] in folder_mapping
 
-            for alert in alerts:
-                print(alert.description)
+        # Extract content and map to existing folder ids, combining team_view and team_edit values, and ignore content not in include_list
+        with open(content_path, "r") as file:
+            content = yaml.load(file, Loader=yaml.FullLoader)
+        content[:] = [c for c in content if is_in_include_list(c)]
 
-            for plan in scheduled_plans:
-                owner_id = plan.user_id
+        # Retrieve scheduled plan and owner information and save to JSON file
+        instance_url = f"https://qsi{base_folder.split('-')[-1]}.cloud.looker.com"
+        print(instances)
+        instance = [i for i in instances if i["url"] == instance_url][0]
+        os.environ["LOOKERSDK_BASE_URL"] = instance_url
+        os.environ["LOOKERSDK_CLIENT_ID"] = instance["client_id"]
+        os.environ["LOOKERSDK_CLIENT_SECRET"] = instance["client_secret"]
+        sdk = looker_sdk.init40()
+        owner_mapping = {}
 
-                plan_to_save = {
-                    "dashboard_title": dashboard_title,
-                    "plan_name": plan.name,
-                    "folder_name": folder_name,
-                    "parent_folder_name": parent_folder_name,
-                }
+        for c in content:
+            if isinstance(c, LookObject):  # Only retrieve dashboard plans/alerts
+                continue
 
-                if owner_id not in owner_mapping:
-                    user_info = get_user_info(owner_id)
+            scheduled_plans = c.scheduled_plans
+            alerts = c.alerts
 
-                    owner_mapping[user_info["user_id"]] = {
-                        "instance": instance_url,
-                        "first_name": user_info["first_name"],
-                        "last_name": user_info["last_name"],
-                        "user_attributes": user_info["user_attributes"],
-                        "external_user_id": user_info["external_user_id"],
-                        "group_name": user_info["group_name"],
-                        "plans": [plan_to_save],
-                    }
+            if len(scheduled_plans) or len(alerts):
+                dashboard_title_match = re.search(r"\btitle:\s*(.*)", c.lookml)
+                dashboard_title = dashboard_title_match.group(1).strip()
+                folder_id = c.legacy_folder_id["folder_id"]
+                folder_name = folder_mapping[folder_id]["name"]
+                parent_folder_id = folder_mapping[folder_id]["original_parent_id"]
+
+                if parent_folder_id == "1":
+                    parent_folder_name = "Shared"
                 else:
-                    owner_mapping[owner_id]["plans"].append(plan_to_save)
+                    parent_folder_name = folder_mapping[parent_folder_id]["name"]
 
-            for alert in alerts:
-                owner_id = alert.owner_id
+                for alert in alerts:
+                    print(alert.description)
 
-                alert_to_save = {
-                    "dashboard_title": dashboard_title,
-                    "applied_dashboard_filters": alert.applied_dashboard_filters,
-                    "cron": alert.cron,
-                    "comparison_type": alert.comparison_type,
-                    "threshold": alert.threshold,
-                    "field_title": alert.field.title,
-                    "field_name": alert.field.name,
-                    "field_filter": alert.field.filter,
-                    "folder_name": folder_name,
-                    "parent_folder_name": parent_folder_name,
-                }
+                for plan in scheduled_plans:
+                    owner_id = plan.user_id
 
-                if owner_id not in owner_mapping:
-                    user_info = get_user_info(owner_id)
-
-                    owner_mapping[user_info["user_id"]] = {
-                        "instance": instance_url,
-                        "first_name": user_info["first_name"],
-                        "last_name": user_info["last_name"],
-                        "user_attributes": user_info["user_attributes"],
-                        "external_user_id": user_info["external_user_id"],
-                        "group_name": user_info["group_name"],
-                        "alerts": [alert_to_save],
+                    plan_to_save = {
+                        "dashboard_title": dashboard_title,
+                        "plan_name": plan.name,
+                        "folder_name": folder_name,
+                        "parent_folder_name": parent_folder_name,
                     }
-                else:
-                    owner_mapping[owner_id]["alerts"].append(plan_to_save)
 
-    for owner_info in owner_mapping.values():
-        all_owner_mapping.append(owner_info)
+                    if owner_id not in owner_mapping:
+                        user_info = get_user_info(sdk, owner_id)
 
-    # Update folder ids for content based on folder_mapping, and set model to "bi_carelogic"
-    for c in content:
-        if isinstance(c, LookObject):
-            c.legacy_folder_id = str(folder_mapping[c.legacy_folder_id]["id"])
-            c.query_obj["model"] = MODEL_NAME
-        elif isinstance(c, DashboardObject):
-            c.legacy_folder_id["folder_id"] = str(
-                folder_mapping[c.legacy_folder_id["folder_id"]]["id"]
-            )
-            model_pattern = re.compile(r"model:\s+\S+\n")
-            c.lookml = model_pattern.sub("model: bi_carelogic\n", c.lookml)
+                        owner_mapping[user_info["user_id"]] = {
+                            "instance": instance_url,
+                            "first_name": user_info["first_name"],
+                            "last_name": user_info["last_name"],
+                            "user_attributes": user_info["user_attributes"],
+                            "external_user_id": user_info["external_user_id"],
+                            "group_name": user_info["group_name"],
+                            "plans": [plan_to_save],
+                        }
+                    else:
+                        owner_mapping[owner_id]["plans"].append(plan_to_save)
 
-    # Add content to overall content list
-    all_content.extend(content)
+                for alert in alerts:
+                    owner_id = alert.owner_id
 
-# Save scheduled_plan and alert owner mapping
-with open("owner-mapping.json", "w") as json_file:
-    json.dump(all_owner_mapping, json_file, indent=4)
-print("Scheduled plan/alert to owner mapping has been saved to owner-mapping.json")
+                    alert_to_save = {
+                        "dashboard_title": dashboard_title,
+                        "applied_dashboard_filters": alert.applied_dashboard_filters,
+                        "cron": alert.cron,
+                        "comparison_type": alert.comparison_type,
+                        "threshold": alert.threshold,
+                        "field_title": alert.field.title,
+                        "field_name": alert.field.name,
+                        "field_filter": alert.field.filter,
+                        "folder_name": folder_name,
+                        "parent_folder_name": parent_folder_name,
+                    }
 
-# Save consolidated config file
-write_output(OUTPUT_FOLDER, all_looker_folders, all_content)
+                    if owner_id not in owner_mapping:
+                        user_info = get_user_info(owner_id)
+
+                        owner_mapping[user_info["user_id"]] = {
+                            "instance": instance_url,
+                            "first_name": user_info["first_name"],
+                            "last_name": user_info["last_name"],
+                            "user_attributes": user_info["user_attributes"],
+                            "external_user_id": user_info["external_user_id"],
+                            "group_name": user_info["group_name"],
+                            "alerts": [alert_to_save],
+                        }
+                    else:
+                        owner_mapping[owner_id]["alerts"].append(plan_to_save)
+
+        for owner_info in owner_mapping.values():
+            all_owner_mapping.append(owner_info)
+
+        # Update folder ids for content based on folder_mapping, and set model to "bi_carelogic"
+        for c in content:
+            if isinstance(c, LookObject):
+                c.legacy_folder_id = str(folder_mapping[c.legacy_folder_id]["id"])
+                c.query_obj["model"] = MODEL_NAME
+            elif isinstance(c, DashboardObject):
+                c.legacy_folder_id["folder_id"] = str(
+                    folder_mapping[c.legacy_folder_id["folder_id"]]["id"]
+                )
+                model_pattern = re.compile(r"model:\s+\S+\n")
+                c.lookml = model_pattern.sub("model: bi_carelogic\n", c.lookml)
+
+        # Add content to overall content list
+        all_content.extend(content)
+
+    # Save scheduled_plan and alert owner mapping
+    with open("owner-mapping.json", "w") as json_file:
+        json.dump(all_owner_mapping, json_file, indent=4)
+    print("Scheduled plan/alert to owner mapping has been saved to owner-mapping.json")
+
+    # Save consolidated config file
+    write_output(OUTPUT_FOLDER, all_looker_folders, all_content)
+
+
+if __name__ == "__main__":
+    main()

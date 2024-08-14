@@ -52,8 +52,7 @@ max_workers = 5  # Adjust this number based on your system
 
 # Run the lmanage commands in parallel
 with ThreadPoolExecutor(max_workers=max_workers) as executor:
-    futures = [executor.submit(run_lmanage, ini_file)
-               for ini_file in ini_files]
+    futures = [executor.submit(run_lmanage, ini_file) for ini_file in ini_files]
 
     for future in as_completed(futures):
         result = future.result()

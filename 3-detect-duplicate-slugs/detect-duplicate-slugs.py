@@ -30,7 +30,8 @@ def find_content_files(directory):
     matches = []
     for root, dirs, files in os.walk(directory):
         if filename in files:
-            matches.append(os.path.join(root, filename))
+            relative_path = os.path.relpath(root, directory)
+            matches.append(os.path.join(relative_path, filename))
     return matches
 
 
@@ -90,5 +91,4 @@ yaml.add_constructor("!ScheduledPlan", dummy_constructor)
 # Find duplicate slugs
 path = "../2-lmanage-capturator/config"
 dashboard_slugs = get_dashboard_slugs(path)
-print(dashboard_slugs)
-# slug_counts = find_duplicates(dashboard_slugs)
+slug_counts = find_duplicates(dashboard_slugs)
