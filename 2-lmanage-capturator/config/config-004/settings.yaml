@@ -1,0 +1,339 @@
+# FOLDER_PERMISSIONS
+# Opening Session Welcome to the Capturator, this is the Folder place
+# -----------------------------------------------------
+
+- !LookerFolder
+  parent_id:
+  id: '1'
+  name: Shared
+  subfolder:
+  - !LookerFolder
+    parent_id: '1'
+    id: '8'
+    name: TNHEALTHCONNECT
+    subfolder:
+    - !LookerFolder
+      parent_id: '8'
+      id: '211'
+      name: General/Miscellaneous
+      subfolder: []
+      content_metadata_id: '257'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '210'
+      name: Utilization
+      subfolder: []
+      content_metadata_id: '256'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '209'
+      name: Supervisory
+      subfolder: []
+      content_metadata_id: '255'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '208'
+      name: System Admin
+      subfolder: []
+      content_metadata_id: '254'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '207'
+      name: Report Writer/Templates
+      subfolder: []
+      content_metadata_id: '253'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '206'
+      name: QA/Compliance
+      subfolder: []
+      content_metadata_id: '252'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '205'
+      name: Outcomes
+      subfolder: []
+      content_metadata_id: '251'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '204'
+      name: Operations
+      subfolder: []
+      content_metadata_id: '250'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '203'
+      name: External/Grants
+      subfolder: []
+      content_metadata_id: '249'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '202'
+      name: Executive
+      subfolder: []
+      content_metadata_id: '248'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '201'
+      name: Clinical
+      subfolder: []
+      content_metadata_id: '247'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '200'
+      name: Billing/AR
+      subfolder: []
+      content_metadata_id: '246'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '199'
+      name: Administrative
+      subfolder: []
+      content_metadata_id: '245'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '198'
+      name: In Progress
+      subfolder: []
+      content_metadata_id: '244'
+      team_edit: []
+      team_view: []
+    content_metadata_id: '9'
+    team_edit:
+    - TNHEALTHCONNECT_Writer
+    team_view:
+    - TNHEALTHCONNECT_Viewer
+  content_metadata_id: '1'
+  team_edit: []
+  team_view:
+  - TNHEALTHCONNECT_Writer
+  - TNHEALTHCONNECT_Viewer
+# Looker Role
+# Opening Session Welcome to the Capturator, this is the Role place
+# -----------------------------------------------------
+
+
+
+# PERMISSION SETS
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_custom_fields
+  - create_table_calculations
+  - deploy
+  - develop
+  - download_without_limit
+  - explore
+  - manage_groups
+  - manage_project_models
+  - manage_spaces
+  - mobile_app_access
+  - save_content
+  - save_dashboards
+  - save_looks
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_queries
+  - see_sql
+  - see_user_dashboards
+  - see_users
+  - send_to_integration
+  - use_global_connections
+  - use_sql_runner
+  name: Developer
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - clear_cache_refresh
+  - download_without_limit
+  - mobile_app_access
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  - send_to_integration
+  name: Viewer
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - clear_cache_refresh
+  - download_with_limit
+  - mobile_app_access
+  - see_drill_overlay
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  name: Report Viewer
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_custom_fields
+  - create_table_calculations
+  - download_without_limit
+  - explore
+  - manage_spaces
+  - mobile_app_access
+  - save_content
+  - save_dashboards
+  - save_looks
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_sql
+  - see_user_dashboards
+  - send_to_integration
+  name: User
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_custom_fields
+  - create_table_calculations
+  - download_without_limit
+  - explore
+  - mobile_app_access
+  - save_content
+  - save_dashboards
+  - save_looks
+  - see_drill_overlay
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  name: Report Writer
+
+
+# MODEL SETS
+- !LookerModelSet
+  models:
+  - tnhealthconnect_prod_carelogic
+  name: TNHEALTHCONNECT
+- !LookerModelSet
+  models:
+  - tnhealthconnect_prod_carelogic
+  - extension-api-explorer
+  name: All
+
+
+# LOOKER ROLES
+- !LookerRoles
+  permission_set: User
+  model_set: All
+  teams:
+  - User
+  name: User
+- !LookerRoles
+  permission_set: Developer
+  model_set: All
+  teams: []
+  name: Developer
+- !LookerRoles
+  permission_set: Viewer
+  model_set: All
+  teams: []
+  name: Viewer
+- !LookerRoles
+  permission_set: Report Viewer
+  model_set: TNHEALTHCONNECT
+  teams: []
+  name: Viewer-TNHEALTHCONNECT
+- !LookerRoles
+  permission_set: Report Writer
+  model_set: TNHEALTHCONNECT
+  teams: []
+  name: Writer-TNHEALTHCONNECT
+
+
+# USER_ATTRIBUTES
+- !LookerUserAttribute
+  name: allowed_customer_schemas
+  uatype: string
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: landing_page
+  uatype: relative_url
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  default_value: /browse
+  teams: []
+- !LookerUserAttribute
+  name: locale
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: en
+  teams: []
+- !LookerUserAttribute
+  name: looker_internal_email_domain_allowlist
+  uatype: string
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: number_format
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: 1,234.56
+  teams: []
+- !LookerUserAttribute
+  name: signed_in_org
+  uatype: number
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: staff_id
+  uatype: number
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: ''
+  teams: []

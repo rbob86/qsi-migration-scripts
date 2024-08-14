@@ -25,9 +25,20 @@ def dummy_constructor(loader, node):
     return None
 
 
+def find_content_files(directory):
+    filename = "content.yaml"
+    matches = []
+    for root, dirs, files in os.walk(directory):
+        if filename in files:
+            matches.append(os.path.join(root, filename))
+    return matches
+
+
 def get_dashboard_slugs(path: str):
     dashboard_slugs = defaultdict(list)
-    for filename in os.listdir(path):
+    files = find_content_files(path)
+
+    for filename in files:
         if filename.endswith(".yaml") or filename.endswith(".yml"):
             filepath = os.path.join(path, filename)
 
@@ -77,6 +88,7 @@ yaml.add_constructor("!LookObject", dummy_constructor)
 yaml.add_constructor("!ScheduledPlan", dummy_constructor)
 
 # Find duplicate slugs
-path = "./content-files"
+path = "../2-lmanage-capturator/config"
 dashboard_slugs = get_dashboard_slugs(path)
-slug_counts = find_duplicates(dashboard_slugs)
+print(dashboard_slugs)
+# slug_counts = find_duplicates(dashboard_slugs)

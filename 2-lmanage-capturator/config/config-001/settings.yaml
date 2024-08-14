@@ -1,0 +1,462 @@
+# FOLDER_PERMISSIONS
+# Opening Session Welcome to the Capturator, this is the Folder place
+# -----------------------------------------------------
+
+- !LookerFolder
+  parent_id:
+  id: '1'
+  name: Shared
+  subfolder:
+  - !LookerFolder
+    parent_id: '1'
+    id: '9'
+    name: INDCTR
+    subfolder:
+    - !LookerFolder
+      parent_id: '9'
+      id: '103'
+      name: General/Miscellaneous
+      subfolder: []
+      content_metadata_id: '461'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '9'
+      id: '102'
+      name: Utilization
+      subfolder: []
+      content_metadata_id: '460'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '9'
+      id: '101'
+      name: Supervisory
+      subfolder: []
+      content_metadata_id: '459'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '9'
+      id: '100'
+      name: System Admin
+      subfolder: []
+      content_metadata_id: '458'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '9'
+      id: '99'
+      name: Report Writer/Templates
+      subfolder: []
+      content_metadata_id: '457'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '9'
+      id: '98'
+      name: QA/Compliance
+      subfolder: []
+      content_metadata_id: '456'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '9'
+      id: '97'
+      name: Outcomes
+      subfolder: []
+      content_metadata_id: '455'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '9'
+      id: '96'
+      name: Operations
+      subfolder: []
+      content_metadata_id: '454'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '9'
+      id: '95'
+      name: External/Grants
+      subfolder: []
+      content_metadata_id: '453'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '9'
+      id: '94'
+      name: Executive
+      subfolder: []
+      content_metadata_id: '452'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '9'
+      id: '93'
+      name: Clinical
+      subfolder: []
+      content_metadata_id: '451'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '9'
+      id: '92'
+      name: Billing/AR
+      subfolder: []
+      content_metadata_id: '450'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '9'
+      id: '91'
+      name: Administrative
+      subfolder: []
+      content_metadata_id: '449'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '9'
+      id: '90'
+      name: In Progress
+      subfolder: []
+      content_metadata_id: '448'
+      team_edit: []
+      team_view: []
+    content_metadata_id: '10'
+    team_edit:
+    - INDCTR_Writer
+    team_view:
+    - INDCTR_Viewer
+  - !LookerFolder
+    parent_id: '1'
+    id: '8'
+    name: OCSDS
+    subfolder:
+    - !LookerFolder
+      parent_id: '8'
+      id: '117'
+      name: General/Miscellaneous
+      subfolder: []
+      content_metadata_id: '475'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '116'
+      name: Utilization
+      subfolder: []
+      content_metadata_id: '474'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '115'
+      name: Supervisory
+      subfolder: []
+      content_metadata_id: '473'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '114'
+      name: System Admin
+      subfolder: []
+      content_metadata_id: '472'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '113'
+      name: Report Writer/Templates
+      subfolder: []
+      content_metadata_id: '471'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '112'
+      name: QA/Compliance
+      subfolder: []
+      content_metadata_id: '470'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '111'
+      name: Outcomes
+      subfolder: []
+      content_metadata_id: '469'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '110'
+      name: Operations
+      subfolder: []
+      content_metadata_id: '468'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '109'
+      name: External/Grants
+      subfolder: []
+      content_metadata_id: '467'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '108'
+      name: Executive
+      subfolder: []
+      content_metadata_id: '466'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '107'
+      name: Clinical
+      subfolder: []
+      content_metadata_id: '465'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '106'
+      name: Billing/AR
+      subfolder: []
+      content_metadata_id: '464'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '105'
+      name: Administrative
+      subfolder: []
+      content_metadata_id: '463'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '104'
+      name: In Progress
+      subfolder: []
+      content_metadata_id: '462'
+      team_edit: []
+      team_view: []
+    content_metadata_id: '9'
+    team_edit:
+    - OCSDS_Writer
+    team_view:
+    - OCSDS_Viewer
+  content_metadata_id: '1'
+  team_edit: []
+  team_view:
+  - OCSDS_Viewer
+  - OCSDS_Writer
+  - INDCTR_Viewer
+  - INDCTR_Writer
+# Looker Role
+# Opening Session Welcome to the Capturator, this is the Role place
+# -----------------------------------------------------
+
+
+
+# PERMISSION SETS
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_custom_fields
+  - create_table_calculations
+  - deploy
+  - develop
+  - download_without_limit
+  - explore
+  - manage_groups
+  - manage_project_models
+  - manage_spaces
+  - mobile_app_access
+  - save_content
+  - save_dashboards
+  - save_looks
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_queries
+  - see_sql
+  - see_user_dashboards
+  - see_users
+  - send_to_integration
+  - use_global_connections
+  - use_sql_runner
+  name: Developer
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_custom_fields
+  - create_table_calculations
+  - download_without_limit
+  - explore
+  - mobile_app_access
+  - save_content
+  - save_dashboards
+  - save_looks
+  - see_drill_overlay
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  name: Report Writer
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_custom_fields
+  - create_table_calculations
+  - download_without_limit
+  - explore
+  - save_content
+  - save_dashboards
+  - save_looks
+  - see_drill_overlay
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  - see_users
+  - sudo
+  name: QSI Support
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - clear_cache_refresh
+  - download_with_limit
+  - mobile_app_access
+  - see_drill_overlay
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  name: Report Viewer
+
+
+# MODEL SETS
+- !LookerModelSet
+  models:
+  - ocsds_prod_carelogic
+  name: OCSDS
+- !LookerModelSet
+  models:
+  - indctr_prod_carelogic
+  name: INDCTR
+- !LookerModelSet
+  models:
+  - indctr_prod_carelogic
+  - extension-api-explorer
+  - ocsds_prod_carelogic
+  name: All
+- !LookerModelSet
+  models:
+  - indctr_prod_carelogic
+  - ocsds_prod_carelogic
+  name: ALL_CUST
+
+
+# LOOKER ROLES
+- !LookerRoles
+  permission_set: Developer
+  model_set: All
+  teams: []
+  name: Developer
+- !LookerRoles
+  permission_set: Report Viewer
+  model_set: OCSDS
+  teams: []
+  name: Viewer-OCSDS
+- !LookerRoles
+  permission_set: Report Writer
+  model_set: OCSDS
+  teams: []
+  name: Writer-OCSDS
+- !LookerRoles
+  permission_set: Report Viewer
+  model_set: INDCTR
+  teams: []
+  name: Viewer-INDCTR
+- !LookerRoles
+  permission_set: Report Writer
+  model_set: INDCTR
+  teams: []
+  name: Writer-INDCTR
+- !LookerRoles
+  permission_set: QSI Support
+  model_set: ALL_CUST
+  teams: []
+  name: Support
+
+
+# USER_ATTRIBUTES
+- !LookerUserAttribute
+  name: allowed_customer_schemas
+  uatype: string
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: landing_page
+  uatype: relative_url
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  default_value: /browse
+  teams: []
+- !LookerUserAttribute
+  name: locale
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: en
+  teams: []
+- !LookerUserAttribute
+  name: looker_internal_email_domain_allowlist
+  uatype: string
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: number_format
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: 1,234.56
+  teams: []
+- !LookerUserAttribute
+  name: signed_in_org
+  uatype: number
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  default_value: '1000'
+  teams:
+  - OCSDS_Viewer: '1004'
+  - OCSDS_Writer: '1004'
+- !LookerUserAttribute
+  name: staff_id
+  uatype: number
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: ''
+  teams: []

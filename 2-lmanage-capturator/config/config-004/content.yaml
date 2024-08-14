@@ -1,0 +1,745 @@
+
+
+# LookData
+- !LookObject
+  legacy_folder_id: '8'
+  look_id: '1'
+  title: Test Financial Look
+  query_obj:
+    model: tnhealthconnect_prod_carelogic
+    view: financial
+    fields:
+    - claim.organization_name
+    - financial.applied_approved_amount
+    - financial.applied_unapproved_amount
+    - financial.balance_amount
+    - financial.deposit_activity_amount
+    - financial.organization_name
+    pivots:
+    fill_fields:
+    filters:
+      financial.account_year: '2022'
+    filter_expression:
+    sorts:
+    - claim.organization_name desc
+    limit: '500'
+    column_limit:
+    total:
+    row_total:
+    subtotals:
+    vis_config:
+      show_view_names: false
+      show_row_numbers: true
+      transpose: false
+      truncate_text: true
+      hide_totals: false
+      hide_row_totals: false
+      size_to_fit: true
+      table_theme: white
+      limit_displayed_rows: false
+      enable_conditional_formatting: false
+      header_text_alignment: left
+      header_font_size: 12
+      rows_font_size: 12
+      conditional_formatting_include_totals: false
+      conditional_formatting_include_nulls: false
+      type: looker_grid
+      defaults_version: 1
+    filter_config:
+      financial.account_year:
+      - type: year
+        values:
+        - constant: '2022'
+          unit: yr
+        - {}
+        id: 0
+        error: false
+    visible_ui_sections:
+    dynamic_fields: '[]'
+    query_timezone:
+  description: ''
+  scheduled_plans: []
+- !LookObject
+  legacy_folder_id: '8'
+  look_id: '2'
+  title: Test Schedule Look
+  query_obj:
+    model: tnhealthconnect_prod_carelogic
+    view: schedule
+    fields:
+    - schedule.service_month_name
+    - activity_detail.total_actual_units
+    - activity_detail.total_billed_units
+    pivots:
+    fill_fields:
+    - schedule.service_month_name
+    filters:
+      schedule.service_year: '2022'
+    filter_expression:
+    sorts:
+    - activity_detail.total_actual_units desc 0
+    limit: '500'
+    column_limit:
+    total:
+    row_total:
+    subtotals:
+    vis_config:
+      show_view_names: false
+      show_row_numbers: true
+      transpose: false
+      truncate_text: true
+      hide_totals: false
+      hide_row_totals: false
+      size_to_fit: true
+      table_theme: white
+      limit_displayed_rows: false
+      enable_conditional_formatting: false
+      header_text_alignment: left
+      header_font_size: 12
+      rows_font_size: 12
+      conditional_formatting_include_totals: false
+      conditional_formatting_include_nulls: false
+      type: looker_grid
+      defaults_version: 1
+    filter_config:
+      schedule.service_year:
+      - type: year
+        values:
+        - constant: '2022'
+          unit: yr
+        - {}
+        id: 0
+        error: false
+    visible_ui_sections:
+    dynamic_fields:
+    query_timezone:
+  description: ''
+  scheduled_plans: []
+- !LookObject
+  legacy_folder_id: '8'
+  look_id: '3'
+  title: Test Financial Look 2
+  query_obj:
+    model: tnhealthconnect_prod_carelogic
+    view: financial
+    fields:
+    - financial.deposit_activity_amount
+    - count_of_deposit_id
+    - count_of_claim_id
+    pivots:
+    fill_fields:
+    filters:
+      financial.accounting_period: '2022-05-05'
+      financial.deposit_id: NOT NULL
+    filter_expression:
+    sorts: []
+    limit: '500'
+    column_limit:
+    total:
+    row_total:
+    subtotals:
+    vis_config:
+      show_view_names: false
+      show_row_numbers: true
+      transpose: false
+      truncate_text: true
+      hide_totals: false
+      hide_row_totals: false
+      size_to_fit: true
+      table_theme: white
+      limit_displayed_rows: false
+      enable_conditional_formatting: false
+      header_text_alignment: left
+      header_font_size: 12
+      rows_font_size: 12
+      conditional_formatting_include_totals: false
+      conditional_formatting_include_nulls: false
+      type: looker_grid
+      defaults_version: 1
+    filter_config:
+      financial.accounting_period:
+      - type: '='
+        values:
+        - constant: '2022-05-05'
+        - {}
+        id: 0
+        error: false
+      financial.deposit_id:
+      - type: '!null'
+        values:
+        - constant: ''
+        - {}
+        id: 1
+        error: false
+    visible_ui_sections:
+    dynamic_fields: '[{"measure":"count_of_deposit_id","based_on":"financial.deposit_id","expression":"","label":"Count
+      of Deposit ID","type":"count_distinct","_kind_hint":"measure","_type_hint":"number"},{"measure":"count_of_claim_id","based_on":"claim.claim_id","expression":"","label":"Count
+      of Claim ID","type":"count_distinct","_kind_hint":"measure","_type_hint":"number"}]'
+    query_timezone:
+  description: ''
+  scheduled_plans: []
+- !LookObject
+  legacy_folder_id: '8'
+  look_id: '7'
+  title: Cash Detail
+  query_obj:
+    model: tnhealthconnect_prod_carelogic
+    view: financial
+    fields:
+    - financial.deposit_date
+    - financial.deposit_year_month
+    - financial.payment_amount
+    - financial.recouped_amount
+    - claim.claim_program
+    - claim.service_year_month
+    pivots:
+    fill_fields:
+    filters:
+      financial.deposit_year_month: 3 months
+    filter_expression:
+    sorts:
+    - financial.deposit_date desc
+    limit: '500'
+    column_limit:
+    total:
+    row_total:
+    subtotals:
+    vis_config:
+      x_axis_gridlines: false
+      y_axis_gridlines: true
+      show_view_names: false
+      show_y_axis_labels: true
+      show_y_axis_ticks: true
+      y_axis_tick_density: default
+      y_axis_tick_density_custom: 5
+      show_x_axis_label: true
+      show_x_axis_ticks: true
+      y_axis_scale_mode: linear
+      x_axis_reversed: false
+      y_axis_reversed: false
+      plot_size_by_field: false
+      trellis: ''
+      stacking: ''
+      limit_displayed_rows: false
+      legend_position: center
+      point_style: none
+      show_value_labels: false
+      label_density: 25
+      x_axis_scale: auto
+      y_axis_combined: true
+      ordering: none
+      show_null_labels: false
+      show_totals_labels: false
+      show_silhouette: false
+      totals_color: '#808080'
+      type: looker_column
+      defaults_version: 1
+    filter_config:
+      financial.deposit_year_month:
+      - type: past
+        values:
+        - constant: '3'
+          unit: mo
+        - {}
+        id: 0
+        error: false
+    visible_ui_sections:
+    dynamic_fields:
+    query_timezone:
+  description: ''
+  scheduled_plans: []
+
+
+# Dashboard Content
+- !DashboardObject
+  legacy_folder_id:
+    folder_id: '8'
+    slug: 4YRp1B9i7nPXrzKHoBAlhV
+  lookml: "---\n- dashboard: test_dashboard\n  title: Test Dashboard\n  layout: newspaper\n\
+    \  preferred_viewer: dashboards-next\n  description: ''\n  preferred_slug: 4YRp1B9i7nPXrzKHoBAlhV\n\
+    \  elements:\n  - title: Test Dashboard\n    name: Test Dashboard\n    model:
+    tnhealthconnect_prod_carelogic\n    explore: financial\n    type: table\n    fields:
+    [claim.organization_name, financial.applied_approved_amount, financial.applied_unapproved_amount,\n\
+    \      financial.balance_amount, financial.deposit_activity_amount, financial.organization_name]\n\
+    \    filters: {}\n    sorts: [claim.organization_name desc]\n    limit: 500\n\
+    \    listen:\n      Account Year: financial.account_year\n    row: 0\n    col:
+    0\n    width: 12\n    height: 6\n  - title: New Tile\n    name: New Tile\n   \
+    \ model: tnhealthconnect_prod_carelogic\n    explore: financial\n    type: looker_grid\n\
+    \    fields: [financial.deposit_activity_amount, count_of_deposit_id, count_of_claim_id]\n\
+    \    filters:\n      financial.accounting_period: '2022-05-05'\n      financial.deposit_id:
+    NOT NULL\n    limit: 500\n    dynamic_fields:\n    - measure: count_of_deposit_id\n\
+    \      based_on: financial.deposit_id\n      expression: ''\n      label: Count
+    of Deposit ID\n      type: count_distinct\n      _kind_hint: measure\n      _type_hint:
+    number\n    - measure: count_of_claim_id\n      based_on: claim.claim_id\n   \
+    \   expression: ''\n      label: Count of Claim ID\n      type: count_distinct\n\
+    \      _kind_hint: measure\n      _type_hint: number\n    show_view_names: false\n\
+    \    show_row_numbers: true\n    transpose: false\n    truncate_text: true\n \
+    \   hide_totals: false\n    hide_row_totals: false\n    size_to_fit: true\n  \
+    \  table_theme: white\n    limit_displayed_rows: false\n    enable_conditional_formatting:
+    false\n    header_text_alignment: left\n    header_font_size: 12\n    rows_font_size:
+    12\n    conditional_formatting_include_totals: false\n    conditional_formatting_include_nulls:
+    false\n    defaults_version: 1\n    listen:\n      Account Year: financial.account_year\n\
+    \    row: 6\n    col: 0\n    width: 8\n    height: 6\n  - title: ANDDS In-Home
+    & Clinic Intake Count Past 6 Months\n    name: ANDDS In-Home & Clinic Intake Count
+    Past 6 Months\n    model: tnhealthconnect_prod_carelogic\n    explore: admissions\n\
+    \    type: looker_column\n    fields: [client_program.client_program_organization_name,
+    admissions.episode_admission_year_month,\n      admissions.count_intake, program_detail.program_name]\n\
+    \    filters:\n      program_detail.program_name: ANDSS In-Home & Clinic\n   \
+    \   admissions.episode_admission_year_month: 6 months\n    sorts: [admissions.episode_admission_year_month
+    desc]\n    limit: 500\n    x_axis_gridlines: false\n    y_axis_gridlines: true\n\
+    \    show_view_names: false\n    show_y_axis_labels: true\n    show_y_axis_ticks:
+    true\n    y_axis_tick_density: default\n    y_axis_tick_density_custom: 5\n  \
+    \  show_x_axis_label: true\n    show_x_axis_ticks: true\n    y_axis_scale_mode:
+    linear\n    x_axis_reversed: false\n    y_axis_reversed: false\n    plot_size_by_field:
+    false\n    trellis: ''\n    stacking: ''\n    limit_displayed_rows: false\n  \
+    \  legend_position: center\n    point_style: none\n    show_value_labels: false\n\
+    \    label_density: 25\n    x_axis_scale: auto\n    y_axis_combined: true\n  \
+    \  ordering: none\n    show_null_labels: false\n    show_totals_labels: false\n\
+    \    show_silhouette: false\n    totals_color: \"#808080\"\n    defaults_version:
+    1\n    listen: {}\n    row: 6\n    col: 8\n    width: 8\n    height: 6\n  - title:
+    New Tile\n    name: New Tile (2)\n    model: tnhealthconnect_prod_carelogic\n\
+    \    explore: financial\n    type: single_value\n    fields: [claim.item_balance]\n\
+    \    filters:\n      claim.claim_created_date: 3 years\n    limit: 500\n    column_limit:
+    50\n    custom_color_enabled: true\n    show_single_value_title: true\n    show_comparison:
+    false\n    comparison_type: value\n    comparison_reverse_colors: false\n    show_comparison_label:
+    true\n    enable_conditional_formatting: false\n    conditional_formatting_include_totals:
+    false\n    conditional_formatting_include_nulls: false\n    defaults_version:
+    1\n    listen:\n      Account Year: financial.account_year\n    row: 0\n    col:
+    16\n    width: 8\n    height: 6\n  - title: Balances in 2019\n    name: Balances
+    in 2019\n    model: tnhealthconnect_prod_carelogic\n    explore: financial\n \
+    \   type: looker_grid\n    fields: [claim.item_balance, claim.service_end_month_name]\n\
+    \    fill_fields: [claim.service_end_month_name]\n    filters:\n      claim.service_end_year:
+    '2019'\n    sorts: [claim.service_end_month_name]\n    limit: 500\n    column_limit:
+    50\n    show_view_names: false\n    show_row_numbers: true\n    transpose: false\n\
+    \    truncate_text: true\n    hide_totals: false\n    hide_row_totals: false\n\
+    \    size_to_fit: true\n    table_theme: white\n    limit_displayed_rows: false\n\
+    \    enable_conditional_formatting: false\n    header_text_alignment: left\n \
+    \   header_font_size: 12\n    rows_font_size: 12\n    conditional_formatting_include_totals:
+    false\n    conditional_formatting_include_nulls: false\n    x_axis_gridlines:
+    false\n    y_axis_gridlines: true\n    show_y_axis_labels: true\n    show_y_axis_ticks:
+    true\n    y_axis_tick_density: default\n    y_axis_tick_density_custom: 5\n  \
+    \  show_x_axis_label: true\n    show_x_axis_ticks: true\n    y_axis_scale_mode:
+    linear\n    x_axis_reversed: false\n    y_axis_reversed: false\n    plot_size_by_field:
+    false\n    trellis: ''\n    stacking: ''\n    legend_position: center\n    point_style:
+    none\n    show_value_labels: false\n    label_density: 25\n    x_axis_scale: auto\n\
+    \    y_axis_combined: true\n    ordering: none\n    show_null_labels: false\n\
+    \    show_totals_labels: false\n    show_silhouette: false\n    totals_color:
+    \"#808080\"\n    defaults_version: 1\n    listen:\n      Account Year: financial.account_year\n\
+    \    row: 12\n    col: 0\n    width: 8\n    height: 6\n  - title: Claim Activity
+    Billed by Month Year 2020-2023\n    name: Claim Activity Billed by Month Year
+    2020-2023\n    model: tnhealthconnect_prod_carelogic\n    explore: financial\n\
+    \    type: looker_column\n    fields: [claim_line.activity_billed, claim.service_month_name,
+    claim.service_year]\n    pivots: [claim.service_year]\n    fill_fields: [claim.service_month_name,
+    claim.service_year]\n    filters:\n      claim.service_year: 2020/01/01 to 2022/06/23\n\
+    \    sorts: [claim.service_year, claim.service_month_name]\n    limit: 500\n \
+    \   column_limit: 50\n    x_axis_gridlines: false\n    y_axis_gridlines: true\n\
+    \    show_view_names: false\n    show_y_axis_labels: true\n    show_y_axis_ticks:
+    true\n    y_axis_tick_density: default\n    y_axis_tick_density_custom: 5\n  \
+    \  show_x_axis_label: true\n    show_x_axis_ticks: true\n    y_axis_scale_mode:
+    linear\n    x_axis_reversed: false\n    y_axis_reversed: false\n    plot_size_by_field:
+    false\n    trellis: ''\n    stacking: ''\n    limit_displayed_rows: false\n  \
+    \  legend_position: center\n    point_style: none\n    show_value_labels: false\n\
+    \    label_density: 25\n    x_axis_scale: auto\n    y_axis_combined: true\n  \
+    \  ordering: none\n    show_null_labels: false\n    show_totals_labels: false\n\
+    \    show_silhouette: false\n    totals_color: \"#808080\"\n    defaults_version:
+    1\n    listen:\n      Account Year: financial.account_year\n    row: 12\n    col:
+    8\n    width: 8\n    height: 6\n  - title: \" Medications Count per Entry Method
+    over Time\"\n    name: \" Medications Count per Entry Method over Time\"\n   \
+    \ model: tnhealthconnect_prod_carelogic\n    explore: medications\n    type: looker_grid\n\
+    \    fields: [medications.medications_count, medications.medication_begin_month_num,\n\
+    \      medications.entry_method]\n    pivots: [medications.entry_method]\n   \
+    \ fill_fields: [medications.medication_begin_month_num]\n    filters: {}\n   \
+    \ sorts: [medications.entry_method, medications.medications_count desc 0]\n  \
+    \  limit: 500\n    show_view_names: false\n    show_row_numbers: true\n    transpose:
+    false\n    truncate_text: true\n    hide_totals: false\n    hide_row_totals: false\n\
+    \    size_to_fit: true\n    table_theme: white\n    limit_displayed_rows: false\n\
+    \    enable_conditional_formatting: false\n    header_text_alignment: left\n \
+    \   header_font_size: 12\n    rows_font_size: 12\n    conditional_formatting_include_totals:
+    false\n    conditional_formatting_include_nulls: false\n    defaults_version:
+    1\n    listen:\n      Medication Begin Year: medications.medication_begin_year\n\
+    \    row: 6\n    col: 16\n    width: 8\n    height: 6\n  filters:\n  - name: Account
+    Year\n    title: Account Year\n    type: field_filter\n    default_value: '2022'\n\
+    \    allow_multiple_values: true\n    required: false\n    ui_config:\n      type:
+    advanced\n      display: popover\n    model: tnhealthconnect_prod_carelogic\n\
+    \    explore: financial\n    listens_to_filters: []\n    field: financial.account_year\n\
+    \  - name: Medication Begin Year\n    title: Medication Begin Year\n    type:
+    field_filter\n    default_value: '2022'\n    allow_multiple_values: true\n   \
+    \ required: false\n    ui_config:\n      type: advanced\n      display: popover\n\
+    \      options: []\n    model: tnhealthconnect_prod_carelogic\n    explore: medications\n\
+    \    listens_to_filters: []\n    field: medications.medication_begin_year\n"
+  dashboard_id: '1'
+  dashboard_slug: 4YRp1B9i7nPXrzKHoBAlhV
+  dashboard_element_alert_counts:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  scheduled_plans: []
+  alerts: []
+- !DashboardObject
+  legacy_folder_id:
+    folder_id: '8'
+    slug: 1Ovl3NffxkKLfel0kDosN2
+  lookml: "---\n- dashboard: test_dashboard_2\n  title: Test Dashboard 2\n  layout:
+    newspaper\n  preferred_viewer: dashboards-next\n  preferred_slug: 1Ovl3NffxkKLfel0kDosN2\n\
+    \  elements:\n  - title: Test Dashboard 2\n    name: Test Dashboard 2\n    model:
+    tnhealthconnect_prod_carelogic\n    explore: admissions\n    type: looker_grid\n\
+    \    fields: [admissions.count_intake]\n    filters: {}\n    limit: 500\n    show_view_names:
+    false\n    show_row_numbers: true\n    transpose: false\n    truncate_text: true\n\
+    \    hide_totals: false\n    hide_row_totals: false\n    size_to_fit: true\n \
+    \   table_theme: white\n    limit_displayed_rows: false\n    enable_conditional_formatting:
+    false\n    header_text_alignment: left\n    header_font_size: 12\n    rows_font_size:
+    12\n    conditional_formatting_include_totals: false\n    conditional_formatting_include_nulls:
+    false\n    defaults_version: 1\n    listen:\n      Client Program Organization
+    Name: client_program.client_program_organization_name\n      Program Name: program_detail.program_name\n\
+    \      Gender: client.gender\n      Race: client.race\n      Service Date: document.service_date\n\
+    \      Document Staff Name: doc_staff.staff_name\n      Client Name: client.client_name\n\
+    \    row: 0\n    col: 0\n    width: 24\n    height: 12\n  - title: Activity Count
+    2022\n    name: Activity Count 2022\n    model: tnhealthconnect_prod_carelogic\n\
+    \    explore: schedule\n    type: single_value\n    fields: [schedule.activities_count]\n\
+    \    filters:\n      schedule.service_year: '2022'\n    sorts: [schedule.activities_count
+    desc 0]\n    limit: 500\n    custom_color_enabled: true\n    show_single_value_title:
+    true\n    show_comparison: false\n    comparison_type: value\n    comparison_reverse_colors:
+    false\n    show_comparison_label: true\n    enable_conditional_formatting: false\n\
+    \    conditional_formatting_include_totals: false\n    conditional_formatting_include_nulls:
+    false\n    x_axis_gridlines: false\n    y_axis_gridlines: true\n    show_view_names:
+    false\n    show_y_axis_labels: true\n    show_y_axis_ticks: true\n    y_axis_tick_density:
+    default\n    y_axis_tick_density_custom: 5\n    show_x_axis_label: true\n    show_x_axis_ticks:
+    true\n    y_axis_scale_mode: linear\n    x_axis_reversed: false\n    y_axis_reversed:
+    false\n    plot_size_by_field: false\n    trellis: ''\n    stacking: ''\n    limit_displayed_rows:
+    false\n    legend_position: center\n    point_style: none\n    show_value_labels:
+    false\n    label_density: 25\n    x_axis_scale: auto\n    y_axis_combined: true\n\
+    \    ordering: none\n    show_null_labels: false\n    show_totals_labels: false\n\
+    \    show_silhouette: false\n    totals_color: \"#808080\"\n    defaults_version:
+    1\n    show_row_numbers: true\n    transpose: false\n    truncate_text: true\n\
+    \    hide_totals: false\n    hide_row_totals: false\n    size_to_fit: true\n \
+    \   table_theme: white\n    header_text_alignment: left\n    header_font_size:
+    12\n    rows_font_size: 12\n    listen: {}\n    row:\n    col:\n    width:\n \
+    \   height:\n  filters:\n  - name: Client Program Organization Name\n    title:
+    Client Program Organization Name\n    type: field_filter\n    default_value: ''\n\
+    \    allow_multiple_values: true\n    required: false\n    ui_config:\n      type:
+    advanced\n      display: popover\n    model: tnhealthconnect_prod_carelogic\n\
+    \    explore: admissions\n    listens_to_filters: []\n    field: client_program.client_program_organization_name\n\
+    \  - name: Gender\n    title: Gender\n    type: field_filter\n    default_value:
+    ''\n    allow_multiple_values: true\n    required: false\n    ui_config:\n   \
+    \   type: advanced\n      display: popover\n    model: tnhealthconnect_prod_carelogic\n\
+    \    explore: admissions\n    listens_to_filters: []\n    field: client.gender\n\
+    \  - name: Program Name\n    title: Program Name\n    type: field_filter\n   \
+    \ default_value: ''\n    allow_multiple_values: true\n    required: false\n  \
+    \  ui_config:\n      type: advanced\n      display: popover\n    model: tnhealthconnect_prod_carelogic\n\
+    \    explore: admissions\n    listens_to_filters: []\n    field: program_detail.program_name\n\
+    \  - name: Race\n    title: Race\n    type: field_filter\n    default_value: ''\n\
+    \    allow_multiple_values: true\n    required: false\n    ui_config:\n      type:
+    advanced\n      display: popover\n    model: tnhealthconnect_prod_carelogic\n\
+    \    explore: admissions\n    listens_to_filters: []\n    field: client.race\n\
+    \  - name: Service Date\n    title: Service Date\n    type: field_filter\n   \
+    \ default_value: 7 days\n    allow_multiple_values: true\n    required: false\n\
+    \    ui_config:\n      type: relative_timeframes\n      display: inline\n    model:
+    tnhealthconnect_prod_carelogic\n    explore: admissions\n    listens_to_filters:
+    []\n    field: document.service_date\n  - name: Document Staff Name\n    title:
+    Document Staff Name\n    type: field_filter\n    default_value: ''\n    allow_multiple_values:
+    true\n    required: false\n    ui_config:\n      type: advanced\n      display:
+    popover\n    model: tnhealthconnect_prod_carelogic\n    explore: admissions\n\
+    \    listens_to_filters: []\n    field: doc_staff.staff_name\n  - name: Client
+    Name\n    title: Client Name\n    type: field_filter\n    default_value: ''\n\
+    \    allow_multiple_values: true\n    required: false\n    ui_config:\n      type:
+    advanced\n      display: popover\n    model: tnhealthconnect_prod_carelogic\n\
+    \    explore: admissions\n    listens_to_filters: []\n    field: client.client_name\n"
+  dashboard_id: '2'
+  dashboard_slug: 1Ovl3NffxkKLfel0kDosN2
+  dashboard_element_alert_counts:
+  - 0
+  - 0
+  scheduled_plans: []
+  alerts: []
+- !DashboardObject
+  legacy_folder_id:
+    folder_id: '8'
+    slug: UATgcBYvLRJMI82y1jEid2
+  lookml: "---\n- dashboard: financial\n  title: Financial\n  layout: newspaper\n\
+    \  preferred_viewer: dashboards-next\n  description: ''\n  preferred_slug: UATgcBYvLRJMI82y1jEid2\n\
+    \  elements:\n  - title: Financial\n    name: Financial\n    model: tnhealthconnect_prod_carelogic\n\
+    \    explore: financial\n    type: looker_grid\n    fields: [claim.service_month_name,
+    claim_line.activity_expected]\n    filters: {}\n    sorts: [claim.service_month_name]\n\
+    \    limit: 500\n    show_view_names: false\n    show_row_numbers: true\n    transpose:
+    false\n    truncate_text: true\n    hide_totals: false\n    hide_row_totals: false\n\
+    \    size_to_fit: true\n    table_theme: white\n    limit_displayed_rows: false\n\
+    \    enable_conditional_formatting: false\n    header_text_alignment: left\n \
+    \   header_font_size: 12\n    rows_font_size: 12\n    conditional_formatting_include_totals:
+    false\n    conditional_formatting_include_nulls: false\n    defaults_version:
+    1\n    listen:\n      Service Year: claim.service_year\n    row: 0\n    col: 0\n\
+    \    width: 13\n    height: 7\n  - title: Recoup Amount by Month\n    name: Recoup
+    Amount by Month\n    model: tnhealthconnect_prod_carelogic\n    explore: financial\n\
+    \    type: looker_grid\n    fields: [financial.deposit_month_num, financial.recouped_amount]\n\
+    \    fill_fields: [financial.deposit_month_num]\n    filters:\n      financial.deposit_year:
+    1 years\n    sorts: [financial.deposit_month_num]\n    limit: 500\n    column_limit:
+    50\n    show_view_names: false\n    show_row_numbers: true\n    transpose: false\n\
+    \    truncate_text: true\n    hide_totals: false\n    hide_row_totals: false\n\
+    \    size_to_fit: true\n    table_theme: white\n    limit_displayed_rows: false\n\
+    \    enable_conditional_formatting: false\n    header_text_alignment: left\n \
+    \   header_font_size: 12\n    rows_font_size: 12\n    conditional_formatting_include_totals:
+    false\n    conditional_formatting_include_nulls: false\n    defaults_version:
+    1\n    listen: {}\n    row: 7\n    col: 0\n    width: 8\n    height: 6\n  - title:
+    'Kept Activities '\n    name: 'Kept Activities '\n    model: tnhealthconnect_prod_carelogic\n\
+    \    explore: schedule\n    type: looker_grid\n    fields: [schedule.activities_count,
+    schedule.scheduled_begin_month_short_name]\n    filters:\n      schedule.scheduled_begin_year:
+    '2022'\n      schedule.activity_staff_status: Kept\n    sorts: [schedule.scheduled_begin_month_short_name]\n\
+    \    limit: 500\n    show_view_names: false\n    show_row_numbers: true\n    transpose:
+    false\n    truncate_text: true\n    hide_totals: false\n    hide_row_totals: false\n\
+    \    size_to_fit: true\n    table_theme: white\n    limit_displayed_rows: false\n\
+    \    enable_conditional_formatting: false\n    header_text_alignment: left\n \
+    \   header_font_size: '12'\n    rows_font_size: '12'\n    conditional_formatting_include_totals:
+    false\n    conditional_formatting_include_nulls: false\n    x_axis_gridlines:
+    false\n    y_axis_gridlines: true\n    show_y_axis_labels: true\n    show_y_axis_ticks:
+    true\n    y_axis_tick_density: default\n    y_axis_tick_density_custom: 5\n  \
+    \  show_x_axis_label: true\n    show_x_axis_ticks: true\n    y_axis_scale_mode:
+    linear\n    x_axis_reversed: false\n    y_axis_reversed: false\n    plot_size_by_field:
+    false\n    trellis: ''\n    stacking: ''\n    legend_position: center\n    point_style:
+    none\n    show_value_labels: false\n    label_density: 25\n    x_axis_scale: auto\n\
+    \    y_axis_combined: true\n    ordering: none\n    show_null_labels: false\n\
+    \    show_totals_labels: false\n    show_silhouette: false\n    totals_color:
+    \"#808080\"\n    show_sql_query_menu_options: false\n    show_totals: true\n \
+    \   show_row_totals: true\n    truncate_header: false\n    series_cell_visualizations:\n\
+    \      schedule.activities_count:\n        is_active: true\n    defaults_version:
+    1\n    listen: {}\n    row: 0\n    col: 14\n    width: 10\n    height: 8\n  filters:\n\
+    \  - name: Service Year\n    title: Service Year\n    type: field_filter\n   \
+    \ default_value: 1 years\n    allow_multiple_values: true\n    required: false\n\
+    \    ui_config:\n      type: advanced\n      display: popover\n    model: tnhealthconnect_prod_carelogic\n\
+    \    explore: financial\n    listens_to_filters: []\n    field: claim.service_year\n"
+  dashboard_id: '4'
+  dashboard_slug: UATgcBYvLRJMI82y1jEid2
+  dashboard_element_alert_counts:
+  - 0
+  - 0
+  - 0
+  scheduled_plans: []
+  alerts: []
+- !DashboardObject
+  legacy_folder_id:
+    folder_id: '8'
+    slug: cVE8Q3LArmCmlx8dXl3YPB
+  lookml: "---\n- dashboard: admissions__programs\n  title: Admissions & Programs\n\
+    \  layout: newspaper\n  preferred_viewer: dashboards-next\n  preferred_slug: cVE8Q3LArmCmlx8dXl3YPB\n\
+    \  elements:\n  - title: Admissions & Programs\n    name: Admissions & Programs\n\
+    \    model: tnhealthconnect_prod_carelogic\n    explore: admissions\n    type:
+    looker_column\n    fields: [admissions.count_intake, client_program_organization_name_groups]\n\
+    \    filters: {}\n    sorts: [admissions.count_intake desc 0]\n    limit: 500\n\
+    \    dynamic_fields:\n    - category: dimension\n      description: ''\n     \
+    \ label: Client Program Organization Name Groups\n      value_format:\n      value_format_name:\n\
+    \      calculation_type: group_by\n      dimension: client_program_organization_name_groups\n\
+    \      args:\n      - client_program.client_program_organization_name\n      -
+    - label: North Region\n          filter: Nashville TN,Gallatin TN,Johnson City
+    TN,Algood TN\n      -\n      _kind_hint: dimension\n      _type_hint: string\n\
+    \    x_axis_gridlines: false\n    y_axis_gridlines: true\n    show_view_names:
+    false\n    show_y_axis_labels: true\n    show_y_axis_ticks: true\n    y_axis_tick_density:
+    default\n    y_axis_tick_density_custom: 5\n    show_x_axis_label: true\n    show_x_axis_ticks:
+    true\n    y_axis_scale_mode: linear\n    x_axis_reversed: false\n    y_axis_reversed:
+    false\n    plot_size_by_field: false\n    trellis: ''\n    stacking: ''\n    limit_displayed_rows:
+    false\n    legend_position: center\n    point_style: none\n    show_value_labels:
+    false\n    label_density: 25\n    x_axis_scale: auto\n    y_axis_combined: true\n\
+    \    ordering: none\n    show_null_labels: false\n    show_totals_labels: false\n\
+    \    show_silhouette: false\n    totals_color: \"#808080\"\n    defaults_version:
+    1\n    listen:\n      Program Name: program_detail.program_name\n      Client
+    Program Begin Year Month (YYYY-MM): client_program.client_program_begin_year_month\n\
+    \    row: 0\n    col: 0\n    width: 24\n    height: 12\n  - title: New Tile\n\
+    \    name: New Tile\n    model: tnhealthconnect_prod_carelogic\n    explore: admissions\n\
+    \    type: looker_column\n    fields: [admissions.count_intake, client_program_organization_name_groups]\n\
+    \    filters:\n      program_detail.program_name: In-Home Services\n      client_program.client_program_begin_year_month:
+    3 months\n    sorts: [admissions.count_intake desc 0]\n    limit: 500\n    dynamic_fields:\n\
+    \    - category: dimension\n      description: ''\n      label: Client Program
+    Organization Name Groups\n      value_format:\n      value_format_name:\n    \
+    \  calculation_type: group_by\n      dimension: client_program_organization_name_groups\n\
+    \      args:\n      - client_program.client_program_organization_name\n      -
+    - label: North Region\n          filter: Nashville TN,Gallatin TN,Johnson City
+    TN,Algood TN\n      - Other Regions\n      _kind_hint: dimension\n      _type_hint:
+    string\n    x_axis_gridlines: false\n    y_axis_gridlines: true\n    show_view_names:
+    false\n    show_y_axis_labels: true\n    show_y_axis_ticks: true\n    y_axis_tick_density:
+    default\n    y_axis_tick_density_custom: 5\n    show_x_axis_label: true\n    show_x_axis_ticks:
+    true\n    y_axis_scale_mode: linear\n    x_axis_reversed: false\n    y_axis_reversed:
+    false\n    plot_size_by_field: false\n    trellis: ''\n    stacking: ''\n    limit_displayed_rows:
+    false\n    legend_position: center\n    point_style: none\n    show_value_labels:
+    false\n    label_density: 25\n    x_axis_scale: auto\n    y_axis_combined: true\n\
+    \    ordering: none\n    show_null_labels: false\n    show_totals_labels: false\n\
+    \    show_silhouette: false\n    totals_color: \"#808080\"\n    defaults_version:
+    1\n    listen: {}\n    row:\n    col:\n    width:\n    height:\n  filters:\n \
+    \ - name: Program Name\n    title: Program Name\n    type: field_filter\n    default_value:
+    In-Home Services\n    allow_multiple_values: true\n    required: false\n    ui_config:\n\
+    \      type: advanced\n      display: popover\n    model: tnhealthconnect_prod_carelogic\n\
+    \    explore: admissions\n    listens_to_filters: []\n    field: program_detail.program_name\n\
+    \  - name: Client Program Begin Year Month (YYYY-MM)\n    title: Client Program
+    Begin Year Month (YYYY-MM)\n    type: field_filter\n    default_value: 3 months\n\
+    \    allow_multiple_values: true\n    required: false\n    ui_config:\n      type:
+    advanced\n      display: popover\n    model: tnhealthconnect_prod_carelogic\n\
+    \    explore: admissions\n    listens_to_filters: []\n    field: client_program.client_program_begin_year_month\n"
+  dashboard_id: '5'
+  dashboard_slug: cVE8Q3LArmCmlx8dXl3YPB
+  dashboard_element_alert_counts:
+  - 0
+  - 0
+  scheduled_plans: []
+  alerts: []
+- !DashboardObject
+  legacy_folder_id:
+    folder_id: '8'
+    slug: 4OXIC2009x7vydyTmxlJKW
+  lookml: "---\n- dashboard: andss_adult_services\n  title: ANDSS Adult Services\n\
+    \  layout: newspaper\n  preferred_viewer: dashboards-next\n  description: ''\n\
+    \  preferred_slug: 4OXIC2009x7vydyTmxlJKW\n  elements:\n  - title: ANDSS Adult
+    Services\n    name: ANDSS Adult Services\n    model: tnhealthconnect_prod_carelogic\n\
+    \    explore: schedule\n    type: looker_grid\n    fields: [activity_detail.activity_detail_count,
+    activity.activity_code]\n    filters: {}\n    sorts: [activity_detail.activity_detail_count
+    desc 0]\n    limit: 500\n    show_view_names: false\n    show_row_numbers: true\n\
+    \    transpose: false\n    truncate_text: true\n    hide_totals: false\n    hide_row_totals:
+    false\n    size_to_fit: true\n    table_theme: white\n    limit_displayed_rows:
+    false\n    enable_conditional_formatting: false\n    header_text_alignment: left\n\
+    \    header_font_size: 12\n    rows_font_size: 12\n    conditional_formatting_include_totals:
+    false\n    conditional_formatting_include_nulls: false\n    x_axis_gridlines:
+    false\n    y_axis_gridlines: true\n    show_y_axis_labels: true\n    show_y_axis_ticks:
+    true\n    y_axis_tick_density: default\n    y_axis_tick_density_custom: 5\n  \
+    \  show_x_axis_label: true\n    show_x_axis_ticks: true\n    y_axis_scale_mode:
+    linear\n    x_axis_reversed: false\n    y_axis_reversed: false\n    plot_size_by_field:
+    false\n    trellis: ''\n    stacking: ''\n    legend_position: center\n    point_style:
+    none\n    show_value_labels: false\n    label_density: 25\n    x_axis_scale: auto\n\
+    \    y_axis_combined: true\n    ordering: none\n    show_null_labels: false\n\
+    \    show_totals_labels: false\n    show_silhouette: false\n    totals_color:
+    \"#808080\"\n    defaults_version: 1\n    listen:\n      Program Name: program_detail.program_name\n\
+    \      Service Year: schedule.service_year\n    row: 0\n    col: 0\n    width:
+    24\n    height: 12\n  - title: ANDSS Service by Month Units, Expected, & Balance\n\
+    \    name: ANDSS Service by Month Units, Expected, & Balance\n    model: tnhealthconnect_prod_carelogic\n\
+    \    explore: financial\n    type: looker_grid\n    fields: [claim.payer_plan_name,
+    claim.procedure_code, claim.service_month_name,\n      claim.number_of_units,
+    claim_line.activity_expected, claim.item_balance]\n    filters:\n      claim.claim_program:
+    ANDSS  Community and Employment Services (ACE)\n      claim.service_year: 1 years\n\
+    \    sorts: [claim.payer_plan_name desc]\n    limit: 500\n    show_view_names:
+    false\n    show_row_numbers: true\n    transpose: false\n    truncate_text: true\n\
+    \    hide_totals: false\n    hide_row_totals: false\n    size_to_fit: true\n \
+    \   table_theme: white\n    limit_displayed_rows: false\n    enable_conditional_formatting:
+    false\n    header_text_alignment: left\n    header_font_size: 12\n    rows_font_size:
+    12\n    conditional_formatting_include_totals: false\n    conditional_formatting_include_nulls:
+    false\n    x_axis_gridlines: false\n    y_axis_gridlines: true\n    show_y_axis_labels:
+    true\n    show_y_axis_ticks: true\n    y_axis_tick_density: default\n    y_axis_tick_density_custom:
+    5\n    show_x_axis_label: true\n    show_x_axis_ticks: true\n    y_axis_scale_mode:
+    linear\n    x_axis_reversed: false\n    y_axis_reversed: false\n    plot_size_by_field:
+    false\n    trellis: ''\n    stacking: ''\n    legend_position: center\n    point_style:
+    none\n    show_value_labels: false\n    label_density: 25\n    x_axis_scale: auto\n\
+    \    y_axis_combined: true\n    ordering: none\n    show_null_labels: false\n\
+    \    show_totals_labels: false\n    show_silhouette: false\n    totals_color:
+    \"#808080\"\n    defaults_version: 1\n    listen:\n      Organization Name: claim.organization_name\n\
+    \    row: 12\n    col: 0\n    width: 24\n    height: 7\n  filters:\n  - name:
+    Service Year\n    title: Service Year\n    type: field_filter\n    default_value:
+    1 years\n    allow_multiple_values: true\n    required: false\n    ui_config:\n\
+    \      type: advanced\n      display: popover\n    model: tnhealthconnect_prod_carelogic\n\
+    \    explore: schedule\n    listens_to_filters: []\n    field: schedule.service_year\n\
+    \  - name: Program Name\n    title: Program Name\n    type: field_filter\n   \
+    \ default_value: ANDSS  Community and Employment Services\n    allow_multiple_values:
+    true\n    required: false\n    ui_config:\n      type: advanced\n      display:
+    popover\n    model: tnhealthconnect_prod_carelogic\n    explore: schedule\n  \
+    \  listens_to_filters: []\n    field: program_detail.program_name\n  - name: Organization
+    Name\n    title: Organization Name\n    type: field_filter\n    default_value:
+    ''\n    allow_multiple_values: true\n    required: false\n    ui_config:\n   \
+    \   type: tag_list\n      display: popover\n    model: tnhealthconnect_prod_carelogic\n\
+    \    explore: financial\n    listens_to_filters: []\n    field: claim.organization_name\n"
+  dashboard_id: '6'
+  dashboard_slug: 4OXIC2009x7vydyTmxlJKW
+  dashboard_element_alert_counts:
+  - 0
+  - 0
+  scheduled_plans: []
+  alerts: []
+- !DashboardObject
+  legacy_folder_id:
+    folder_id: '8'
+    slug: bxNtwxLv7CiHd6geSsU6Dz
+  lookml: "---\n- dashboard: medications_dashboard\n  title: Medications Dashboard\n\
+    \  layout: newspaper\n  preferred_viewer: dashboards-next\n  preferred_slug: bxNtwxLv7CiHd6geSsU6Dz\n\
+    \  elements:\n  - title: Medications Dashboard\n    name: Medications Dashboard\n\
+    \    model: tnhealthconnect_prod_carelogic\n    explore: medications\n    type:
+    looker_column\n    fields: [erx_provider_staff.staff_name, obt_erx_medication.drug_generic_name,\n\
+    \      medications.medications_count]\n    pivots: [erx_provider_staff.staff_name]\n\
+    \    filters: {}\n    sorts: [erx_provider_staff.staff_name desc, medications.medications_count
+    desc\n        0]\n    limit: 500\n    dynamic_fields:\n    - category: dimension\n\
+    \      description: ''\n      label: eRx Medication Generic Name Groups\n    \
+    \  value_format:\n      value_format_name:\n      calculation_type: group_by\n\
+    \      dimension: erx_medication_generic_name_groups\n      args:\n      - obt_erx_medication.drug_generic_name\n\
+    \      - - label: Medication\n          filter: ''\n      -\n      _kind_hint:
+    dimension\n      _type_hint: string\n    x_axis_gridlines: false\n    y_axis_gridlines:
+    true\n    show_view_names: false\n    show_y_axis_labels: true\n    show_y_axis_ticks:
+    true\n    y_axis_tick_density: default\n    y_axis_tick_density_custom: 5\n  \
+    \  show_x_axis_label: true\n    show_x_axis_ticks: true\n    y_axis_scale_mode:
+    linear\n    x_axis_reversed: false\n    y_axis_reversed: false\n    plot_size_by_field:
+    false\n    trellis: ''\n    stacking: ''\n    limit_displayed_rows: false\n  \
+    \  legend_position: center\n    point_style: none\n    show_value_labels: false\n\
+    \    label_density: 25\n    x_axis_scale: auto\n    y_axis_combined: true\n  \
+    \  ordering: none\n    show_null_labels: false\n    show_totals_labels: false\n\
+    \    show_silhouette: false\n    totals_color: \"#808080\"\n    defaults_version:
+    1\n    listen:\n      eRx Prescription Signed Year Month (YYYY-MM): obt_erx_medication.erx_prescription_signed_year_month\n\
+    \      eRx Medication Generic Name: obt_erx_medication.drug_generic_name\n   \
+    \ row: 0\n    col: 0\n    width: 24\n    height: 12\n  filters:\n  - name: eRx
+    Prescription Signed Year Month (YYYY-MM)\n    title: eRx Prescription Signed Year
+    Month (YYYY-MM)\n    type: field_filter\n    default_value: 3 months\n    allow_multiple_values:
+    true\n    required: false\n    ui_config:\n      type: advanced\n      display:
+    popover\n    model: tnhealthconnect_prod_carelogic\n    explore: medications\n\
+    \    listens_to_filters: []\n    field: obt_erx_medication.erx_prescription_signed_year_month\n\
+    \  - name: eRx Medication Generic Name\n    title: eRx Medication Generic Name\n\
+    \    type: field_filter\n    default_value: dexmethylphenidate\n    allow_multiple_values:
+    true\n    required: false\n    ui_config:\n      type: advanced\n      display:
+    popover\n    model: tnhealthconnect_prod_carelogic\n    explore: medications\n\
+    \    listens_to_filters: []\n    field: obt_erx_medication.drug_generic_name\n"
+  dashboard_id: '7'
+  dashboard_slug: bxNtwxLv7CiHd6geSsU6Dz
+  dashboard_element_alert_counts:
+  - 0
+  scheduled_plans: []
+  alerts: []
+- !DashboardObject
+  legacy_folder_id:
+    folder_id: '8'
+    slug: xrSrRPF72yy3rqqigbN54l
+  lookml: "---\n- dashboard: al_sa_op__sa_iop\n  title: AL SA OP & SA IOP\n  layout:
+    newspaper\n  preferred_viewer: dashboards-next\n  preferred_slug: xrSrRPF72yy3rqqigbN54l\n\
+    \  elements:\n  - title: AL SA OP & SA IOP\n    name: AL SA OP & SA IOP\n    model:
+    tnhealthconnect_prod_carelogic\n    explore: financial\n    type: looker_column\n\
+    \    fields: [claim_line.activity_expected, claim.service_end_month_num]\n   \
+    \ fill_fields: [claim.service_end_month_num]\n    filters: {}\n    sorts: [claim_line.activity_expected
+    desc 0]\n    limit: 500\n    x_axis_gridlines: false\n    y_axis_gridlines: true\n\
+    \    show_view_names: false\n    show_y_axis_labels: true\n    show_y_axis_ticks:
+    true\n    y_axis_tick_density: default\n    y_axis_tick_density_custom: 5\n  \
+    \  show_x_axis_label: true\n    show_x_axis_ticks: true\n    y_axis_scale_mode:
+    linear\n    x_axis_reversed: false\n    y_axis_reversed: false\n    plot_size_by_field:
+    false\n    trellis: ''\n    stacking: ''\n    limit_displayed_rows: false\n  \
+    \  legend_position: center\n    point_style: none\n    show_value_labels: false\n\
+    \    label_density: 25\n    x_axis_scale: auto\n    y_axis_combined: true\n  \
+    \  ordering: none\n    show_null_labels: false\n    show_totals_labels: false\n\
+    \    show_silhouette: false\n    totals_color: \"#808080\"\n    defaults_version:
+    1\n    listen:\n      Claim Program: claim.claim_program\n      Organization Name:
+    claim.organization_name\n      Payer Plan Name: claim.payer_plan_name\n      Service
+    End Year: claim.service_end_year\n    row: 0\n    col: 0\n    width: 24\n    height:
+    12\n  filters:\n  - name: Service End Year\n    title: Service End Year\n    type:
+    field_filter\n    default_value: after 2022/01/01\n    allow_multiple_values:
+    true\n    required: false\n    ui_config:\n      type: advanced\n      display:
+    popover\n    model: tnhealthconnect_prod_carelogic\n    explore: financial\n \
+    \   listens_to_filters: []\n    field: claim.service_end_year\n  - name: Claim
+    Program\n    title: Claim Program\n    type: field_filter\n    default_value:
+    Substance Use Outpatient (SU OP),INTENSIVE OUTPATIENT - SUBSTANCE\n      ABUSE
+    (IOP-SA)\n    allow_multiple_values: true\n    required: false\n    ui_config:\n\
+    \      type: advanced\n      display: popover\n    model: tnhealthconnect_prod_carelogic\n\
+    \    explore: financial\n    listens_to_filters: []\n    field: claim.claim_program\n\
+    \  - name: Payer Plan Name\n    title: Payer Plan Name\n    type: field_filter\n\
+    \    default_value: \"(AL) MEDICAID - SA OP\"\n    allow_multiple_values: true\n\
+    \    required: false\n    ui_config:\n      type: advanced\n      display: popover\n\
+    \    model: tnhealthconnect_prod_carelogic\n    explore: financial\n    listens_to_filters:
+    []\n    field: claim.payer_plan_name\n  - name: Organization Name\n    title:
+    Organization Name\n    type: field_filter\n    default_value: Bessemer AL,Decatur
+    AL,Dothan AL,Florence AL,Fort Payne AL,Jasper\n      AL,Russellville AL,Mobile
+    AL\n    allow_multiple_values: true\n    required: false\n    ui_config:\n   \
+    \   type: advanced\n      display: popover\n    model: tnhealthconnect_prod_carelogic\n\
+    \    explore: financial\n    listens_to_filters: []\n    field: claim.organization_name\n"
+  dashboard_id: '8'
+  dashboard_slug: xrSrRPF72yy3rqqigbN54l
+  dashboard_element_alert_counts:
+  - 0
+  scheduled_plans: []
+  alerts: []
