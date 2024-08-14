@@ -2,3 +2,5 @@ logs/
 file.log
 # config/
 venv/
+owner-mapping.json
+__pycache__
