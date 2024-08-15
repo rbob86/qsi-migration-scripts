@@ -1,10 +1,8 @@
+import argparse
 import os
 import subprocess
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import logging
-
-ini_files_dir = "../1-create-ini-files/ini-files"
-ini_files = sorted(os.listdir(ini_files_dir))[0:5]
 
 
 logging.basicConfig(level=logging.INFO)
@@ -48,11 +46,31 @@ def run_lmanage(ini_file):
 
 # Determine how many parallel tasks to run
 # You can adjust the max_workers based on your system's capabilities
-max_workers = 5  # Adjust this number based on your system
+MAX_WORKERS = 5  # Adjust this number based on your system
+
+parser = argparse.ArgumentParser(
+    description="Capture [num_instances] instances starting at number [offset]."
+)
+parser.add_argument(
+    "--ini-files",
+    "-i",
+    nargs="+",
+    required=True,
+    help="List of .ini files to capture.",
+)
+args = parser.parse_args()
+
+ini_filenames = [f"{i}.ini" for i in args.ini_files]
+
+ini_files_dir = "../1-create-ini-files/ini-files"
+all_ini_files = os.listdir(ini_files_dir)
+ini_files_filtered = [i for i in all_ini_files if i in ini_filenames]
 
 # Run the lmanage commands in parallel
-with ThreadPoolExecutor(max_workers=max_workers) as executor:
-    futures = [executor.submit(run_lmanage, ini_file) for ini_file in ini_files]
+with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+    futures = [
+        executor.submit(run_lmanage, ini_file) for ini_file in ini_files_filtered
+    ]
 
     for future in as_completed(futures):
         result = future.result()

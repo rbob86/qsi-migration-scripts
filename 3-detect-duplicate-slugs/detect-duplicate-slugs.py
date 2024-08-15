@@ -75,11 +75,6 @@ def find_duplicates(dashboard_slugs):
             else:
                 slug_counts[slug] = {"occurences": [filename], "count": 1}
 
-    for slug in slug_counts:
-        s = slug_counts[slug]
-        if s["count"] > 1:
-            print(f"Duplicate slug {slug} detected in {s['occurences']}")
-
     return slug_counts
 
 
@@ -92,3 +87,13 @@ yaml.add_constructor("!ScheduledPlan", dummy_constructor)
 path = "../2-lmanage-capturator/config"
 dashboard_slugs = get_dashboard_slugs(path)
 slug_counts = find_duplicates(dashboard_slugs)
+dupe_found = False
+
+for slug in slug_counts:
+    s = slug_counts[slug]
+    if s["count"] > 1:
+        dupe_found = True
+        print(f"Duplicate dashboard slug {slug} detected in {s['occurences']}")
+
+if not dupe_found:
+    print("No duplicate dashboard slugs found.")

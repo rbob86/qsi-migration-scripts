@@ -19,43 +19,35 @@ def init_looker_sdk(instance):
     return looker_sdk.init40()
 
 
-def main():
-    # Read in command line arguments (instances, customers, output-dir)
+def parse_arguments():
     parser = argparse.ArgumentParser(
         description="Read in instances to parse and customer account names to consolidate."
     )
     parser.add_argument(
+        "-i",
         "--instances",
         nargs="+",
         required=True,
         help="List of instances to parse config files for (e.g. qsi001 qsi002)",
     )
     parser.add_argument(
+        "-c",
         "--customers",
         nargs="+",
         required=True,
         help="List of customer accounts to consolidate.",
     )
     parser.add_argument(
+        "-o",
         "--output-dir",
         required=True,
         help="Name of output directory.",
     )
-    args = parser.parse_args()
+    return parser.parse_args()
 
-    instance_list = args.instances
-    customer_include_list = args.customers
-    output_dir = os.path.join("output", args.output_dir)
 
-    # Create list of config folder directories to read from based on instance (qsi001, etc.)
-    source_config_dirs = [
-        f"../2-lmanage-capturator/config/config-{instance[-3:]}"
-        for instance in instance_list
-    ]
-
-    # Create list of Looker API credentials for each instance
-    api_keys = load_api_keys("../1-create-ini-files/looker-api-keys.csv")
-    instances = [
+def prepare_instances(instance_list, api_keys):
+    return [
         {
             "url": f"https://{instance}.cloud.looker.com",
             "client_id": api_keys[instance]["client_id"],
@@ -64,9 +56,108 @@ def main():
         for instance in instance_list
     ]
 
-    # Initialize "global" variables
-    all_owner_mapping = []
 
+def get_dashboard_owner_mapping(sdk, dashboard, folder_mapping):
+    owner_mapping = {}
+    dashboard_title = extract_dashboard_title(dashboard.lookml)
+    folder_info = get_folder_info(
+        dashboard.legacy_folder_id["folder_id"], folder_mapping
+    )
+
+    for plan in dashboard.scheduled_plans:
+        update_owner_mapping(
+            owner_mapping,
+            sdk,
+            plan.user_id,
+            plan,
+            dashboard_title,
+            folder_info,
+            is_plan=True,
+        )
+
+    for alert in dashboard.alerts:
+        update_owner_mapping(
+            owner_mapping,
+            sdk,
+            alert.owner_id,
+            alert,
+            dashboard_title,
+            folder_info,
+            is_plan=False,
+        )
+
+    return owner_mapping
+
+
+def extract_dashboard_title(lookml):
+    match = re.search(r"\btitle:\s*(.*)", lookml)
+    return match.group(1).strip() if match else "Untitled"
+
+
+def get_folder_info(folder_id, folder_mapping):
+    folder_name = folder_mapping[folder_id]["name"]
+    parent_folder_id = folder_mapping[folder_id]["original_parent_id"]
+    parent_folder_name = (
+        "Shared"
+        if parent_folder_id == "1"
+        else folder_mapping[parent_folder_id]["name"]
+    )
+    return {"folder_name": folder_name, "parent_folder_name": parent_folder_name}
+
+
+def update_owner_mapping(
+    owner_mapping, sdk, owner_id, item, dashboard_title, folder_info, is_plan=True
+):
+    item_to_save = {
+        "dashboard_title": dashboard_title,
+        "folder_name": folder_info["folder_name"],
+        "parent_folder_name": folder_info["parent_folder_name"],
+    }
+
+    if is_plan:
+        item_to_save.update({"plan_name": item.name})
+    else:
+        item_to_save.update(
+            {
+                "applied_dashboard_filters": item.applied_dashboard_filters,
+                "cron": item.cron,
+                "comparison_type": item.comparison_type,
+                "threshold": item.threshold,
+                "field_title": item.field.title,
+                "field_name": item.field.name,
+                "field_filter": item.field.filter,
+            }
+        )
+
+    if owner_id not in owner_mapping:
+        user_info = get_user_info_from_looker(sdk, owner_id)
+        owner_mapping[user_info["user_id"]] = {
+            "instance": sdk.auth.settings.base_url,
+            "first_name": user_info["first_name"],
+            "last_name": user_info["last_name"],
+            "user_attributes": user_info["user_attributes"],
+            "external_user_id": user_info["external_user_id"],
+            "group_name": user_info["group_name"],
+            "plans" if is_plan else "alerts": [item_to_save],
+        }
+    else:
+        owner_mapping[owner_id]["plans" if is_plan else "alerts"].append(item_to_save)
+
+
+def main():
+    args = parse_arguments()
+    instance_list = args.instances
+    customer_include_list = args.customers
+    output_dir = os.path.join("output", args.output_dir)
+
+    source_config_dirs = [
+        f"../2-lmanage-capturator/config/config-{instance[-3:]}"
+        for instance in instance_list
+    ]
+    api_keys = load_api_keys("../1-create-ini-files/looker-api-keys.csv")
+    instances = prepare_instances(instance_list, api_keys)
+
+    all_owner_mapping = []
     folder_manager = FolderManager(customer_include_list)
     content_manager = ContentManager()
 
@@ -77,90 +168,17 @@ def main():
         folder_manager.load_folders(settings_path)
         content_manager.load_content(content_path, folder_manager.folder_mapping)
 
-        # Owner Mapping
         instance = instances[index]
         sdk = init_looker_sdk(instance)
-        owner_mapping = {}
         folder_mapping = folder_manager.get_current_folder_mapping()
         dashboards = content_manager.get_current_dashboards()
 
         for dashboard in dashboards:
-            scheduled_plans = dashboard.scheduled_plans
-            alerts = dashboard.alerts
+            owner_mapping = get_dashboard_owner_mapping(sdk, dashboard, folder_mapping)
+            all_owner_mapping.extend(owner_mapping.values())
 
-            if len(scheduled_plans) == 0 and len(alerts) == 0:
-                continue
-
-            dashboard_title_match = re.search(r"\btitle:\s*(.*)", dashboard.lookml)
-            dashboard_title = dashboard_title_match.group(1).strip()
-            folder_id = dashboard.legacy_folder_id["folder_id"]
-            folder_name = folder_mapping[folder_id]["name"]
-            parent_folder_id = folder_mapping[folder_id]["original_parent_id"]
-            parent_folder_name = (
-                "Shared"
-                if parent_folder_id == "1"
-                else folder_mapping[parent_folder_id]["name"]
-            )
-
-            for plan in scheduled_plans:
-                owner_id = plan.user_id
-                plan_to_save = {
-                    "dashboard_title": dashboard_title,
-                    "plan_name": plan.name,
-                    "folder_name": folder_name,
-                    "parent_folder_name": parent_folder_name,
-                }
-
-                if owner_id not in owner_mapping:
-                    user_info = get_user_info_from_looker(sdk, owner_id)
-                    owner_mapping[user_info["user_id"]] = {
-                        "instance": instance["url"],
-                        "first_name": user_info["first_name"],
-                        "last_name": user_info["last_name"],
-                        "user_attributes": user_info["user_attributes"],
-                        "external_user_id": user_info["external_user_id"],
-                        "group_name": user_info["group_name"],
-                        "plans": [plan_to_save],
-                    }
-                else:
-                    owner_mapping[owner_id]["plans"].append(plan_to_save)
-
-            for alert in alerts:
-                owner_id = alert.owner_id
-                alert_to_save = {
-                    "dashboard_title": dashboard_title,
-                    "applied_dashboard_filters": alert.applied_dashboard_filters,
-                    "cron": alert.cron,
-                    "comparison_type": alert.comparison_type,
-                    "threshold": alert.threshold,
-                    "field_title": alert.field.title,
-                    "field_name": alert.field.name,
-                    "field_filter": alert.field.filter,
-                    "folder_name": folder_name,
-                    "parent_folder_name": parent_folder_name,
-                }
-
-                if owner_id not in owner_mapping:
-                    user_info = get_user_info_from_looker(sdk, owner_id)
-                    owner_mapping[user_info["user_id"]] = {
-                        "instance": instance["url"],
-                        "first_name": user_info["first_name"],
-                        "last_name": user_info["last_name"],
-                        "user_attributes": user_info["user_attributes"],
-                        "external_user_id": user_info["external_user_id"],
-                        "group_name": user_info["group_name"],
-                        "alerts": [alert_to_save],
-                    }
-                else:
-                    owner_mapping[owner_id]["alerts"].append(plan_to_save)
-
-        for owner_info in owner_mapping.values():
-            all_owner_mapping.append(owner_info)
-
-        # Update content folder ids based on folder_mapping
         content_manager.update_content_folder_ids()
 
-    # Save output files
     write_output(
         output_dir,
         folder_manager.get_consolidated_folder_hierarchy(),
@@ -170,7 +188,6 @@ def main():
         f"Successfully saved new content.yaml, settings.yaml files to directory {output_dir}"
     )
 
-    # Save owner mapping file
     owner_mapping_filename = os.path.join(output_dir, "owner-mapping.json")
     with open(owner_mapping_filename, "w") as json_file:
         json.dump(all_owner_mapping, json_file, indent=4)
