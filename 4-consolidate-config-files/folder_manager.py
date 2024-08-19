@@ -13,7 +13,7 @@ class FolderManager:
 
     def load_folders(self, settings_path: str):
         # Load folders, excluding customer folders not in customer_include_list
-        with open(settings_path, "r") as file:
+        with open(settings_path, "r", encoding="utf-8") as file:
             settings_data = yaml.load(file, Loader=yaml.FullLoader)
 
         shared_folder = [

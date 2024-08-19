@@ -14,10 +14,11 @@ class ContentManager:
     def load_content(self, content_path: str, folder_mapping):
         self.folder_mapping = folder_mapping
 
-        with open(content_path, "r") as file:
+        with open(content_path, "r", encoding="utf-8") as file:
             content = yaml.load(file, Loader=yaml.FullLoader)
 
-        content[:] = [c for c in content if self._is_in_customer_included_folder(c)]
+        content[:] = [
+            c for c in content if self._is_in_customer_included_folder(c)]
         self.current_content = content
         self.consolidated_content.extend(content)
 
@@ -33,7 +34,8 @@ class ContentManager:
                 ]
                 c.legacy_folder_id["folder_id"] = str(new_folder_id)
                 model_pattern = re.compile(r"model:\s+\S+\n")
-                c.lookml = model_pattern.sub(f"model: {self.MODEL_NAME}\n", c.lookml)
+                c.lookml = model_pattern.sub(
+                    f"model: {self.MODEL_NAME}\n", c.lookml)
 
     def get_consolidated_content(self):
         return self.consolidated_content

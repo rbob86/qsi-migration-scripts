@@ -43,7 +43,7 @@ def get_dashboard_slugs(path: str):
         if filename.endswith(".yaml") or filename.endswith(".yml"):
             filepath = os.path.join(path, filename)
 
-            with open(filepath, "r") as file:
+            with open(filepath, "r", encoding="utf-8") as file:
                 yaml_objects = yaml.load(file, Loader=yaml.FullLoader)
 
                 if not yaml_objects:
