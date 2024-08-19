@@ -82,6 +82,7 @@ def find_duplicates(dashboard_slugs):
 yaml.add_constructor("!DashboardObject", dashboard_object_constructor)
 yaml.add_constructor("!LookObject", dummy_constructor)
 yaml.add_constructor("!ScheduledPlan", dummy_constructor)
+yaml.add_constructor("!AlertObject", dummy_constructor)
 
 # Find duplicate slugs
 path = "../2-lmanage-capturator/config"
