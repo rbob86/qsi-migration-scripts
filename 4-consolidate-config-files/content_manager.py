@@ -25,17 +25,30 @@ class ContentManager:
     def update_content_folder_ids(self):
         for c in self.current_content:
             if isinstance(c, LookObject):
+                # Update the folder ID
                 new_folder_id = self.folder_mapping[c.legacy_folder_id]["new_id"]
                 c.legacy_folder_id = str(new_folder_id)
+
+                # Update model name
                 c.query_obj["model"] = self.MODEL_NAME
             elif isinstance(c, DashboardObject):
+                # Update the folder ID
                 new_folder_id = self.folder_mapping[c.legacy_folder_id["folder_id"]][
                     "new_id"
                 ]
                 c.legacy_folder_id["folder_id"] = str(new_folder_id)
+
+                # Update the model name in lookml
                 model_pattern = re.compile(r"model:\s+\S+\n")
                 c.lookml = model_pattern.sub(
                     f"model: {self.MODEL_NAME}\n", c.lookml)
+
+                # Update the project_name in lookml if it's not blank
+                c.lookml = re.sub(
+                    r"(project_name:\s*)(\\?n\s*)?[^\\n]*_carelogic\b",
+                    r"\1standard_carelogic",
+                    c.lookml,
+                )
 
     def get_consolidated_content(self):
         return self.consolidated_content
