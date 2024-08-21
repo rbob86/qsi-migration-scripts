@@ -17,6 +17,10 @@ class ContentManager:
         with open(content_path, "r", encoding="utf-8") as file:
             content = yaml.load(file, Loader=yaml.FullLoader)
 
+        if content is None:
+            self.current_content = []
+            return
+
         content[:] = [
             c for c in content if self._is_in_customer_included_folder(c)]
         self.current_content = content
