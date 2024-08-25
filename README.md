@@ -3,11 +3,15 @@
 This repo contains custom-tailored scripts for migrating Qualifacts Looker customers from 150+ instances to 30. At a high-level, the process is as follows:
 
 1. Generate .ini files to be used by lmanage capturator
-2. Run lmanage capturator for all instances
-3. Detect duplicate slugs, if found - manually update
+2. Run lmanage capturator for selected instances
+3. Detect duplicate slugs; if found, manually update
 4. Combine customer settings/content based on proposed instance mapping
 5. Run lmanage configurator to execute migration
 6. Update owner for scheduled plans and alerts to original owner
+
+> NOTE: Before execution, review `current-customer-instance-configuration-mapping.csv` to see which instances currently contain which customer accounts, and `proposed-customer-instance-mapping.csv` to see which customer accounts should end up together.  The latter is based on overall usage and peak time analysis.
+
+![alt text](Isolated.png "Title")
 
 ## Installation
 
@@ -32,7 +36,9 @@ pip install lmanage
 
 ## 1. Generating .ini files (optional)
 
-**lmanage** requires a .ini file to authenticate to the Looker API. Since we are pulling content from 150+ instances, we need to run lmanage that many times, and authenticate that many times. Create a file called `looker-api-keys.csv` with columns looker_url,client_id,client_secret and store all instance API keys for the desired user. Then run the following to generate an ini file for each instance in the `ini-files/` folder:
+> NOTE: This step is optional because `1-create-ini-files/` already contains .ini files for all instances.  However, if you want to use credentials for a new user, you would run this process.
+
+**lmanage** requires a .ini file to authenticate to the Looker API. Since we are ultimately pulling content from 150+ instances, we need to run lmanage that many times, and authenticate that many times. Create a file called `looker-api-keys.csv` with columns looker_url,client_id,client_secret and store all instance API keys for the desired user. Then run the following to generate an ini file for each instance in the `ini-files/` folder:
 
 ```
 cd 1-create-ini-files
@@ -55,7 +61,7 @@ Using lmanage and the existing or newly created .ini files, capture content and 
 python lmanage-parallel.py -i [list of ini filenames without extension]
 ```
 
-Note the -i argument takes a list of ini filenames without the .ini extension, for example:
+Note that the -i argument takes a list of ini filenames without the .ini extension, for example:
 
 ```
 python lmanage-parallel.py -i 001 166 032 044 123 009
@@ -70,52 +76,83 @@ After execution, saved content will be stored in `2-lmanage-capturator/config/co
 lmanage can also be run for a single individual instance with:
 
 ```
-lmanage capturator --config-dir ./config/config-001 --ini-file 001.ini
+lmanage capturator \
+  --config-dir ./config/config-001 \
+  --ini-file 001.ini
 ```
 
-Note the _--config-dir_ flag specifies where the YAML-based content and settings will be stored, and the _--ini-file_ flag references the appropriate ini file for authentication. In this case, we are targeting the qsi-001 url and credentials and storing its contents in a subfolder called `config-001`.
+Note the _--config-dir_ flag specifies where the YAML-based content and settings downloaded from the instance will be stored, and the _--ini-file_ flag references the appropriate ini file for authentication. In this case, we are targeting the qsi-001 url and credentials and storing its contents in a subfolder called `config-001`.
 
 ## 3. Detect Duplicate Slugs
 
-Once all production content is saved, move all content.yaml files to `3-detect-duplicate-slugs/content-files` and run:
+Once all desired production content is saved, run:
 
 ```
 cd 3-detect-duplicate-slugs
 python detect-duplicate-slugs.py
 ```
 
-This script will alert if there are any duplicate dashboard slugs amongst all instance content. If none around found, proceed to step 4. If duplicates are found, update duplicated slugs with newly generated ones (use a password generator or similar to generate alphanumeric slugs of length 22).
+This script will parse the subdirectories of `2-lmanage-capturator/config/` and alert if there are any duplicate dashboard slugs amongst all instance content.
+
+- If none around found, proceed to step 4.
+- If duplicates are found, update duplicated slugs with newly generated ones (use a password generator or similar to generate alphanumeric slugs of length 22).
 
 ## 4. Consolidate Config Files
 
-Next we need to rearrange the content of the content.yaml and config.yaml files generated from each instance in a way that represents how the target instances will look. Using `proposed-customer-instance-mapping.csv` as a reference, run:
+Next we need to extract only the desired customer accounts from the various content.yaml and settings.yaml files generated from Step 2. In other words, based on the customer accounts you want to migrate to a target instance, this step will extract those accounts and consolidate them into a single pair of YAML files, which will serve as the basis for your migration. Using `proposed-customer-instance-mapping.csv` as a reference, run:
 
 ```
 cd 4-consolidate-config-files
 
-python consolidate-config-files.yaml --customers [list of customers] --instances [list of instances] --output-dir [name of output dir]
+python consolidate-config-files.yaml \
+  --customers [list of customers] \
+  --instances [list of instances] \
+  --output-dir [name of output dir]
 ```
 
-This script will consolidate customer settings and content, for customers specified by --customers, across multiple instance config files, specified by --instances, into a single set of config files, stored in --output-dir. And example of this command would be:
+- **--customers**: The customer accounts you want to consolidate
+- **--instances**: The source files from which to extract content and settings
+- **--output-dir**: The final location of the consolidated content and settings
+
+Example:
 
 ```
-python consolidate_config_files.py --customers INDCTR CAMCC NJSTRES TNHEALTHCONNECT PIN --instances qsi001 qsi002 qsi003 qsi004 qsi005 --output-dir 001
+python consolidate_config_files.py \
+  --customers INDCTR CAMCC NJSTRES TNHEALTHCONNECT PIN \
+  --instances qsi001 qsi002 qsi003 qsi004 qsi005 \
+  --output-dir 001
 ```
-
-We'll need to run this once per target instance, so 30 times total. Store each consolidate config (content.yaml and settings.yaml) in a separate output folder.
 
 ## 5. Migrate Data
 
-Next we need to migrate the data produced by Step 4 to a target instance:
+Next we need to migrate the data produced by Step 4 to a target instance.
+
+You'll need to first create a .ini file with the credentials of the target instance, as such:
 
 ```
-lmanage configurator --config-dir [config_dir] --ini-file [ini_file]
+[Looker]
+base_url=https://clqsi001.cloud.looker.com
+client_id=[client_id]
+client_secret=[client_secret]
+verify_ssl=True
 ```
 
-A concrete example: if you have a folder qsi001 with content.yaml and settings.yaml and a .ini file with credentials for the target instance qsi001, run:
+> NOTE: You may want to save this in the `5-lmanage/configurator/` directory to maintain consistency with other steps.
+
+Then, using lmanage directly:
 
 ```
-lmanage configurator --config-dir ./config/qsi001 --ini-file qsi001.ini
+lmanage configurator \
+  --config-dir [config_dir] \
+  --ini-file [ini_file]
+```
+
+A concrete example: if you have a folder 001 with content.yaml and settings.yaml (created in step 4) and a .ini file with credentials for the target instance clqsi001, run:
+
+```
+lmanage configurator \
+  --config-dir ../4-consolidate-config-files/output/001 \
+  --ini-file clqsi001.ini
 ```
 
 > NOTE: Ensure the use of an official service account for the ini-file credentials instead of a personal account, so saved content's metadata will not show the owner or created by as an employee.
