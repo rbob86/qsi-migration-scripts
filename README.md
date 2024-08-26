@@ -159,7 +159,7 @@ lmanage configurator \
 
 ## 6. Update Scheduled Plan/Alert Owner
 
-Once content is migrated to a target instance, the owner of scheduled plans and alerts for dashboards needs to be updated on that instance.
+Once content is migrated to a target instance, the owner of scheduled plans and alerts for dashboards needs to be updated on that instance.  Review the owner-mapping.json file generated from step 4 to confirm that the owners match their associated scheduled plans and alerts.  Then, run:
 
 ```
 cd 6-update-content-owner
