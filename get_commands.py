@@ -32,6 +32,10 @@ with open('proposed-customer-instance-mapping.csv', mode='r') as file:
         qsi_instances = [f"qsi{i}" for i in current_instances]
 
         print(f"Instance No: {instance_no}")
-        print(f"Customers: {customers}")
-        print(f"Step 2 Command: python lmanage_parallel.py -i {' '.join(current_instances)}")
-        print(f"Step 4 Command: python consolidate_config_files.py --customers {customers} --instances {' '.join(qsi_instances)} --output-dir {instance_no}\n")
+        print(f"Customers: {customers}\n")
+        print("Commands:")
+        print(f"  Step 2\n  python lmanage_parallel.py -i {' '.join(current_instances)}\n")
+        print(f"  Step 4\n  python consolidate_config_files.py --customers {customers} --instances {' '.join(qsi_instances)} --output-dir {instance_no}\n")
+        print(f"  Step 5\n  lmanage configurator --config-dir ../4-consolidate-config-files/output/{instance_no} --ini-file ini-files/clqsi{instance_no}.ini\n")
+        print(f"  Step 6\n  python update_content_owner.py --mapping ../4-consolidate-config-files/output/{instance_no}/owner-mapping.json --ini-file ../5-lmanage-configurator/ini-files/clqsi{instance_no}.ini\n")
+        print('-----------------\n')

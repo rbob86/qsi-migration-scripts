@@ -41,10 +41,10 @@ The following files can help determine which customers/instances to download and
 - current-customer-instance-mapping.csv
 - proposed-customer-instance-mapping.csv
 
-Run the following to see a breakdown of customers from the proposed mapping and command output for steps 2 and 4:
+Run the following to see a breakdown of customers from the proposed mapping and command output for steps 2, 4, 5 and 6:
 
 ```
-python get_current_instances.py
+python get_commands.py
 ```
 
 This will result in an output like:
@@ -52,18 +52,42 @@ This will result in an output like:
 ```
 Instance No: 001
 Customers: AAMHC DECNXNS2 ILSOSUB OCMACC PAARCMANOR WACHLDC CACMMHC EARTH GAIT MAVOLAM MTHFH OHBHCCH OHRFSCF SDLSSSD WILDR
-Step 2 Command: python lmanage_parallel.py -i 013 024 046 050 061 092 103 117 120 123 127 134 137 151
-Step 4 Command: python consolidate_config_files.py --customers AAMHC DECNXNS2 ILSOSUB OCMACC PAARCMANOR WACHLDC CACMMHC EARTH GAIT MAVOLAM MTHFH OHBHCCH OHRFSCF SDLSSSD WILDR --instances qsi013 qsi024 qsi046 qsi050 qsi061 qsi092 qsi103 qsi117 qsi120 qsi123 qsi127 qsi134 qsi137 qsi151 --output-dir 001
+
+Commands:
+  Step 2
+  python lmanage_parallel.py -i 013 024 046 050 061 092 103 117 120 123 127 134 137 151
+
+  Step 4
+  python consolidate_config_files.py --customers AAMHC DECNXNS2 ILSOSUB OCMACC PAARCMANOR WACHLDC CACMMHC EARTH GAIT MAVOLAM MTHFH OHBHCCH OHRFSCF SDLSSSD WILDR --instances qsi013 qsi024 qsi046 qsi050 qsi061 qsi092 qsi103 qsi117 qsi120 qsi123 qsi127 qsi134 qsi137 qsi151 --output-dir 001
+
+  Step 5
+  lmanage configurator --config-dir ../4-consolidate-config-files/output/001 --ini-file ini-files/clqsi001.ini
+
+  Step 6
+  python update_content_owner.py --mapping ../4-consolidate-config-files/output/001/owner-mapping.json --ini-file ../5-lmanage-configurator/ini-files/clqsi001.ini
+
+-----------------
 
 Instance No: 002
 Customers: AKACHMS DEMO INYTHOC OCNMH PAAUBER WACLRKC CAEXODUS CTCJR GARCVPL MAGADRA MIALLIANCE NJPREBH OHMATHP ORFAMSL PTHWY WAPOCCS
-Step 2 Command: python lmanage_parallel.py -i 049 078 081 083 089 096 098 099 105 119 120 121 126 134 139 143
-Step 4 Command: python consolidate_config_files.py --customers AKACHMS DEMO INYTHOC OCNMH PAAUBER WACLRKC CAEXODUS CTCJR GARCVPL MAGADRA MIALLIANCE NJPREBH OHMATHP ORFAMSL PTHWY WAPOCCS --instances qsi049 qsi078 qsi081 qsi083 qsi089 qsi096 qsi098 qsi099 qsi105 qsi119 qsi120 qsi121 qsi126 qsi134 qsi139 qsi143 --output-dir 002
+
+Commands:
+  Step 2
+  python lmanage_parallel.py -i 049 078 081 083 089 096 098 099 105 119 120 121 126 134 139 143
+
+  Step 4
+  python consolidate_config_files.py --customers AKACHMS DEMO INYTHOC OCNMH PAAUBER WACLRKC CAEXODUS CTCJR GARCVPL MAGADRA MIALLIANCE NJPREBH OHMATHP ORFAMSL PTHWY WAPOCCS --instances qsi049 qsi078 qsi081 qsi083 qsi089 qsi096 qsi098 qsi099 qsi105 qsi119 qsi120 qsi121 qsi126 qsi134 qsi139 qsi143 --output-dir 002
+
+  Step 5
+  lmanage configurator --config-dir ../4-consolidate-config-files/output/002 --ini-file ini-files/clqsi002.ini
+
+  Step 6
+  python update_content_owner.py --mapping ../4-consolidate-config-files/output/002/owner-mapping.json --ini-file ../5-lmanage-configurator/ini-files/clqsi002.ini
 
 ...
 ```
 
-Use these step 2 and step 4 commands during the overall migration process for the desired instance.
+Use these commands during the overall migration process for the desired instance.
 
 ## 1. Generating .ini files (optional)
 
@@ -196,7 +220,7 @@ Once content is migrated to a target instance, the owner of scheduled plans and 
 cd 6-update-content-owner
 
 python update_content_owner.py \
-  --mapping-dir [dir name containing owner-mapping.json from step #4]
+  --mapping-dir [dir name containing owner-mapping.json from step #4] \
   --ini-file [ini_file]
 ```
 
@@ -204,6 +228,6 @@ Example, where the target instance is clqsi001:
 
 ```
 python update_content_owner.py \
-  --mapping-dir clqsi001
-  --ini-file ../5-lmanage-configurator/clqsi001.ini
+  --mapping ../4-consolidate-config-files/output/001/owner-mapping.json
+  --ini-file ../5-lmanage-configurator/ini-files/clqsi001.ini
 ```
