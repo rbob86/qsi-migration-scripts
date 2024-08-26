@@ -1,0 +1,378 @@
+
+
+# LookData
+#No Captured Looks
+
+# Dashboard Content
+- !DashboardObject
+  legacy_folder_id:
+    folder_id: '9'
+    slug: Uo3hZmq4sGKePf7y1RaJIp
+  lookml: "---\n- dashboard: cf_form\n  title: CF Form\n  layout: newspaper\n  preferred_viewer:
+    dashboards-next\n  preferred_slug: Uo3hZmq4sGKePf7y1RaJIp\n  elements:\n  - title:
+    CF Form\n    name: CF Form\n    model: cplsy_prod_carelogic\n    explore: treatment_plan_plus_forms\n\
+    \    type: looker_grid\n    fields: [DateofService3_1424]\n    filters: {}\n \
+    \   sorts: [DateofService3_1424]\n    dynamic_fields:\n    - category: dimension\n\
+    \      expression: \"${cf_base.f1}\"\n      dimension: DateofService3_1424\n \
+    \     label: Date of Service 3 1424\n      _kind_hint: dimension\n      _type_hint:
+    string\n    - category: dimension\n      expression: \"${cf_base.f2}\"\n     \
+    \ dimension: TimeofService4_1424\n      label: Time of Service 4 1424\n      _kind_hint:
+    dimension\n      _type_hint: string\n    - category: dimension\n      expression:
+    \"${cf_base.f3}\"\n      dimension: ServiceBeginTime6_1424\n      label: Service
+    Begin Time 6 1424\n      _kind_hint: dimension\n      _type_hint: string\n   \
+    \ - category: dimension\n      expression: \"${cf_base.f4}\"\n      dimension:
+    ServiceEndTime7_1424\n      label: Service End Time 7 1424\n      _kind_hint:
+    dimension\n      _type_hint: string\n    - category: dimension\n      expression:
+    \"${cf_base.f5}\"\n      dimension: UnitsofService8_1424\n      label: Units of
+    Service 8 1424\n      _kind_hint: dimension\n      _type_hint: string\n    - category:
+    dimension\n      expression: \"${cf_base.f6}\"\n      dimension: Waslunchservedonthissh9_1424\n\
+    \      label: Was lunch served on this shift 9 1424\n      _kind_hint: dimension\n\
+    \      _type_hint: string\n    - category: dimension\n      expression: \"${cf_base.f7}\"\
+    \n      dimension: LocationofService10_1424\n      label: Location of Service
+    10 1424\n      _kind_hint: dimension\n      _type_hint: string\n    - category:
+    dimension\n      expression: \"${cf_base.f8}\"\n      dimension: OtherLocation11_1424\n\
+    \      label: Other / Community Location 11 1424\n      _kind_hint: dimension\n\
+    \      _type_hint: string\n    - category: dimension\n      expression: \"${cf_base.f9}\"\
+    \n      dimension: NumberofDayHabilitatio14_1424\n      label: Number of Day Habilitation
+    Out 14 1424\n      _kind_hint: dimension\n      _type_hint: string\n    - category:
+    dimension\n      expression: \"${cf_base.f10}\"\n      dimension: Outcome15_1424\n\
+    \      label: 'Outcome #1 15 1424'\n      _kind_hint: dimension\n      _type_hint:
+    string\n    - category: dimension\n      expression: \"${cf_base.f11}\"\n    \
+    \  dimension: HowmanyStrategiesforOu16_1424\n      label: How many Strategies
+    for Outcom 16 1424\n      _kind_hint: dimension\n      _type_hint: string\n  \
+    \  - category: dimension\n      expression: \"${cf_base.f12}\"\n      dimension:
+    OutcomeStrategy17_1424\n      label: 'Outcome #1, Strategy #1 17 1424'\n     \
+    \ _kind_hint: dimension\n      _type_hint: string\n    - category: dimension\n\
+    \      expression: \"${cf_base.f13}\"\n      dimension: OutcomeStrategy18_1424\n\
+    \      label: 'Outcome #1, Strategy #2 18 1424'\n      _kind_hint: dimension\n\
+    \      _type_hint: string\n    - category: dimension\n      expression: \"${cf_base.f14}\"\
+    \n      dimension: OutcomeStrategy19_1424\n      label: 'Outcome #1, Strategy
+    #3 19 1424'\n      _kind_hint: dimension\n      _type_hint: string\n    - category:
+    dimension\n      expression: \"${cf_base.f15}\"\n      dimension: Outcome20_1424\n\
+    \      label: 'Outcome #2 20 1424'\n      _kind_hint: dimension\n      _type_hint:
+    string\n    - category: dimension\n      expression: \"${cf_base.f16}\"\n    \
+    \  dimension: HowmanyStrategiesforOu21_1424\n      label: How many Strategies
+    for Outcom 21 1424\n      _kind_hint: dimension\n      _type_hint: string\n  \
+    \  - category: dimension\n      expression: \"${cf_base.f17}\"\n      dimension:
+    OutcomeStrategy22_1424\n      label: 'Outcome #2, Strategy #1 22 1424'\n     \
+    \ _kind_hint: dimension\n      _type_hint: string\n    - category: dimension\n\
+    \      expression: \"${cf_base.f18}\"\n      dimension: OutcomeStrategy23_1424\n\
+    \      label: 'Outcome #2, Strategy #2 23 1424'\n      _kind_hint: dimension\n\
+    \      _type_hint: string\n    - category: dimension\n      expression: \"${cf_base.f19}\"\
+    \n      dimension: OutcomeStrategy24_1424\n      label: 'Outcome #2, Strategy
+    #3 24 1424'\n      _kind_hint: dimension\n      _type_hint: string\n    - category:
+    dimension\n      expression: \"${cf_base.f20}\"\n      dimension: Outcome25_1424\n\
+    \      label: 'Outcome #3 25 1424'\n      _kind_hint: dimension\n      _type_hint:
+    string\n    - category: dimension\n      expression: \"${cf_base.f21}\"\n    \
+    \  dimension: HowmanyStrategiesforOu26_1424\n      label: How many Strategies
+    for Outcom 26 1424\n      _kind_hint: dimension\n      _type_hint: string\n  \
+    \  - category: dimension\n      expression: \"${cf_base.f22}\"\n      dimension:
+    OutcomeStrategy27_1424\n      label: 'Outcome #3, Strategy #1 27 1424'\n     \
+    \ _kind_hint: dimension\n      _type_hint: string\n    - category: dimension\n\
+    \      expression: \"${cf_base.f23}\"\n      dimension: OutcomeStrategy28_1424\n\
+    \      label: 'Outcome #3, Strategy #2 28 1424'\n      _kind_hint: dimension\n\
+    \      _type_hint: string\n    - category: dimension\n      expression: \"${cf_base.f24}\"\
+    \n      dimension: OutcomeStrategy29_1424\n      label: 'Outcome #3, Strategy
+    #3 29 1424'\n      _kind_hint: dimension\n      _type_hint: string\n    - category:
+    dimension\n      expression: \"${cf_base.f25}\"\n      dimension: SelecttheDayHabilitati31_1424\n\
+    \      label: Select the Day Habilitation Ou 31 1424\n      _kind_hint: dimension\n\
+    \      _type_hint: string\n    - category: dimension\n      expression: \"${cf_base.f26}\"\
+    \n      dimension: WhichStrategiesfromOut32_1424\n      label: Which Strategies
+    from Outcome  32 1424\n      _kind_hint: dimension\n      _type_hint: string\n\
+    \    - category: dimension\n      expression: \"${cf_base.f27}\"\n      dimension:
+    WhichStrategiesfromOut33_1424\n      label: Which Strategies from Outcome  33
+    1424\n      _kind_hint: dimension\n      _type_hint: string\n    - category: dimension\n\
+    \      expression: \"${cf_base.f28}\"\n      dimension: WhichStrategiesfromOut34_1424\n\
+    \      label: Which Strategies from Outcome  34 1424\n      _kind_hint: dimension\n\
+    \      _type_hint: string\n    - category: dimension\n      expression: \"${cf_base.f29}\"\
+    \n      dimension: StrategyCategory35_1424\n      label: Strategy - Category 35
+    1424\n      _kind_hint: dimension\n      _type_hint: string\n    - category: dimension\n\
+    \      expression: \"${cf_base.f30}\"\n      dimension: HealthPhysicalWellbein36_1424\n\
+    \      label: Health & Physical Well-being t 36 1424\n      _kind_hint: dimension\n\
+    \      _type_hint: string\n    - category: dimension\n      expression: \"${cf_base.f31}\"\
+    \n      dimension: PhysicalFitnessstrateg37_1424\n      label: Physical Fitness
+    strategy 37 1424\n      _kind_hint: dimension\n      _type_hint: string\n    -
+    category: dimension\n      expression: \"${cf_base.f32}\"\n      dimension: Nutritionstrategy38_1424\n\
+    \      label: Nutrition strategy 38 1424\n      _kind_hint: dimension\n      _type_hint:
+    string\n    - category: dimension\n      expression: \"${cf_base.f33}\"\n    \
+    \  dimension: GeneralWellnessstrateg39_1424\n      label: General Wellness strategy
+    39 1424\n      _kind_hint: dimension\n      _type_hint: string\n    - category:
+    dimension\n      expression: \"${cf_base.f34}\"\n      dimension: PreVocationalSkillstop40_1424\n\
+    \      label: Pre-Vocational Skills topic 40 1424\n      _kind_hint: dimension\n\
+    \      _type_hint: string\n    - category: dimension\n      expression: \"${cf_base.f35}\"\
+    \n      dimension: GeneralProfessionalSki41_1424\n      label: General Professional
+    Skills st 41 1424\n      _kind_hint: dimension\n      _type_hint: string\n   \
+    \ - category: dimension\n      expression: \"${cf_base.f36}\"\n      dimension:
+    SelfAdvocacyProfession42_1424\n      label: Self Advocacy & Professional I 42
+    1424\n      _kind_hint: dimension\n      _type_hint: string\n    - category: dimension\n\
+    \      expression: \"${cf_base.f37}\"\n      dimension: JobDiscoveryApplicatio43_1424\n\
+    \      label: Job Discovery & Application st 43 1424\n      _kind_hint: dimension\n\
+    \      _type_hint: string\n    - category: dimension\n      expression: \"${cf_base.f38}\"\
+    \n      dimension: TechnicalSkillsstrateg44_1424\n      label: Technical Skills
+    strategy 44 1424\n      _kind_hint: dimension\n      _type_hint: string\n    -
+    category: dimension\n      expression: \"${cf_base.f39}\"\n      dimension: SocializationSkillstop45_1424\n\
+    \      label: Socialization Skills topic 45 1424\n      _kind_hint: dimension\n\
+    \      _type_hint: string\n    - category: dimension\n      expression: \"${cf_base.f40}\"\
+    \n      dimension: NonVerbalSocialSkillss46_1424\n      label: Non-Verbal Social
+    Skills strat 46 1424\n      _kind_hint: dimension\n      _type_hint: string\n\
+    \    - category: dimension\n      expression: \"${cf_base.f41}\"\n      dimension:
+    RespectingOthersstrate47_1424\n      label: Respecting Others strategies 47 1424\n\
+    \      _kind_hint: dimension\n      _type_hint: string\n    - category: dimension\n\
+    \      expression: \"${cf_base.f42}\"\n      dimension: PracticingCommunicatio48_1424\n\
+    \      label: Practicing Communication strat 48 1424\n      _kind_hint: dimension\n\
+    \      _type_hint: string\n    - category: dimension\n      expression: \"${cf_base.f43}\"\
+    \n      dimension: SocialActivitiesstrate49_1424\n      label: Social Activities
+    strategies 49 1424\n      _kind_hint: dimension\n      _type_hint: string\n  \
+    \  - category: dimension\n      expression: \"${cf_base.f44}\"\n      dimension:
+    ADLSkillstopic50_1424\n      label: ADL Skills topic 50 1424\n      _kind_hint:
+    dimension\n      _type_hint: string\n    - category: dimension\n      expression:
+    \"${cf_base.f45}\"\n      dimension: HomecareSkillsstrategi51_1424\n      label:
+    Homecare Skills strategies 51 1424\n      _kind_hint: dimension\n      _type_hint:
+    string\n    - category: dimension\n      expression: \"${cf_base.f46}\"\n    \
+    \  dimension: DressingHygienestrateg52_1424\n      label: Dressing & Hygiene strategies
+    52 1424\n      _kind_hint: dimension\n      _type_hint: string\n    - category:
+    dimension\n      expression: \"${cf_base.f47}\"\n      dimension: ShoppingFinancesstrate53_1424\n\
+    \      label: Shopping & Finances strategies 53 1424\n      _kind_hint: dimension\n\
+    \      _type_hint: string\n    - category: dimension\n      expression: \"${cf_base.f48}\"\
+    \n      dimension: PersonalDevelopmentSki54_1424\n      label: Personal Development
+    Skills st 54 1424\n      _kind_hint: dimension\n      _type_hint: string\n   \
+    \ - category: dimension\n      expression: \"${cf_base.f49}\"\n      dimension:
+    CookingEatingstrategie55_1424\n      label: Cooking & Eating strategies 55 1424\n\
+    \      _kind_hint: dimension\n      _type_hint: string\n    - category: dimension\n\
+    \      expression: \"${cf_base.f50}\"\n      dimension: PersonalIntereststopic56_1424\n\
+    \      label: Personal Interests topic 56 1424\n      _kind_hint: dimension\n\
+    \      _type_hint: string\n    - category: dimension\n      expression: \"${cf_base.f51}\"\
+    \n      dimension: OutintheCommunitystrat57_1424\n      label: Out in the Community
+    strategie 57 1424\n      _kind_hint: dimension\n      _type_hint: string\n   \
+    \ - category: dimension\n      expression: \"${cf_base.f52}\"\n      dimension:
+    ArtsCraftsstrategies58_1424\n      label: Arts & Crafts strategies 58 1424\n \
+    \     _kind_hint: dimension\n      _type_hint: string\n    - category: dimension\n\
+    \      expression: \"${cf_base.f53}\"\n      dimension: MusicLiteraturestrateg59_1424\n\
+    \      label: Music & Literature strategies 59 1424\n      _kind_hint: dimension\n\
+    \      _type_hint: string\n    - category: dimension\n      expression: \"${cf_base.f54}\"\
+    \n      dimension: HobbieswithOthersstrat60_1424\n      label: Hobbies with Others
+    strategies 60 1424\n      _kind_hint: dimension\n      _type_hint: string\n  \
+    \  - category: dimension\n      expression: \"${cf_base.f55}\"\n      dimension:
+    KnowledgeEducationtopi61_1424\n      label: Knowledge & Education topic 61 1424\n\
+    \      _kind_hint: dimension\n      _type_hint: string\n    - category: dimension\n\
+    \      expression: \"${cf_base.f56}\"\n      dimension: ProfessionalKnowledges62_1424\n\
+    \      label: Professional Knowledge strateg 62 1424\n      _kind_hint: dimension\n\
+    \      _type_hint: string\n    - category: dimension\n      expression: \"${cf_base.f57}\"\
+    \n      dimension: CulturalKnowledgestrat63_1424\n      label: Cultural Knowledge
+    strategies 63 1424\n      _kind_hint: dimension\n      _type_hint: string\n  \
+    \  - category: dimension\n      expression: \"${cf_base.f58}\"\n      dimension:
+    PromptLevel64_1424\n      label: Prompt Level  64 1424\n      _kind_hint: dimension\n\
+    \      _type_hint: string\n    - category: dimension\n      expression: \"${cf_base.f59}\"\
+    \n      dimension: NotesRelatedtoTodaysAc65_1424\n      label: Notes Related to
+    Today's Activ 65 1424\n      _kind_hint: dimension\n      _type_hint: string\n\
+    \    - category: dimension\n      expression: \"${cf_base.f60}\"\n      dimension:
+    AdditionalNotes66_1424\n      label: Additional Notes 66 1424\n      _kind_hint:
+    dimension\n      _type_hint: string\n    show_view_names: false\n    show_row_numbers:
+    true\n    transpose: false\n    truncate_text: true\n    hide_totals: false\n\
+    \    hide_row_totals: false\n    size_to_fit: true\n    table_theme: white\n \
+    \   limit_displayed_rows: false\n    enable_conditional_formatting: false\n  \
+    \  header_text_alignment: left\n    header_font_size: 12\n    rows_font_size:
+    12\n    conditional_formatting_include_totals: false\n    conditional_formatting_include_nulls:
+    false\n    defaults_version: 1\n    listen:\n      Form ID: cf_base.form_id\n\
+    \      Field Name: cf_base.field_name\n    row: 0\n    col: 0\n    width: 24\n\
+    \    height: 12\n  filters:\n  - name: Field Name\n    title: Field Name\n   \
+    \ type: field_filter\n    default_value: '\"DateofService3_1424,TimeofService4_1424,ServiceBeginTime6_1424,ServiceEndTime7_1424,UnitsofService8_1424,Waslunchservedonthissh9_1424,LocationofService10_1424,OtherLocation11_1424,NumberofDayHabilitatio14_1424,Outcome15_1424,HowmanyStrategiesforOu16_1424,OutcomeStrategy17_1424,OutcomeStrategy18_1424,OutcomeStrategy19_1424,Outcome20_1424,HowmanyStrategiesforOu21_1424,OutcomeStrategy22_1424,OutcomeStrategy23_1424,OutcomeStrategy24_1424,Outcome25_1424,HowmanyStrategiesforOu26_1424,OutcomeStrategy27_1424,OutcomeStrategy28_1424,OutcomeStrategy29_1424,SelecttheDayHabilitati31_1424,WhichStrategiesfromOut32_1424,WhichStrategiesfromOut33_1424,WhichStrategiesfromOut34_1424,StrategyCategory35_1424,HealthPhysicalWellbein36_1424,PhysicalFitnessstrateg37_1424,Nutritionstrategy38_1424,GeneralWellnessstrateg39_1424,PreVocationalSkillstop40_1424,GeneralProfessionalSki41_1424,SelfAdvocacyProfession42_1424,JobDiscoveryApplicatio43_1424,TechnicalSkillsstrateg44_1424,SocializationSkillstop45_1424,NonVerbalSocialSkillss46_1424,RespectingOthersstrate47_1424,PracticingCommunicatio48_1424,SocialActivitiesstrate49_1424,ADLSkillstopic50_1424,HomecareSkillsstrategi51_1424,DressingHygienestrateg52_1424,ShoppingFinancesstrate53_1424,PersonalDevelopmentSki54_1424,CookingEatingstrategie55_1424,PersonalIntereststopic56_1424,OutintheCommunitystrat57_1424,ArtsCraftsstrategies58_1424,MusicLiteraturestrateg59_1424,HobbieswithOthersstrat60_1424,KnowledgeEducationtopi61_1424,ProfessionalKnowledges62_1424,CulturalKnowledgestrat63_1424,PromptLevel64_1424,NotesRelatedtoTodaysAc65_1424,AdditionalNotes66_1424\"\
+    '\n    allow_multiple_values: true\n    required: false\n    ui_config:\n    \
+    \  type: advanced\n      display: popover\n    model: cplsy_prod_carelogic\n \
+    \   explore: treatment_plan_plus_forms\n    listens_to_filters: []\n    field:
+    cf_base.field_name\n  - name: Form ID\n    title: Form ID\n    type: field_filter\n\
+    \    default_value: '1424'\n    allow_multiple_values: true\n    required: false\n\
+    \    ui_config:\n      type: advanced\n      display: popover\n    model: cplsy_prod_carelogic\n\
+    \    explore: treatment_plan_plus_forms\n    listens_to_filters: []\n    field:
+    cf_base.form_id\n"
+  dashboard_id: '1'
+  dashboard_slug: Uo3hZmq4sGKePf7y1RaJIp
+  dashboard_element_alert_counts:
+  - 0
+  scheduled_plans: []
+  alerts: []
+- !DashboardObject
+  legacy_folder_id:
+    folder_id: '9'
+    slug: HxqePwjKNUW1tLu8uZWVv0
+  lookml: "---\n- dashboard: finance_dashboard\n  title: Finance Dashboard\n  layout:
+    newspaper\n  preferred_viewer: dashboards-next\n  description: ''\n  preferred_slug:
+    HxqePwjKNUW1tLu8uZWVv0\n  elements:\n  - title: Total Activity Billed Amount 2021
+    - 2023\n    name: Total Activity Billed Amount 2021 - 2023\n    model: cplsy_prod_carelogic\n\
+    \    explore: financial\n    type: looker_column\n    fields: [claim_item_line.activity_billed,
+    claim.service_month_name, claim.service_year]\n    pivots: [claim.service_year]\n\
+    \    fill_fields: [claim.service_month_name, claim.service_year]\n    filters:\n\
+    \      claim.service_year: 3 years\n    sorts: [claim.service_year, claim.service_month_name]\n\
+    \    limit: 500\n    column_limit: 50\n    x_axis_gridlines: false\n    y_axis_gridlines:
+    true\n    show_view_names: false\n    show_y_axis_labels: true\n    show_y_axis_ticks:
+    true\n    y_axis_tick_density: default\n    y_axis_tick_density_custom: 5\n  \
+    \  show_x_axis_label: true\n    show_x_axis_ticks: true\n    y_axis_scale_mode:
+    linear\n    x_axis_reversed: false\n    y_axis_reversed: false\n    plot_size_by_field:
+    false\n    trellis: ''\n    stacking: normal\n    limit_displayed_rows: false\n\
+    \    legend_position: center\n    point_style: none\n    show_value_labels: false\n\
+    \    label_density: 25\n    x_axis_scale: auto\n    y_axis_combined: true\n  \
+    \  ordering: none\n    show_null_labels: false\n    show_totals_labels: false\n\
+    \    show_silhouette: false\n    totals_color: \"#808080\"\n    y_axes: [{label:
+    Total Activity Billed, orientation: left, series: [{axisId: 2021\n           \
+    \   - claim_item_line.activity_billed, id: 2021 - claim_item_line.activity_billed,\n\
+    \            name: '2021'}, {axisId: 2022 - claim_item_line.activity_billed, id:
+    2022\n              - claim_item_line.activity_billed, name: '2022'}, {axisId:
+    2023 - claim_item_line.activity_billed,\n            id: 2023 - claim_item_line.activity_billed,
+    name: '2023'}], showLabels: true,\n        showValues: true, unpinAxis: false,
+    tickDensity: default, tickDensityCustom: 5,\n        type: linear}]\n    x_axis_label:
+    Service Month\n    x_axis_zoom: true\n    y_axis_zoom: true\n    hidden_pivots:
+    {}\n    defaults_version: 1\n    listen:\n      Client ID: client.client_id\n\
+    \      Program Name: claim_line_program.program_name\n    row: 0\n    col: 8\n\
+    \    width: 8\n    height: 6\n  - title: New Tile\n    name: New Tile\n    model:
+    cplsy_prod_carelogic\n    explore: financial\n    type: single_value\n    fields:
+    [claim.item_balance]\n    filters:\n      document.created_date: '2023'\n    limit:
+    500\n    column_limit: 50\n    custom_color_enabled: true\n    show_single_value_title:
+    true\n    show_comparison: false\n    comparison_type: value\n    comparison_reverse_colors:
+    false\n    show_comparison_label: true\n    enable_conditional_formatting: false\n\
+    \    conditional_formatting_include_totals: false\n    conditional_formatting_include_nulls:
+    false\n    custom_color: \"#9334E6\"\n    single_value_title: Total Claim Balance
+    (2023)\n    x_axis_gridlines: false\n    y_axis_gridlines: true\n    show_view_names:
+    false\n    show_y_axis_labels: true\n    show_y_axis_ticks: true\n    y_axis_tick_density:
+    default\n    y_axis_tick_density_custom: 5\n    show_x_axis_label: true\n    show_x_axis_ticks:
+    true\n    y_axis_scale_mode: linear\n    x_axis_reversed: false\n    y_axis_reversed:
+    false\n    plot_size_by_field: false\n    x_axis_zoom: true\n    y_axis_zoom:
+    true\n    trellis: ''\n    stacking: ''\n    limit_displayed_rows: false\n   \
+    \ legend_position: center\n    point_style: none\n    show_value_labels: true\n\
+    \    label_density: 25\n    x_axis_scale: auto\n    y_axis_combined: true\n  \
+    \  ordering: none\n    show_null_labels: false\n    show_totals_labels: false\n\
+    \    show_silhouette: false\n    totals_color: \"#808080\"\n    defaults_version:
+    1\n    listen:\n      Client ID: client.client_id\n      Program Name: claim_line_program.program_name\n\
+    \    row: 0\n    col: 0\n    width: 8\n    height: 6\n  filters:\n  - name: Created
+    Date\n    title: Created Date\n    type: field_filter\n    default_value: '2023'\n\
+    \    allow_multiple_values: true\n    required: false\n    ui_config:\n      type:
+    relative_timeframes\n      display: inline\n    model: cplsy_prod_carelogic\n\
+    \    explore: financial\n    listens_to_filters: []\n    field: document.created_date\n\
+    \  - name: Client ID\n    title: Client ID\n    type: field_filter\n    default_value:
+    ''\n    allow_multiple_values: true\n    required: false\n    ui_config:\n   \
+    \   type: advanced\n      display: popover\n      options: []\n    model: cplsy_prod_carelogic\n\
+    \    explore: financial\n    listens_to_filters: []\n    field: client.client_id\n\
+    \  - name: Program Name\n    title: Program Name\n    type: field_filter\n   \
+    \ default_value: ''\n    allow_multiple_values: true\n    required: false\n  \
+    \  ui_config:\n      type: advanced\n      display: popover\n    model: cplsy_prod_carelogic\n\
+    \    explore: financial\n    listens_to_filters: []\n    field: claim_line_program.program_name\n"
+  dashboard_id: '2'
+  dashboard_slug: HxqePwjKNUW1tLu8uZWVv0
+  dashboard_element_alert_counts:
+  - 0
+  - 0
+  scheduled_plans: []
+  alerts: []
+- !DashboardObject
+  legacy_folder_id:
+    folder_id: '9'
+    slug: OkzlZ1RPzqYunE4VuXo5MF
+  lookml: "---\n- dashboard: client_details_by_zip_code\n  title: Client Details by
+    Zip Code\n  layout: newspaper\n  preferred_viewer: dashboards-next\n  description:
+    ''\n  preferred_slug: OkzlZ1RPzqYunE4VuXo5MF\n  elements:\n  - title: Active Current
+    Zip\n    name: Active Current Zip\n    model: cplsy_prod_carelogic\n    explore:
+    admissions\n    type: table\n    fields: [client.client_id, client.client_status,
+    client.current_zip, client.current_city]\n    filters:\n      client.current_city:
+    \"-NULL\"\n      client.client_status: Active,Discharged\n    sorts: [client.client_id]\n\
+    \    limit: 5000\n    column_limit: 50\n    show_view_names: false\n    show_row_numbers:
+    true\n    truncate_column_names: false\n    hide_totals: false\n    hide_row_totals:
+    false\n    table_theme: editable\n    limit_displayed_rows: false\n    enable_conditional_formatting:
+    false\n    conditional_formatting_include_totals: false\n    conditional_formatting_include_nulls:
+    false\n    defaults_version: 1\n    listen:\n      Current Zip: client.current_zip\n\
+    \    row: 0\n    col: 0\n    width: 8\n    height: 6\n  - title: Count of Clients
+    - Current Zip\n    name: Count of Clients - Current Zip\n    model: cplsy_prod_carelogic\n\
+    \    explore: financial\n    type: looker_google_map\n    fields: [client.current_zip,
+    client.count_of_clients]\n    filters:\n      client.current_zip: \"-NULL\"\n\
+    \    sorts: [client.count_of_clients desc 0]\n    limit: 500\n    column_limit:
+    50\n    hidden_fields: []\n    hidden_points_if_no: []\n    series_labels: {}\n\
+    \    show_view_names: true\n    map_plot_mode: points\n    heatmap_gridlines:
+    true\n    heatmap_gridlines_empty: false\n    heatmap_opacity: 0.5\n    show_region_field:
+    true\n    draw_map_labels_above_data: true\n    map_tile_provider: light\n   \
+    \ map_position: fit_data\n    map_pannable: true\n    map_zoomable: true\n   \
+    \ map_marker_type: circle\n    map_marker_icon_name: default\n    map_marker_radius_mode:
+    proportional_value\n    map_marker_units: meters\n    map_marker_proportional_scale_type:
+    linear\n    map_marker_color_mode: fixed\n    show_legend: true\n    quantize_map_value_colors:
+    false\n    reverse_map_value_colors: false\n    defaults_version: 0\n    listen:
+    {}\n    row: 0\n    col: 8\n    width: 8\n    height: 6\n  filters:\n  - name:
+    Current Zip\n    title: Current Zip\n    type: field_filter\n    default_value:
+    ''\n    allow_multiple_values: true\n    required: false\n    ui_config:\n   \
+    \   type: advanced\n      display: popover\n    model: cplsy_prod_carelogic\n\
+    \    explore: admissions\n    listens_to_filters: []\n    field: client.current_zip\n"
+  dashboard_id: '5'
+  dashboard_slug: OkzlZ1RPzqYunE4VuXo5MF
+  dashboard_element_alert_counts:
+  - 0
+  - 0
+  scheduled_plans: []
+  alerts: []
+- !DashboardObject
+  legacy_folder_id:
+    folder_id: '9'
+    slug: NjUjHhUfbARXe8yJShVWH0
+  lookml: "---\n- dashboard: merged_results_dashboard\n  title: Merged Results Dashboard\n\
+    \  layout: newspaper\n  preferred_viewer: dashboards-next\n  description: ''\n\
+    \  preferred_slug: NjUjHhUfbARXe8yJShVWH0\n  elements:\n  - name: Clients with
+    Medicaid\n    title: Clients with Medicaid\n    merged_queries:\n    - model:
+    cplsy_prod_carelogic\n      explore: schedule\n      type: table\n      fields:
+    [client.client_id, client.client_name, activity_detail.activity_detail_id,\n \
+    \       claim_item.service_date, activity.activity_description, claim_item_staff.staff_id]\n\
+    \      filters:\n        schedule.place_of_service: \"-NULL\"\n        schedule.service_date:
+    '2023'\n        schedule.service_location_code: \"-NULL\"\n      sorts: [client.client_name
+    desc]\n      limit: 500\n      column_limit: 50\n    - model: cplsy_prod_carelogic\n\
+    \      explore: financial\n      type: table\n      fields: [client.client_id,
+    client.client_name, claim.claim_id, claim.service_date,\n        claim.payer_name,
+    claim.payer_plan_name, claim_program.program, claim_staff.staff_id]\n      filters:\n\
+    \        claim.payer_name: \"-NULL\"\n        claim.service_date: '2023'\n   \
+    \   sorts: [claim.service_date desc]\n      limit: 500\n      column_limit: 50\n\
+    \      join_fields:\n      - field_name: client.client_id\n        source_field_name:
+    client.client_id\n      - field_name: client.client_name\n        source_field_name:
+    client.client_name\n      - field_name: claim_staff.staff_id\n        source_field_name:
+    claim_item_staff.staff_id\n    type: looker_grid\n    hidden_pivots: {}\n    hidden_fields:
+    [claim_item_staff.staff_id]\n    dynamic_fields:\n    - category: table_calculation\n\
+    \      expression: is_null(${claim.payer_name}NOT)\n      label: Insurance Information
+    or Self Pay\n      value_format:\n      value_format_name:\n      _kind_hint:
+    dimension\n      table_calculation: insurance_information_or_self_pay\n      _type_hint:\n\
+    \      is_disabled: true\n    listen:\n    - Service Date: schedule.service_date\n\
+    \    - Service Date: claim.service_date\n    row: 0\n    col: 0\n    width: 24\n\
+    \    height: 8\n  filters:\n  - name: Service Date\n    title: Service Date\n\
+    \    type: field_filter\n    default_value: '2023'\n    allow_multiple_values:
+    true\n    required: false\n    ui_config:\n      type: advanced\n      display:
+    popover\n      options: []\n    model: cplsy_prod_carelogic\n    explore: schedule\n\
+    \    listens_to_filters: []\n    field: claim_item.service_date\n"
+  dashboard_id: '7'
+  dashboard_slug: NjUjHhUfbARXe8yJShVWH0
+  dashboard_element_alert_counts:
+  - 0
+  scheduled_plans: []
+  alerts: []
+- !DashboardObject
+  legacy_folder_id:
+    folder_id: '9'
+    slug: vmZSSiTTSTaKKlnNhYEOmC
+  lookml: "---\n- dashboard: participants_information\n  title: Participants Information\n\
+    \  layout: newspaper\n  preferred_viewer: dashboards-next\n  description: ''\n\
+    \  preferred_slug: vmZSSiTTSTaKKlnNhYEOmC\n  elements:\n  - title: Days from intake
+    to First Service\n    name: Days from intake to First Service\n    model: cplsy_prod_carelogic\n\
+    \    explore: admissions\n    type: looker_grid\n    fields: [days_from_intake_to_first_service,
+    admissions.intake_call_year, client.client_id]\n    filters: {}\n    sorts: [admissions.intake_call_year
+    desc]\n    limit: 500\n    column_limit: 50\n    dynamic_fields:\n    - category:
+    dimension\n      expression: |+\n        diff_days(${admissions.intake_call_date},coalesce(${group_first_episode_services.first_kept_service_date},now()))\n\
+    \n\n      label: Days from intake to First Service\n      value_format:\n    \
+    \  value_format_name:\n      dimension: days_from_intake_to_first_service\n  \
+    \    _kind_hint: dimension\n      _type_hint: number\n    show_view_names: false\n\
+    \    show_row_numbers: true\n    transpose: false\n    truncate_text: true\n \
+    \   hide_totals: false\n    hide_row_totals: false\n    size_to_fit: true\n  \
+    \  table_theme: white\n    limit_displayed_rows: false\n    enable_conditional_formatting:
+    false\n    header_text_alignment: left\n    header_font_size: 12\n    rows_font_size:
+    12\n    conditional_formatting_include_totals: false\n    conditional_formatting_include_nulls:
+    false\n    defaults_version: 1\n    listen:\n      Intake Call Year: admissions.intake_call_year\n\
+    \    row: 0\n    col: 0\n    width: 24\n    height: 12\n  filters:\n  - name:
+    Intake Call Year\n    title: Intake Call Year\n    type: field_filter\n    default_value:
+    '2023'\n    allow_multiple_values: true\n    required: false\n    ui_config:\n\
+    \      type: advanced\n      display: popover\n    model: cplsy_prod_carelogic\n\
+    \    explore: admissions\n    listens_to_filters: []\n    field: admissions.intake_call_year\n"
+  dashboard_id: '8'
+  dashboard_slug: vmZSSiTTSTaKKlnNhYEOmC
+  dashboard_element_alert_counts:
+  - 0
+  scheduled_plans: []
+  alerts: []

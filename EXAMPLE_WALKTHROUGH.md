@@ -4,6 +4,14 @@ This is a full end-to-end walkthrough of the downloading of content and settings
 
 > NOTE: The customer account to instance mapping can be seen in `current-customer-instance-mapping.csv`.
 
+## Set up Python virtual environment:
+
+```
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
 ## 1. Create .ini files
 
 _No action needed._
@@ -12,7 +20,7 @@ _No action needed._
 
 ```
 cd 2-lmanage-capturator
-python lmanage-parallel.py -i 011 073 074 076 077 086 087 088 089 090 110
+python lmanage_parallel.py -i 011 073 074 076 077 086 087 088 089 090 110
 ```
 
 This will store instance output in `2-lmanage-capturator/config/`.
@@ -21,7 +29,7 @@ This will store instance output in `2-lmanage-capturator/config/`.
 
 ```
 cd ../3-detect-duplicate-slugs
-python detect-duplicate-slugs.py
+python detect_duplicate_slugs.py
 ```
 
 _No duplicates found._
@@ -41,7 +49,7 @@ This will store consolidated output and owner-mapping.json in `4-consolidate-con
 
 ## 5. Migrate
 
-Create a looker.ini file in `5-lmanage-configurator`:
+Create a `qsi166.ini` file in `5-lmanage-configurator/ini-files`:
 
 ```
 [Looker]
@@ -58,7 +66,15 @@ cd ../5-lmanage-configurator
 
 lmanage configurator \
   --config-dir ../4-consolidate-config-files/output/166 \
-  --ini-file looker.ini
+  --ini-file ini-files/qsi166.ini
 ```
 
 ## 6. Update plan/alert owners
+
+```
+cd ../6-update-content-owner
+
+python update_content_owner.py \
+  --mapping ../4-consolidate-config-files/output/166/owner-mapping.json \
+  --ini-file ../5-lmanage-configurator/ini-files/qsi166.ini
+```

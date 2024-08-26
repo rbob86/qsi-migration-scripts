@@ -42,7 +42,7 @@ pip install lmanage
 
 ```
 cd 1-create-ini-files
-python create-ini-files.py
+python create_ini_files.py
 ```
 
 ## 2. Retrieving Customer Content & Settings
@@ -58,13 +58,13 @@ cd 2-lmanage-capturator
 Using lmanage and the existing or newly created .ini files, capture content and settings in parallel by running:
 
 ```
-python lmanage-parallel.py -i [list of ini filenames without extension]
+python lmanage_parallel.py -i [list of ini filenames without extension]
 ```
 
 Note that the -i argument takes a list of ini filenames without the .ini extension, for example:
 
 ```
-python lmanage-parallel.py -i 001 166 032 044 123 009
+python lmanage_parallel.py -i 001 166 032 044 123 009
 ```
 
 This program will run `lmanage capturator` for the desired instances, in parallel, with 5 workers/threads (this can be changed by altering the MAX_WORKERS value, set appropriate value for your system).
@@ -89,7 +89,7 @@ Once all desired production content is saved, run:
 
 ```
 cd 3-detect-duplicate-slugs
-python detect-duplicate-slugs.py
+python detect_duplicate_slugs.py
 ```
 
 This script will parse the subdirectories of `2-lmanage-capturator/config/` and alert if there are any duplicate dashboard slugs amongst all instance content.
@@ -104,7 +104,7 @@ Next we need to extract only the desired customer accounts from the various cont
 ```
 cd 4-consolidate-config-files
 
-python consolidate-config-files.yaml \
+python consolidate_config_files.yaml \
   --customers [list of customers] \
   --instances [list of instances] \
   --output-dir [name of output dir]
@@ -120,14 +120,14 @@ Example:
 python consolidate_config_files.py \
   --customers INDCTR CAMCC NJSTRES TNHEALTHCONNECT PIN \
   --instances qsi001 qsi002 qsi003 qsi004 qsi005 \
-  --output-dir 001
+  --output-dir clqsi001
 ```
 
 ## 5. Migrate Data
 
 Next we need to migrate the data produced by Step 4 to a target instance.
 
-You'll need to first create a .ini file with the credentials of the target instance, as such:
+You'll need to first create a .ini file in `5-lmanage-configurator/ini-files/` with the credentials of the target instance, as such:
 
 ```
 [Looker]
@@ -137,11 +137,11 @@ client_secret=[client_secret]
 verify_ssl=True
 ```
 
-> NOTE: You may want to save this in the `5-lmanage/configurator/` directory to maintain consistency with other steps.
-
-Then, using lmanage directly:
+Then, run lmanage directly:
 
 ```
+cd 5-lmanage-configurator
+
 lmanage configurator \
   --config-dir [config_dir] \
   --ini-file [ini_file]
@@ -152,7 +152,7 @@ A concrete example: if you have a folder 001 with content.yaml and settings.yaml
 ```
 lmanage configurator \
   --config-dir ../4-consolidate-config-files/output/001 \
-  --ini-file clqsi001.ini
+  --ini-file ini-files/clqsi001.ini
 ```
 
 > NOTE: Ensure the use of an official service account for the ini-file credentials instead of a personal account, so saved content's metadata will not show the owner or created by as an employee.
@@ -160,3 +160,19 @@ lmanage configurator \
 ## 6. Update Scheduled Plan/Alert Owner
 
 Once content is migrated to a target instance, the owner of scheduled plans and alerts for dashboards needs to be updated on that instance.
+
+```
+cd 6-update-content-owner
+
+python update_content_owner.py \
+  --mapping-dir [dir name containing owner-mapping.json from step #4]
+  --ini-file [ini_file]
+```
+
+Example, where the target instance is clqsi001:
+
+```
+python update_content_owner.py \
+  --mapping-dir clqsi001
+  --ini-file ../5-lmanage-configurator/clqsi001.ini
+```

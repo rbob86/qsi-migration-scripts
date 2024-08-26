@@ -144,6 +144,32 @@ def update_owner_mapping(
         owner_mapping[owner_id]["plans" if is_plan else "alerts"].append(item_to_save)
 
 
+def consolidate_owner_mapping(owner_mapping_list):
+    consolidated_mapping = {}
+
+    for owner_mapping in owner_mapping_list:
+        external_user_id = owner_mapping["external_user_id"]
+
+        if external_user_id not in consolidated_mapping:
+            consolidated_mapping[external_user_id] = {
+                "instance": owner_mapping["instance"],
+                "first_name": owner_mapping["first_name"],
+                "last_name": owner_mapping["last_name"],
+                "user_attributes": owner_mapping["user_attributes"],
+                "external_user_id": external_user_id,
+                "group_name": owner_mapping["group_name"],
+                "plans": [],
+                "alerts": [],
+            }
+
+        if "plans" in owner_mapping:
+            consolidated_mapping[external_user_id]["plans"].extend(owner_mapping["plans"])
+        if "alerts" in owner_mapping:
+            consolidated_mapping[external_user_id]["alerts"].extend(owner_mapping["alerts"])
+
+    return list(consolidated_mapping.values())
+
+
 def main():
     args = parse_arguments()
     instance_list = args.instances
@@ -188,9 +214,11 @@ def main():
         f"Successfully saved new content.yaml, settings.yaml files to directory {output_dir}"
     )
 
+    consolidated_owner_mapping = consolidate_owner_mapping(all_owner_mapping)
+
     owner_mapping_filename = os.path.join(output_dir, "owner-mapping.json")
     with open(owner_mapping_filename, "w") as json_file:
-        json.dump(all_owner_mapping, json_file, indent=4)
+        json.dump(consolidated_owner_mapping, json_file, indent=4)
 
 
 if __name__ == "__main__":

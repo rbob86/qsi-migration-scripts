@@ -1,0 +1,45 @@
+
+
+# LookData
+#No Captured Looks
+
+# Dashboard Content
+- !DashboardObject
+  legacy_folder_id:
+    folder_id: '7'
+    slug: AeK1a6YknES9HwCfZyuvhs
+  lookml: "---\n- dashboard: dx_for_clients_admitted_last_3_months\n  title: Dx for
+    Clients Admitted last 3 Months\n  layout: newspaper\n  preferred_viewer: dashboards-next\n\
+    \  description: ''\n  preferred_slug: AeK1a6YknES9HwCfZyuvhs\n  elements:\n  -
+    name: Dx for Clients Admitted last 3 Months\n    title: Dx for Clients Admitted
+    last 3 Months\n    merged_queries:\n    - model: kychonk_prod_carelogic\n    \
+    \  explore: admissions\n      type: table\n      fields: [client.client_id, client.client_name,
+    admissions.episode_admission_date]\n      filters:\n        admissions.episode_admission_date:
+    3 months\n      sorts: [admissions.episode_admission_date desc]\n      limit:
+    500\n      column_limit: 50\n    - model: kychonk_prod_carelogic\n      explore:
+    document\n      type: looker_grid\n      fields: [client.client_id, client_diagnosis.p1_diagnosis_id,
+    client_diagnosis.p1_icd10_description]\n      sorts: [client.client_id]\n    \
+    \  limit: 5000\n      column_limit: 50\n      dynamic_fields:\n      - category:
+    table_calculation\n        expression: NOT is_null(${client_diagnosis.p1_icd10_description})\n\
+    \        label: Dx Present\n        value_format:\n        value_format_name:\n\
+    \        _kind_hint: dimension\n        table_calculation: dx_present\n      \
+    \  _type_hint: yesno\n      - category: table_calculation\n        expression:
+    NOT is_null(${client_diagnosis.p1_icd10_description})\n        label: Dx Present
+    Copy\n        value_format:\n        value_format_name:\n        _kind_hint: dimension\n\
+    \        table_calculation: dx_present_copy\n        _type_hint: yesno\n     \
+    \   is_disabled: true\n      show_view_names: false\n      show_row_numbers: true\n\
+    \      transpose: false\n      truncate_text: true\n      hide_totals: false\n\
+    \      hide_row_totals: false\n      size_to_fit: true\n      table_theme: white\n\
+    \      limit_displayed_rows: false\n      enable_conditional_formatting: false\n\
+    \      header_text_alignment: left\n      header_font_size: 12\n      rows_font_size:
+    12\n      conditional_formatting_include_totals: false\n      conditional_formatting_include_nulls:
+    false\n      hidden_points_if_no:\n      defaults_version: 1\n      hidden_pivots:
+    {}\n      join_fields:\n      - field_name: client.client_id\n        source_field_name:
+    client.client_id\n    hidden_pivots: {}\n    type: looker_grid\n    column_limit:
+    5000\n    row: 0\n    col: 0\n    width: 24\n    height: 7\n"
+  dashboard_id: '7'
+  dashboard_slug: AeK1a6YknES9HwCfZyuvhs
+  dashboard_element_alert_counts:
+  - 0
+  scheduled_plans: []
+  alerts: []

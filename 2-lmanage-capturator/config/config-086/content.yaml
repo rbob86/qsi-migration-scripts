@@ -1,0 +1,349 @@
+
+
+# LookData
+- !LookObject
+  legacy_folder_id: '9'
+  look_id: '1'
+  title: Demographics with current age-birthdate
+  query_obj:
+    model: tvc_prod_carelogic
+    view: admissions
+    fields:
+    - program_detail.program_name
+    - client.client_name
+    - client_program.client_program_begin_date
+    - client_program.client_program_end_date
+    - client_program.client_program_organization_name
+    - admissions.episode_type
+    - admissions.episode_admission_date
+    - admissions.episode_discharge_date
+    - client.current_county
+    - client.current_age
+    - client.birth_date
+    pivots:
+    fill_fields:
+    filters:
+      client_program.client_program_active_during: 2023/06/29 to 2023/06/30
+      client_program.client_program_organization_name: ''
+      program_detail.program_name: Statewide Family Support Network
+      client.client_name: ''
+      program_staff.staff_name: ''
+    filter_expression:
+    sorts:
+    - program_detail.program_name
+    - client_program.client_program_begin_date
+    - client.client_name
+    limit: '5000'
+    column_limit: '50'
+    total:
+    row_total:
+    subtotals:
+    vis_config:
+      show_view_names: false
+      show_row_numbers: true
+      transpose: false
+      truncate_text: true
+      hide_totals: false
+      hide_row_totals: false
+      size_to_fit: true
+      table_theme: white
+      limit_displayed_rows: false
+      enable_conditional_formatting: false
+      header_text_alignment: left
+      header_font_size: 12
+      rows_font_size: 12
+      conditional_formatting_include_totals: false
+      conditional_formatting_include_nulls: false
+      type: looker_grid
+      x_axis_gridlines: false
+      y_axis_gridlines: true
+      show_y_axis_labels: true
+      show_y_axis_ticks: true
+      y_axis_tick_density: default
+      y_axis_tick_density_custom: 5
+      show_x_axis_label: true
+      show_x_axis_ticks: true
+      y_axis_scale_mode: linear
+      x_axis_reversed: false
+      y_axis_reversed: false
+      plot_size_by_field: false
+      trellis: ''
+      stacking: ''
+      legend_position: center
+      point_style: none
+      show_value_labels: false
+      label_density: 25
+      x_axis_scale: auto
+      y_axis_combined: true
+      ordering: none
+      show_null_labels: false
+      show_totals_labels: false
+      show_silhouette: false
+      totals_color: '#808080'
+      defaults_version: 1
+      series_types: {}
+    filter_config:
+      client_program.client_program_active_during:
+      - type: between
+        values:
+        - date: '2023-06-29T00:00:00.000Z'
+          tz: true
+        - date: '2023-06-30T00:00:00.000Z'
+          tz: true
+        id: 0
+        error: false
+      client_program.client_program_organization_name:
+      - type: '='
+        values:
+        - constant: ''
+        - {}
+        id: 1
+        error: false
+      program_detail.program_name:
+      - type: '='
+        values:
+        - constant: Statewide Family Support Network
+        - {}
+        id: 2
+        error: false
+      client.client_name:
+      - type: '='
+        values:
+        - constant: ''
+        - {}
+        id: 3
+        error: false
+      program_staff.staff_name:
+      - type: '='
+        values:
+        - constant: ''
+        - {}
+        id: 4
+        error: false
+    visible_ui_sections:
+    dynamic_fields:
+    query_timezone:
+  description: ''
+  scheduled_plans: []
+
+
+# Dashboard Content
+- !DashboardObject
+  legacy_folder_id:
+    folder_id: '9'
+    slug: zf7ikdRyvPLlEfMA8px59O
+  lookml: "---\n- dashboard: demographics\n  title: Demographics\n  layout: newspaper\n\
+    \  preferred_viewer: dashboards-next\n  description: ''\n  preferred_slug: zf7ikdRyvPLlEfMA8px59O\n\
+    \  elements:\n  - title: Demographics\n    name: Demographics\n    model: tvc_prod_carelogic\n\
+    \    explore: admissions\n    type: looker_grid\n    fields: [program_detail.program_name,
+    client.client_name, client_program.client_program_begin_date,\n      client_program.client_program_end_date,
+    client_program.client_program_organization_name,\n      admissions.episode_type,
+    admissions.episode_admission_date, admissions.episode_discharge_date,\n      client.current_county]\n\
+    \    filters: {}\n    sorts: [program_detail.program_name, client_program.client_program_begin_date,\n\
+    \      client.client_name]\n    limit: 5000\n    column_limit: 50\n    show_view_names:
+    false\n    show_row_numbers: true\n    transpose: false\n    truncate_text: true\n\
+    \    hide_totals: false\n    hide_row_totals: false\n    size_to_fit: true\n \
+    \   table_theme: white\n    limit_displayed_rows: false\n    enable_conditional_formatting:
+    false\n    header_text_alignment: left\n    header_font_size: 12\n    rows_font_size:
+    12\n    conditional_formatting_include_totals: false\n    conditional_formatting_include_nulls:
+    false\n    x_axis_gridlines: false\n    y_axis_gridlines: true\n    show_y_axis_labels:
+    true\n    show_y_axis_ticks: true\n    y_axis_tick_density: default\n    y_axis_tick_density_custom:
+    5\n    show_x_axis_label: true\n    show_x_axis_ticks: true\n    y_axis_scale_mode:
+    linear\n    x_axis_reversed: false\n    y_axis_reversed: false\n    plot_size_by_field:
+    false\n    trellis: ''\n    stacking: ''\n    legend_position: center\n    point_style:
+    none\n    show_value_labels: false\n    label_density: 25\n    x_axis_scale: auto\n\
+    \    y_axis_combined: true\n    ordering: none\n    show_null_labels: false\n\
+    \    show_totals_labels: false\n    show_silhouette: false\n    totals_color:
+    \"#808080\"\n    defaults_version: 1\n    listen:\n      Client Program Active
+    During: client_program.client_program_active_during\n      Client Program Organization
+    Name: client_program.client_program_organization_name\n      Program Name: program_detail.program_name\n\
+    \      Client Name: client.client_name\n      Program Staff Name: program_staff.staff_name\n\
+    \    row: 0\n    col: 0\n    width: 24\n    height: 12\n  - title: Clients by
+    County\n    name: Clients by County\n    model: tvc_prod_carelogic\n    explore:
+    schedule\n    type: looker_grid\n    fields: [client.client_id, client.client_name,
+    client.current_county]\n    filters:\n      program_detail.program_name: Statewide
+    Family Support Network\n      activity_detail.actual_begin_date: 2023/03/01 to
+    2023/03/31\n    sorts: [client.current_county]\n    limit: 500\n    column_limit:
+    50\n    total: true\n    show_view_names: false\n    show_row_numbers: true\n\
+    \    transpose: false\n    truncate_text: true\n    hide_totals: false\n    hide_row_totals:
+    false\n    size_to_fit: true\n    table_theme: white\n    limit_displayed_rows:
+    false\n    enable_conditional_formatting: false\n    header_text_alignment: left\n\
+    \    header_font_size: '12'\n    rows_font_size: '12'\n    conditional_formatting_include_totals:
+    false\n    conditional_formatting_include_nulls: false\n    show_sql_query_menu_options:
+    false\n    show_totals: true\n    show_row_totals: true\n    truncate_header:
+    true\n    hidden_pivots: {}\n    defaults_version: 1\n    hidden_fields: [client.client_id,
+    client.client_name]\n    x_axis_gridlines: false\n    y_axis_gridlines: true\n\
+    \    show_y_axis_labels: true\n    show_y_axis_ticks: true\n    y_axis_tick_density:
+    default\n    y_axis_tick_density_custom: 5\n    show_x_axis_label: true\n    show_x_axis_ticks:
+    true\n    y_axis_scale_mode: linear\n    x_axis_reversed: false\n    y_axis_reversed:
+    false\n    plot_size_by_field: false\n    trellis: ''\n    stacking: ''\n    legend_position:
+    center\n    point_style: none\n    show_value_labels: false\n    label_density:
+    25\n    x_axis_scale: auto\n    y_axis_combined: true\n    ordering: none\n  \
+    \  show_null_labels: false\n    show_totals_labels: false\n    show_silhouette:
+    false\n    totals_color: \"#808080\"\n    listen: {}\n    row: 12\n    col: 0\n\
+    \    width: 8\n    height: 6\n  filters:\n  - name: Client Program Active During\n\
+    \    title: Client Program Active During\n    type: field_filter\n    default_value:
+    this month\n    allow_multiple_values: true\n    required: false\n    ui_config:\n\
+    \      type: advanced\n      display: popover\n    model: tvc_prod_carelogic\n\
+    \    explore: admissions\n    listens_to_filters: []\n    field: client_program.client_program_active_during\n\
+    \  - name: Program Staff Name\n    title: Program Staff Name\n    type: field_filter\n\
+    \    default_value: ''\n    allow_multiple_values: true\n    required: false\n\
+    \    ui_config:\n      type: advanced\n      display: popover\n    model: tvc_prod_carelogic\n\
+    \    explore: admissions\n    listens_to_filters: []\n    field: program_staff.staff_name\n\
+    \  - name: Client Name\n    title: Client Name\n    type: field_filter\n    default_value:
+    ''\n    allow_multiple_values: true\n    required: false\n    ui_config:\n   \
+    \   type: advanced\n      display: popover\n    model: tvc_prod_carelogic\n  \
+    \  explore: admissions\n    listens_to_filters: []\n    field: client.client_name\n\
+    \  - name: Program Name\n    title: Program Name\n    type: field_filter\n   \
+    \ default_value: Statewide Family Support Network\n    allow_multiple_values:
+    true\n    required: false\n    ui_config:\n      type: advanced\n      display:
+    popover\n    model: tvc_prod_carelogic\n    explore: admissions\n    listens_to_filters:
+    []\n    field: program_detail.program_name\n  - name: Client Program Organization
+    Name\n    title: Client Program Organization Name\n    type: field_filter\n  \
+    \  default_value: ''\n    allow_multiple_values: true\n    required: false\n \
+    \   ui_config:\n      type: advanced\n      display: popover\n    model: tvc_prod_carelogic\n\
+    \    explore: admissions\n    listens_to_filters: []\n    field: client_program.client_program_organization_name\n"
+  dashboard_id: '1'
+  dashboard_slug: zf7ikdRyvPLlEfMA8px59O
+  dashboard_element_alert_counts:
+  - 0
+  - 0
+  scheduled_plans: []
+  alerts: []
+- !DashboardObject
+  legacy_folder_id:
+    folder_id: '9'
+    slug: jGgouZMmPLv90nTjMP5phO
+  lookml: "---\n- dashboard: missing_assessments\n  title: Missing Assessments\n \
+    \ layout: newspaper\n  preferred_viewer: dashboards-next\n  description: ''\n\
+    \  preferred_slug: jGgouZMmPLv90nTjMP5phO\n  elements:\n  - title: Missing Assessments\n\
+    \    name: Missing Assessments\n    model: tvc_prod_carelogic\n    explore: admissions\n\
+    \    type: table\n    fields: [client.client_id, count_of_clients_with_no_assessments]\n\
+    \    filters:\n      count_of_clients_with_no_assessments: '0'\n    sorts: [count_of_clients_with_no_assessments]\n\
+    \    limit: 500\n    column_limit: 50\n    dynamic_fields:\n    - category: measure\n\
+    \      expression:\n      label: Count of Clients with No Assessments\n      value_format:\n\
+    \      value_format_name:\n      based_on: client.client_id\n      _kind_hint:
+    measure\n      measure: count_of_clients_with_no_assessments\n      type: count_distinct\n\
+    \      _type_hint: number\n      filters:\n        document.service_document_name:
+    ACE\n    show_view_names: false\n    show_row_numbers: true\n    truncate_column_names:
+    false\n    hide_totals: false\n    hide_row_totals: false\n    table_theme: editable\n\
+    \    limit_displayed_rows: false\n    enable_conditional_formatting: false\n \
+    \   conditional_formatting_include_totals: false\n    conditional_formatting_include_nulls:
+    false\n    defaults_version: 1\n    listen:\n      Episode Admission Year: admissions.episode_admission_year\n\
+    \      Program: program_detail.program\n      Service Document Name: document.service_document_name\n\
+    \    row: 0\n    col: 0\n    width: 9\n    height: 6\n  - title: New Tile\n  \
+    \  name: New Tile\n    model: tvc_prod_carelogic\n    explore: admissions\n  \
+    \  type: table\n    fields: [client.client_id, count_of_clients_with_no_assessments,
+    client.client_status,\n      admissions.intake_status]\n    filters:\n      program_detail.program:
+    Juvenile Justice Reform (JJR)\n      count_of_clients_with_no_assessments: '0'\n\
+    \      document.service_document_name: DLA-20 Assessment for Adults,DLA-20 Assessment\n\
+    \        for Youth\n    sorts: [client.client_id desc]\n    limit: 500\n    column_limit:
+    50\n    dynamic_fields:\n    - category: measure\n      expression:\n      label:
+    Count of Clients with No Assessments\n      value_format:\n      value_format_name:\n\
+    \      based_on: client.client_id\n      _kind_hint: measure\n      measure: count_of_clients_with_no_assessments\n\
+    \      type: count_distinct\n      _type_hint: number\n      filters:\n      \
+    \  document.service_document_name: DLA-20 Assessment for Adults,DLA-20 Assessment\n\
+    \          for Youth\n    show_view_names: false\n    show_row_numbers: true\n\
+    \    truncate_column_names: false\n    hide_totals: false\n    hide_row_totals:
+    false\n    table_theme: editable\n    limit_displayed_rows: false\n    enable_conditional_formatting:
+    false\n    conditional_formatting_include_totals: false\n    conditional_formatting_include_nulls:
+    false\n    defaults_version: 1\n    listen:\n      Episode Admission Year: admissions.episode_admission_year\n\
+    \    row:\n    col:\n    width:\n    height:\n  filters:\n  - name: Program\n\
+    \    title: Program\n    type: field_filter\n    default_value: SOCAT (SOCAT)\n\
+    \    allow_multiple_values: true\n    required: false\n    ui_config:\n      type:
+    advanced\n      display: popover\n    model: tvc_prod_carelogic\n    explore:
+    admissions\n    listens_to_filters: []\n    field: program_detail.program\n  -
+    name: Episode Admission Year\n    title: Episode Admission Year\n    type: field_filter\n\
+    \    default_value: 3 years\n    allow_multiple_values: true\n    required: false\n\
+    \    ui_config:\n      type: advanced\n      display: popover\n    model: tvc_prod_carelogic\n\
+    \    explore: admissions\n    listens_to_filters: []\n    field: admissions.episode_admission_year\n\
+    \  - name: Service Document Name\n    title: Service Document Name\n    type:
+    field_filter\n    default_value: ACE\n    allow_multiple_values: true\n    required:
+    false\n    ui_config:\n      type: tag_list\n      display: popover\n    model:
+    tvc_prod_carelogic\n    explore: admissions\n    listens_to_filters: []\n    field:
+    document.service_document_name\n"
+  dashboard_id: '2'
+  dashboard_slug: jGgouZMmPLv90nTjMP5phO
+  dashboard_element_alert_counts:
+  - 0
+  - 0
+  scheduled_plans: []
+  alerts: []
+- !DashboardObject
+  legacy_folder_id:
+    folder_id: '9'
+    slug: zMDh3vBYf6HnM07v9NUif9
+  lookml: "---\n- dashboard: custom_tnv_dashboard\n  title: Custom TNV Dashboard\n\
+    \  layout: newspaper\n  preferred_viewer: dashboards-next\n  description: ''\n\
+    \  preferred_slug: zMDh3vBYf6HnM07v9NUif9\n  elements:\n  - title: JJR clients
+    with NO DLA assessments\n    name: JJR clients with NO DLA assessments\n    model:
+    tvc_prod_carelogic\n    explore: admissions\n    type: table\n    fields: [client.client_id,
+    count_of_clients_with_no_assessments, admissions.intake_status,\n      client.client_status]\n\
+    \    filters:\n      count_of_clients_with_no_assessments: '0'\n    sorts: [client.client_id
+    desc]\n    limit: 500\n    column_limit: 50\n    dynamic_fields:\n    - category:
+    measure\n      expression:\n      label: Count of Clients with No Assessments\n\
+    \      value_format:\n      value_format_name:\n      based_on: client.client_id\n\
+    \      _kind_hint: measure\n      measure: count_of_clients_with_no_assessments\n\
+    \      type: count_distinct\n      _type_hint: number\n      filters:\n      \
+    \  document.service_document_name: DLA-20 Assessment for Adults,DLA-20 Assessment\n\
+    \          for Youth\n    show_view_names: false\n    show_row_numbers: true\n\
+    \    truncate_column_names: false\n    hide_totals: false\n    hide_row_totals:
+    false\n    table_theme: editable\n    limit_displayed_rows: false\n    enable_conditional_formatting:
+    false\n    conditional_formatting_include_totals: false\n    conditional_formatting_include_nulls:
+    false\n    defaults_version: 1\n    listen:\n      Episode Admission Year: admissions.episode_admission_year\n\
+    \      Program: program_detail.program\n      Service Document Name: document.service_document_name\n\
+    \    row: 0\n    col: 0\n    width: 24\n    height: 12\n  filters:\n  - name:
+    Program\n    title: Program\n    type: field_filter\n    default_value: Juvenile
+    Justice Reform (JJR)\n    allow_multiple_values: true\n    required: false\n \
+    \   ui_config:\n      type: advanced\n      display: popover\n    model: tvc_prod_carelogic\n\
+    \    explore: admissions\n    listens_to_filters: []\n    field: program_detail.program\n\
+    \  - name: Episode Admission Year\n    title: Episode Admission Year\n    type:
+    field_filter\n    default_value: 3 years\n    allow_multiple_values: true\n  \
+    \  required: false\n    ui_config:\n      type: advanced\n      display: popover\n\
+    \    model: tvc_prod_carelogic\n    explore: admissions\n    listens_to_filters:
+    []\n    field: admissions.episode_admission_year\n  - name: Service Document Name\n\
+    \    title: Service Document Name\n    type: field_filter\n    default_value:
+    DLA-20 Assessment for Adults,DLA-20 Assessment for Youth\n    allow_multiple_values:
+    true\n    required: false\n    ui_config:\n      type: advanced\n      display:
+    popover\n    model: tvc_prod_carelogic\n    explore: admissions\n    listens_to_filters:
+    []\n    field: document.service_document_name\n"
+  dashboard_id: '3'
+  dashboard_slug: zMDh3vBYf6HnM07v9NUif9
+  dashboard_element_alert_counts:
+  - 0
+  scheduled_plans: []
+  alerts: []
+- !DashboardObject
+  legacy_folder_id:
+    folder_id: '9'
+    slug: quBtqviMlQRm8MVR9zGX54
+  lookml: "---\n- dashboard: tnv_um_dashboard\n  title: TNV UM Dashboard\n  layout:
+    newspaper\n  preferred_viewer: dashboards-next\n  description: ''\n  preferred_slug:
+    quBtqviMlQRm8MVR9zGX54\n  elements:\n  - title: Service Documents with No Signature\n\
+    \    name: Service Documents with No Signature\n    model: tvc_prod_carelogic\n\
+    \    explore: document\n    type: table\n    fields: [document.service_date, client.client_id,
+    client_episode.client_episode_id,\n      client_program.client_program_id, document.service_document_name]\n\
+    \    filters: {}\n    sorts: [document.service_date desc]\n    limit: 500\n  \
+    \  column_limit: 50\n    listen:\n      Service Date: document.service_date\n\
+    \      Signed By ID: doc_staff_signed.staff_id\n      Activity Client Status:
+    activity_detail.activity_client_status\n    row: 0\n    col: 0\n    width: 14\n\
+    \    height: 6\n  filters:\n  - name: Service Date\n    title: Service Date\n\
+    \    type: field_filter\n    default_value: before 30 days ago\n    allow_multiple_values:
+    true\n    required: false\n    ui_config:\n      type: relative_timeframes\n \
+    \     display: inline\n    model: tvc_prod_carelogic\n    explore: document\n\
+    \    listens_to_filters: []\n    field: document.service_date\n  - name: Signed
+    By ID\n    title: Signed By ID\n    type: field_filter\n    default_value: 'NULL'\n\
+    \    allow_multiple_values: true\n    required: false\n    ui_config:\n      type:
+    range_slider\n      display: inline\n    model: tvc_prod_carelogic\n    explore:
+    document\n    listens_to_filters: []\n    field: doc_staff_signed.staff_id\n \
+    \ - name: Activity Client Status\n    title: Activity Client Status\n    type:
+    field_filter\n    default_value: Kept\n    allow_multiple_values: true\n    required:
+    false\n    ui_config:\n      type: advanced\n      display: popover\n    model:
+    tvc_prod_carelogic\n    explore: document\n    listens_to_filters: []\n    field:
+    activity_detail.activity_client_status\n"
+  dashboard_id: '4'
+  dashboard_slug: quBtqviMlQRm8MVR9zGX54
+  dashboard_element_alert_counts:
+  - 0
+  scheduled_plans: []
+  alerts: []

@@ -1,0 +1,1693 @@
+
+
+# LookData
+#No Captured Looks
+
+# Dashboard Content
+- !DashboardObject
+  legacy_folder_id:
+    folder_id: '31'
+    slug: 9TSV0exwdvCG5o05EwJghY
+  lookml: "---\n- dashboard: monthly_deposit_info\n  title: Monthly Deposit Info\n\
+    \  layout: newspaper\n  preferred_viewer: dashboards-next\n  preferred_slug: 9TSV0exwdvCG5o05EwJghY\n\
+    \  elements:\n  - title: Deposit Detail\n    name: Deposit Detail\n    model:
+    meridian_prod_carelogic\n    explore: financial\n    type: looker_grid\n    fields:
+    [claim.organization_name, financial.deposit_date, financial.account_date,\n  \
+    \    financial.deposit_id, financial.deposit_activity_amount, financial.unposted_amount,\n\
+    \      financial.unapplied_amount, financial.applied_approved_amount, financial.applied_unapproved_amount,\n\
+    \      financial.recouped_amount, client.client_name, claim.claim_id, claim.service_date]\n\
+    \    filters:\n      claim.service_date: 2023/08/01 to 2023/08/31\n    sorts:
+    [financial.deposit_date desc]\n    limit: 5000\n    column_limit: 50\n    show_view_names:
+    false\n    show_row_numbers: true\n    transpose: false\n    truncate_text: true\n\
+    \    hide_totals: false\n    hide_row_totals: false\n    size_to_fit: true\n \
+    \   table_theme: white\n    limit_displayed_rows: false\n    enable_conditional_formatting:
+    false\n    header_text_alignment: left\n    header_font_size: 12\n    rows_font_size:
+    12\n    conditional_formatting_include_totals: false\n    conditional_formatting_include_nulls:
+    false\n    hidden_pivots: {}\n    defaults_version: 1\n    listen: {}\n    row:\n\
+    \    col:\n    width:\n    height:\n  - title: New Tile\n    name: New Tile\n\
+    \    model: meridian_prod_carelogic\n    explore: financial\n    type: looker_grid\n\
+    \    fields: [claim.organization_name, financial.account_date, financial.deposit_id,\n\
+    \      financial.deposit_activity_amount, financial.unposted_amount, financial.unapplied_amount,\n\
+    \      financial.applied_approved_amount, financial.applied_unapproved_amount,
+    financial.recouped_amount,\n      client.client_name, claim.claim_id, claim.service_date]\n\
+    \    filters:\n      financial.deposit_date: 2023/08/01 to 2023/08/31\n    sorts:
+    [financial.account_date desc]\n    limit: 5000\n    column_limit: 50\n    show_view_names:
+    false\n    show_row_numbers: true\n    transpose: false\n    truncate_text: true\n\
+    \    hide_totals: false\n    hide_row_totals: false\n    size_to_fit: true\n \
+    \   table_theme: white\n    limit_displayed_rows: false\n    enable_conditional_formatting:
+    false\n    header_text_alignment: left\n    header_font_size: 12\n    rows_font_size:
+    12\n    conditional_formatting_include_totals: false\n    conditional_formatting_include_nulls:
+    false\n    hidden_pivots: {}\n    defaults_version: 1\n    listen: {}\n    row:\n\
+    \    col:\n    width:\n    height:\n"
+  dashboard_id: '5'
+  dashboard_slug: 9TSV0exwdvCG5o05EwJghY
+  dashboard_element_alert_counts:
+  - 0
+  - 0
+  scheduled_plans: []
+  alerts: []
+- !DashboardObject
+  legacy_folder_id:
+    folder_id: '31'
+    slug: mufknQaUNVfQgNhW42hr5p
+  lookml: "---\n- dashboard: program_health__psych_testing_2023\n  title: Program
+    Health - Psych Testing 2023\n  layout: newspaper\n  preferred_viewer: dashboards-next\n\
+    \  preferred_slug: mufknQaUNVfQgNhW42hr5p\n  elements:\n  - title: Program Health
+    - Psych Testing 2023\n    name: Program Health - Psych Testing 2023\n    model:
+    meridian_prod_carelogic\n    explore: schedule\n    type: looker_grid\n    fields:
+    [client.client_name, client_program.client_program_organization_name,\n      program_detail.program_name,
+    activity_staff.staff_name, schedule.service_date,\n      schedule.activity_type,
+    activity.activity_description, activity_status, claim_item.item_billed,\n    \
+    \  claim_item.item_expected, claim_item.item_balance, claim_item.number_of_units]\n\
+    \    filters: {}\n    sorts: [schedule.service_date desc]\n    limit: 5000\n \
+    \   column_limit: 50\n    dynamic_fields:\n    - category: dimension\n      expression:
+    coalesce(${activity_detail.activity_client_status}, ${schedule.activity_staff_status})\n\
+    \      label: Activity Status\n      value_format:\n      value_format_name:\n\
+    \      dimension: activity_status\n      _kind_hint: dimension\n      _type_hint:
+    string\n    show_view_names: false\n    show_row_numbers: true\n    transpose:
+    false\n    truncate_text: true\n    hide_totals: false\n    hide_row_totals: false\n\
+    \    size_to_fit: true\n    table_theme: white\n    limit_displayed_rows: false\n\
+    \    enable_conditional_formatting: false\n    header_text_alignment: left\n \
+    \   header_font_size: 12\n    rows_font_size: 12\n    conditional_formatting_include_totals:
+    false\n    conditional_formatting_include_nulls: false\n    defaults_version:
+    1\n    column_order: [\"$$$_row_numbers_$$$\", client.client_name, client_program.client_program_organization_name,\n\
+    \      program_detail.program_name, activity_staff.staff_name, activity_status,
+    schedule.service_date,\n      schedule.activity_type, activity.activity_description]\n\
+    \    listen:\n      Service Date: claim_item.service_date\n      Activity Client
+    Status: activity_detail.activity_client_status\n      Activity Description: activity.activity_description\n\
+    \      Program Classification: program_detail.program_classification\n      Client
+    Program Organization Name: client_program.client_program_organization_name\n \
+    \     Program Name: program_detail.program_name\n      Activity Staff Name: activity_staff.staff_name\n\
+    \    row: 0\n    col: 0\n    width: 24\n    height: 12\n  filters:\n  - name:
+    Activity Description\n    title: Activity Description\n    type: field_filter\n\
+    \    default_value: ''\n    allow_multiple_values: true\n    required: false\n\
+    \    ui_config:\n      type: advanced\n      display: popover\n    model: meridian_prod_carelogic\n\
+    \    explore: schedule\n    listens_to_filters: []\n    field: activity.activity_description\n\
+    \  - name: Client Program Organization Name\n    title: Client Program Organization
+    Name\n    type: field_filter\n    default_value: ''\n    allow_multiple_values:
+    true\n    required: false\n    ui_config:\n      type: advanced\n      display:
+    popover\n    model: meridian_prod_carelogic\n    explore: schedule\n    listens_to_filters:
+    []\n    field: client_program.client_program_organization_name\n  - name: Activity
+    Client Status\n    title: Activity Client Status\n    type: field_filter\n   \
+    \ default_value: Kept\n    allow_multiple_values: true\n    required: false\n\
+    \    ui_config:\n      type: advanced\n      display: popover\n    model: meridian_prod_carelogic\n\
+    \    explore: schedule\n    listens_to_filters: []\n    field: activity_detail.activity_client_status\n\
+    \  - name: Program Classification\n    title: Program Classification\n    type:
+    field_filter\n    default_value: ''\n    allow_multiple_values: true\n    required:
+    false\n    ui_config:\n      type: advanced\n      display: popover\n    model:
+    meridian_prod_carelogic\n    explore: schedule\n    listens_to_filters: []\n \
+    \   field: program_detail.program_classification\n  - name: Service Date\n   \
+    \ title: Service Date\n    type: field_filter\n    default_value: 2023/01/01 to
+    2023/12/31\n    allow_multiple_values: true\n    required: false\n    ui_config:\n\
+    \      type: relative_timeframes\n      display: inline\n    model: meridian_prod_carelogic\n\
+    \    explore: schedule\n    listens_to_filters: []\n    field: schedule.service_date\n\
+    \  - name: Program Name\n    title: Program Name\n    type: field_filter\n   \
+    \ default_value: Psychological Testing\n    allow_multiple_values: true\n    required:
+    false\n    ui_config:\n      type: advanced\n      display: popover\n    model:
+    meridian_prod_carelogic\n    explore: schedule\n    listens_to_filters: []\n \
+    \   field: program_detail.program_name\n  - name: Activity Staff Name\n    title:
+    Activity Staff Name\n    type: field_filter\n    default_value: ''\n    allow_multiple_values:
+    true\n    required: false\n    ui_config:\n      type: advanced\n      display:
+    popover\n    model: meridian_prod_carelogic\n    explore: schedule\n    listens_to_filters:
+    []\n    field: activity_staff.staff_name\n"
+  dashboard_id: '19'
+  dashboard_slug: mufknQaUNVfQgNhW42hr5p
+  dashboard_element_alert_counts:
+  - 0
+  scheduled_plans: []
+  alerts: []
+- !DashboardObject
+  legacy_folder_id:
+    folder_id: '31'
+    slug: pOz1sfGU1tV92RFaRUeZvg
+  lookml: "---\n- dashboard: all_claims_fye_2024\n  title: All Claims FYE 2024\n \
+    \ layout: newspaper\n  preferred_viewer: dashboards-next\n  preferred_slug: pOz1sfGU1tV92RFaRUeZvg\n\
+    \  elements:\n  - title: All Claims FYE 2024\n    name: All Claims FYE 2024\n\
+    \    model: meridian_prod_carelogic\n    explore: financial\n    type: looker_grid\n\
+    \    fields: [payer_plan.payer_type, payerguarantor, client.client_name, claim_staff.staff_name,\n\
+    \      client.client_id, claim.claim_id, claim.claim_item_id, claim.service_date,
+    claim.service_end_date,\n      claim.claim_status, claim.claim_item_status, claim.claim_batched,
+    procedure,\n      claim.organization_name, claim.item_billed, financial.net_contractual_adjustments,\n\
+    \      claim.item_expected, financial.payment_amount, claim.item_balance]\n  \
+    \  filters: {}\n    sorts: [claim.claim_item_id desc]\n    limit: 5000\n    column_limit:
+    50\n    total: true\n    dynamic_fields:\n    - category: dimension\n      expression:
+    if(is_null(${payer_plan.payer_plan_id}),${claim_guarantor.guarantor_name},${claim.payer_plan_name})\n\
+    \      label: Payer/Guarantor\n      value_format:\n      value_format_name:\n\
+    \      dimension: payerguarantor\n      _kind_hint: dimension\n      _type_hint:
+    string\n    - category: dimension\n      expression: if(is_null(${procedure.procedure_id}),null,concat(if(is_null(${procedure.procedure_code}),\"\
+    \",concat(\n        ${procedure.procedure_code},\" - \")),if(is_null(${procedure.revenue_code}),\"\
+    \",concat(${procedure.revenue_code},\"\n        - \")),if(is_null(${procedure.procedure_name}),\"\
+    \",${procedure.procedure_name})))\n      label: Procedure\n      value_format:\n\
+    \      value_format_name:\n      dimension: procedure\n      _kind_hint: dimension\n\
+    \      _type_hint: string\n    filter_expression: NOT is_null(${payer_plan.payer_plan_id})
+    OR NOT is_null(${claim_guarantor.guarantor_id})\n    show_view_names: false\n\
+    \    show_row_numbers: true\n    transpose: false\n    truncate_text: true\n \
+    \   hide_totals: false\n    hide_row_totals: false\n    size_to_fit: true\n  \
+    \  table_theme: white\n    limit_displayed_rows: false\n    enable_conditional_formatting:
+    false\n    header_text_alignment: left\n    header_font_size: '12'\n    rows_font_size:
+    '12'\n    conditional_formatting_include_totals: false\n    conditional_formatting_include_nulls:
+    false\n    show_sql_query_menu_options: false\n    column_order: [\"$$$_row_numbers_$$$\"\
+    , payer_plan.payer_type, payerguarantor, client.client_name,\n      claim_staff.staff_name,
+    client.client_id, claim.claim_id, claim.claim_item_id,\n      claim.service_date,
+    claim.service_end_date, claim.item_billed, claim.item_expected,\n      claim.item_balance,
+    claim.claim_status, claim.claim_item_status, claim.claim_batched,\n      procedure]\n\
+    \    show_totals: true\n    show_row_totals: true\n    truncate_header: false\n\
+    \    series_labels:\n      claim.claim_batched: Batched\n    series_column_widths:\n\
+    \      payer_plan.payer_type: 159\n      payerguarantor: 278\n      client.client_name:
+    172\n      claim_staff.staff_name: 169\n      client.client_id: 84\n      claim.claim_id:
+    83\n      claim.claim_item_id: 111\n      claim.service_date: 107\n      claim.service_end_date:
+    131\n      claim.item_billed: 136\n      claim.item_expected: 124\n      claim.item_balance:
+    124\n      claim.claim_status: 125\n      claim.claim_item_status: 147\n     \
+    \ claim.claim_batched: 83\n      procedure: 308\n    series_cell_visualizations:\n\
+    \      claim.item_billed:\n        is_active: false\n    defaults_version: 1\n\
+    \    listen:\n      Claim Line Active: claim_item_line.claim_line_active\n   \
+    \   Claim Item Status: claim.claim_item_status\n      Service End Date: claim.service_end_date\n\
+    \      Item Balance: claim.item_balance\n      Client Name: client.client_name\n\
+    \      Organization Name: claim.organization_name\n      Payer Plan Name: claim.payer_plan_name\n\
+    \      Payer Type: payer_plan.payer_type\n      'Claim Activity Line ': claim_line_program.program_name\n\
+    \      Staff Name: claim_staff.staff_name\n    row: 0\n    col: 0\n    width:
+    24\n    height: 12\n  filters:\n  - name: Claim Line Active\n    title: Claim
+    Line Active\n    type: field_filter\n    default_value: \"-No\"\n    allow_multiple_values:
+    true\n    required: false\n    ui_config:\n      type: advanced\n      display:
+    popover\n    model: meridian_prod_carelogic\n    explore: financial\n    listens_to_filters:
+    []\n    field: claim_item_line.claim_line_active\n  - name: Claim Item Status\n\
+    \    title: Claim Item Status\n    type: field_filter\n    default_value: \"-Claim
+    Item Reversed\"\n    allow_multiple_values: true\n    required: false\n    ui_config:\n\
+    \      type: advanced\n      display: popover\n    model: meridian_prod_carelogic\n\
+    \    explore: financial\n    listens_to_filters: []\n    field: claim.claim_item_status\n\
+    \  - name: Item Balance\n    title: Item Balance\n    type: field_filter\n   \
+    \ default_value: not 0\n    allow_multiple_values: true\n    required: false\n\
+    \    ui_config:\n      type: range_slider\n      display: inline\n    model: meridian_prod_carelogic\n\
+    \    explore: financial\n    listens_to_filters: []\n    field: claim.item_balance\n\
+    \  - name: Service End Date\n    title: Service End Date\n    type: field_filter\n\
+    \    default_value: 2023/04/01 to 2024/03/31\n    allow_multiple_values: true\n\
+    \    required: false\n    ui_config:\n      type: relative_timeframes\n      display:
+    inline\n    model: meridian_prod_carelogic\n    explore: financial\n    listens_to_filters:
+    []\n    field: claim.service_end_date\n  - name: Client Name\n    title: Client
+    Name\n    type: field_filter\n    default_value: ''\n    allow_multiple_values:
+    true\n    required: false\n    ui_config:\n      type: advanced\n      display:
+    popover\n    model: meridian_prod_carelogic\n    explore: financial\n    listens_to_filters:
+    []\n    field: client.client_name\n  - name: Organization Name\n    title: Organization
+    Name\n    type: field_filter\n    default_value: ''\n    allow_multiple_values:
+    true\n    required: false\n    ui_config:\n      type: advanced\n      display:
+    popover\n    model: meridian_prod_carelogic\n    explore: financial\n    listens_to_filters:
+    []\n    field: claim.organization_name\n  - name: 'Claim Activity Line '\n   \
+    \ title: 'Claim Activity Line '\n    type: field_filter\n    default_value: ''\n\
+    \    allow_multiple_values: true\n    required: false\n    ui_config:\n      type:
+    advanced\n      display: popover\n    model: meridian_prod_carelogic\n    explore:
+    financial\n    listens_to_filters: []\n    field: claim_line_program.program_code\n\
+    \  - name: Payer Plan Name\n    title: Payer Plan Name\n    type: field_filter\n\
+    \    default_value: ''\n    allow_multiple_values: true\n    required: false\n\
+    \    ui_config:\n      type: advanced\n      display: popover\n    model: meridian_prod_carelogic\n\
+    \    explore: financial\n    listens_to_filters: []\n    field: claim.payer_plan_name\n\
+    \  - name: Payer Type\n    title: Payer Type\n    type: field_filter\n    default_value:
+    ''\n    allow_multiple_values: true\n    required: false\n    ui_config:\n   \
+    \   type: advanced\n      display: popover\n    model: meridian_prod_carelogic\n\
+    \    explore: financial\n    listens_to_filters: []\n    field: payer_plan.payer_type\n\
+    \  - name: Staff Name\n    title: Staff Name\n    type: field_filter\n    default_value:
+    ''\n    allow_multiple_values: true\n    required: false\n    ui_config:\n   \
+    \   type: advanced\n      display: popover\n    model: meridian_prod_carelogic\n\
+    \    explore: financial\n    listens_to_filters: []\n    field: claim_staff.staff_name\n"
+  dashboard_id: '25'
+  dashboard_slug: pOz1sfGU1tV92RFaRUeZvg
+  dashboard_element_alert_counts:
+  - 0
+  scheduled_plans: []
+  alerts: []
+- !DashboardObject
+  legacy_folder_id:
+    folder_id: '31'
+    slug: ftRq4fo94GsTcO8LqjjihF
+  lookml: "---\n- dashboard: all_claim_detail_in_financial_posting_date_fye_24\n \
+    \ title: All Claim Detail in Financial Posting Date FYE '24\n  layout: newspaper\n\
+    \  preferred_viewer: dashboards-next\n  description: ''\n  preferred_slug: ftRq4fo94GsTcO8LqjjihF\n\
+    \  elements:\n  - title: All Claim Detail in Financial Posting Date FYE '24\n\
+    \    name: All Claim Detail in Financial Posting Date FYE '24\n    model: meridian_prod_carelogic\n\
+    \    explore: financial\n    type: looker_grid\n    fields: [payer_plan.payer_type,
+    payerguarantor, client.client_name, claim_staff.staff_name,\n      client.client_id,
+    claim.claim_id, claim.claim_item_id, claim.service_date, claim.service_end_date,\n\
+    \      claim.claim_status, claim.claim_item_status, claim.claim_batched, procedure,\n\
+    \      claim.item_billed, financial.net_contractual_adjustments, claim.item_expected,\n\
+    \      financial.payment_amount, financial.net_write_off, financial.net_write_up,
+    claim.item_balance,\n      financial.recouped_amount, claim.organization_name,
+    claim_program.program_name]\n    filters: {}\n    sorts: [claim.claim_item_id
+    desc]\n    limit: 5000\n    column_limit: 50\n    total: true\n    dynamic_fields:\n\
+    \    - category: dimension\n      expression: if(is_null(${payer_plan.payer_plan_id}),${claim_guarantor.guarantor_name},${claim.payer_plan_name})\n\
+    \      label: Payer/Guarantor\n      value_format:\n      value_format_name:\n\
+    \      dimension: payerguarantor\n      _kind_hint: dimension\n      _type_hint:
+    string\n    - category: dimension\n      expression: if(is_null(${procedure.procedure_id}),null,concat(if(is_null(${procedure.procedure_code}),\"\
+    \",concat(\n        ${procedure.procedure_code},\" - \")),if(is_null(${procedure.revenue_code}),\"\
+    \",concat(${procedure.revenue_code},\"\n        - \")),if(is_null(${procedure.procedure_name}),\"\
+    \",${procedure.procedure_name})))\n      label: Procedure\n      value_format:\n\
+    \      value_format_name:\n      dimension: procedure\n      _kind_hint: dimension\n\
+    \      _type_hint: string\n    filter_expression: NOT is_null(${payer_plan.payer_plan_id})
+    OR NOT is_null(${claim_guarantor.guarantor_id})\n    show_view_names: false\n\
+    \    show_row_numbers: true\n    transpose: false\n    truncate_text: true\n \
+    \   hide_totals: false\n    hide_row_totals: false\n    size_to_fit: true\n  \
+    \  table_theme: white\n    limit_displayed_rows: false\n    enable_conditional_formatting:
+    false\n    header_text_alignment: left\n    header_font_size: '12'\n    rows_font_size:
+    '12'\n    conditional_formatting_include_totals: false\n    conditional_formatting_include_nulls:
+    false\n    show_sql_query_menu_options: false\n    column_order: [\"$$$_row_numbers_$$$\"\
+    , payer_plan.payer_type, payerguarantor, client.client_name,\n      claim_staff.staff_name,
+    client.client_id, claim.claim_id, claim.claim_item_id,\n      claim.service_date,
+    claim.service_end_date, claim.item_billed, claim.item_expected,\n      claim.item_balance,
+    claim.claim_status, claim.claim_item_status, claim.claim_batched,\n      procedure]\n\
+    \    show_totals: true\n    show_row_totals: true\n    truncate_header: false\n\
+    \    series_labels:\n      claim.claim_batched: Batched\n    series_column_widths:\n\
+    \      payer_plan.payer_type: 159\n      payerguarantor: 278\n      client.client_name:
+    172\n      claim_staff.staff_name: 169\n      client.client_id: 84\n      claim.claim_id:
+    83\n      claim.claim_item_id: 111\n      claim.service_date: 107\n      claim.service_end_date:
+    131\n      claim.item_billed: 136\n      claim.item_expected: 124\n      claim.item_balance:
+    124\n      claim.claim_status: 125\n      claim.claim_item_status: 147\n     \
+    \ claim.claim_batched: 83\n      procedure: 308\n    series_cell_visualizations:\n\
+    \      claim.item_billed:\n        is_active: false\n    defaults_version: 1\n\
+    \    listen:\n      Claim Line Active: claim_item_line.claim_line_active\n   \
+    \   Claim Item Status: claim.claim_item_status\n      Client Name: client.client_name\n\
+    \      Organization Name: claim.organization_name\n      Payer Plan Name: claim.payer_plan_name\n\
+    \      Payer Type: payer_plan.payer_type\n      Program Code: claim_line_program.program_code\n\
+    \      Program Name: claim_line_program.program_name\n      Staff Name: claim_staff.staff_name\n\
+    \      Post Date: financial.post_date\n    row: 0\n    col: 0\n    width: 24\n\
+    \    height: 12\n  - title: All Claim Posting Detail 4123-73124 with Units, Deposit
+    and Post Date\n    name: All Claim Posting Detail 4123-73124 with Units, Deposit
+    and Post Date\n    model: meridian_prod_carelogic\n    explore: financial\n  \
+    \  type: looker_grid\n    fields: [claim.payer_name, payer_plan.payer_type, payerguarantor,
+    client.client_name,\n      claim_staff.staff_name, client.client_id, claim.claim_id,
+    claim.claim_item_id,\n      claim.service_date, claim.service_end_date, claim.claim_status,
+    claim.claim_item_status,\n      claim.claim_batched, procedure, claim_program.program_name,
+    claim.organization_name,\n      claim.item_billed, financial.net_contractual_adjustments,
+    claim.item_expected,\n      financial.payment_amount, financial.net_write_off,
+    financial.net_write_up, claim.item_balance,\n      financial.recouped_amount,
+    claim.number_of_units, financial.deposit_date, financial.deposit_id,\n      financial.post_date]\n\
+    \    filters:\n      claim_item_line.claim_line_active: \"-No\"\n      claim.claim_item_status:
+    \"-Claim Item Reversed\"\n      client.client_name: ''\n      claim.organization_name:
+    ''\n      claim.payer_plan_name: ''\n      payer_plan.payer_type: ''\n      claim_line_program.program_code:
+    ''\n      claim_line_program.program_name: ''\n      claim_staff.staff_name: ''\n\
+    \    sorts: [claim.claim_item_id desc]\n    limit: 5000\n    column_limit: 50\n\
+    \    dynamic_fields:\n    - category: dimension\n      expression: if(is_null(${payer_plan.payer_plan_id}),${claim_guarantor.guarantor_name},${claim.payer_plan_name})\n\
+    \      label: Payer/Guarantor\n      value_format:\n      value_format_name:\n\
+    \      dimension: payerguarantor\n      _kind_hint: dimension\n      _type_hint:
+    string\n    - category: dimension\n      expression: if(is_null(${procedure.procedure_id}),null,concat(if(is_null(${procedure.procedure_code}),\"\
+    \",concat(\n        ${procedure.procedure_code},\" - \")),if(is_null(${procedure.revenue_code}),\"\
+    \",concat(${procedure.revenue_code},\"\n        - \")),if(is_null(${procedure.procedure_name}),\"\
+    \",${procedure.procedure_name})))\n      label: Procedure\n      value_format:\n\
+    \      value_format_name:\n      dimension: procedure\n      _kind_hint: dimension\n\
+    \      _type_hint: string\n    filter_expression: NOT is_null(${payer_plan.payer_plan_id})
+    OR NOT is_null(${claim_guarantor.guarantor_id})\n    show_view_names: false\n\
+    \    show_row_numbers: true\n    transpose: false\n    truncate_text: true\n \
+    \   hide_totals: false\n    hide_row_totals: false\n    size_to_fit: true\n  \
+    \  table_theme: white\n    limit_displayed_rows: false\n    enable_conditional_formatting:
+    false\n    header_text_alignment: left\n    header_font_size: '12'\n    rows_font_size:
+    '12'\n    conditional_formatting_include_totals: false\n    conditional_formatting_include_nulls:
+    false\n    show_sql_query_menu_options: false\n    column_order: [\"$$$_row_numbers_$$$\"\
+    , payer_plan.payer_type, payerguarantor, client.client_name,\n      claim_staff.staff_name,
+    client.client_id, claim.claim_id, claim.claim_item_id,\n      claim.service_date,
+    claim.service_end_date, claim.item_billed, claim.item_expected,\n      claim.item_balance,
+    claim.claim_status, claim.claim_item_status, claim.claim_batched,\n      procedure]\n\
+    \    show_totals: true\n    show_row_totals: true\n    truncate_header: false\n\
+    \    series_labels:\n      claim.claim_batched: Batched\n    series_column_widths:\n\
+    \      payer_plan.payer_type: 159\n      payerguarantor: 278\n      client.client_name:
+    172\n      claim_staff.staff_name: 169\n      client.client_id: 84\n      claim.claim_id:
+    83\n      claim.claim_item_id: 111\n      claim.service_date: 107\n      claim.service_end_date:
+    131\n      claim.item_billed: 136\n      claim.item_expected: 124\n      claim.item_balance:
+    124\n      claim.claim_status: 125\n      claim.claim_item_status: 147\n     \
+    \ claim.claim_batched: 83\n      procedure: 308\n    series_cell_visualizations:\n\
+    \      claim.item_billed:\n        is_active: false\n    defaults_version: 1\n\
+    \    listen:\n      Post Date: financial.post_date\n    row: 12\n    col: 0\n\
+    \    width: 24\n    height: 12\n  filters:\n  - name: Organization Name\n    title:
+    Organization Name\n    type: field_filter\n    default_value: ''\n    allow_multiple_values:
+    true\n    required: false\n    ui_config:\n      type: advanced\n      display:
+    popover\n    model: meridian_prod_carelogic\n    explore: financial\n    listens_to_filters:
+    []\n    field: claim.organization_name\n  - name: Claim Line Active\n    title:
+    Claim Line Active\n    type: field_filter\n    default_value: \"-No\"\n    allow_multiple_values:
+    true\n    required: false\n    ui_config:\n      type: advanced\n      display:
+    popover\n    model: meridian_prod_carelogic\n    explore: financial\n    listens_to_filters:
+    []\n    field: claim_item_line.claim_line_active\n  - name: Claim Item Status\n\
+    \    title: Claim Item Status\n    type: field_filter\n    default_value: \"-Claim
+    Item Reversed\"\n    allow_multiple_values: true\n    required: false\n    ui_config:\n\
+    \      type: advanced\n      display: popover\n    model: meridian_prod_carelogic\n\
+    \    explore: financial\n    listens_to_filters: []\n    field: claim.claim_item_status\n\
+    \  - name: Client Name\n    title: Client Name\n    type: field_filter\n    default_value:
+    ''\n    allow_multiple_values: true\n    required: false\n    ui_config:\n   \
+    \   type: advanced\n      display: popover\n    model: meridian_prod_carelogic\n\
+    \    explore: financial\n    listens_to_filters: []\n    field: client.client_name\n\
+    \  - name: Payer Plan Name\n    title: Payer Plan Name\n    type: field_filter\n\
+    \    default_value: ''\n    allow_multiple_values: true\n    required: false\n\
+    \    ui_config:\n      type: advanced\n      display: popover\n    model: meridian_prod_carelogic\n\
+    \    explore: financial\n    listens_to_filters: []\n    field: claim.payer_plan_name\n\
+    \  - name: Payer Type\n    title: Payer Type\n    type: field_filter\n    default_value:
+    ''\n    allow_multiple_values: true\n    required: false\n    ui_config:\n   \
+    \   type: advanced\n      display: popover\n    model: meridian_prod_carelogic\n\
+    \    explore: financial\n    listens_to_filters: []\n    field: payer_plan.payer_type\n\
+    \  - name: Program Name\n    title: Program Name\n    type: field_filter\n   \
+    \ default_value: ''\n    allow_multiple_values: true\n    required: false\n  \
+    \  ui_config:\n      type: advanced\n      display: popover\n    model: meridian_prod_carelogic\n\
+    \    explore: financial\n    listens_to_filters: []\n    field: claim_line_program.program_name\n\
+    \  - name: Program Code\n    title: Program Code\n    type: field_filter\n   \
+    \ default_value: ''\n    allow_multiple_values: true\n    required: false\n  \
+    \  ui_config:\n      type: advanced\n      display: popover\n    model: meridian_prod_carelogic\n\
+    \    explore: financial\n    listens_to_filters: []\n    field: claim_line_program.program_code\n\
+    \  - name: Post Date\n    title: Post Date\n    type: field_filter\n    default_value:
+    2023/04/01 to 2024/03/31\n    allow_multiple_values: true\n    required: false\n\
+    \    ui_config:\n      type: relative_timeframes\n      display: inline\n    model:
+    meridian_prod_carelogic\n    explore: financial\n    listens_to_filters: []\n\
+    \    field: financial.post_date\n  - name: Staff Name\n    title: Staff Name\n\
+    \    type: field_filter\n    default_value: ''\n    allow_multiple_values: true\n\
+    \    required: false\n    ui_config:\n      type: advanced\n      display: popover\n\
+    \    model: meridian_prod_carelogic\n    explore: financial\n    listens_to_filters:
+    []\n    field: claim_staff.staff_name\n"
+  dashboard_id: '30'
+  dashboard_slug: ftRq4fo94GsTcO8LqjjihF
+  dashboard_element_alert_counts:
+  - 0
+  - 0
+  scheduled_plans: []
+  alerts: []
+- !DashboardObject
+  legacy_folder_id:
+    folder_id: '9'
+    slug: 5hXzVicBnmq7jemP9T413K
+  lookml: "---\n- dashboard: admission_clients\n  title: Admission Clients\n  layout:
+    newspaper\n  preferred_viewer: dashboards-next\n  description: ''\n  preferred_slug:
+    5hXzVicBnmq7jemP9T413K\n  elements:\n  - title: Admission Clients\n    name: Admission
+    Clients\n    model: demo_prod_carelogic\n    explore: admissions\n    type: looker_line\n\
+    \    fields: [admissions.episode_admission_year_month, client.count_of_clients]\n\
+    \    fill_fields: [admissions.episode_admission_year_month]\n    sorts: [admissions.episode_admission_year_month
+    desc]\n    limit: 500\n    column_limit: 50\n    x_axis_gridlines: false\n   \
+    \ y_axis_gridlines: true\n    show_view_names: false\n    show_y_axis_labels:
+    true\n    show_y_axis_ticks: true\n    y_axis_tick_density: default\n    y_axis_tick_density_custom:
+    5\n    show_x_axis_label: true\n    show_x_axis_ticks: true\n    y_axis_scale_mode:
+    linear\n    x_axis_reversed: false\n    y_axis_reversed: false\n    plot_size_by_field:
+    false\n    trellis: ''\n    stacking: ''\n    limit_displayed_rows: false\n  \
+    \  legend_position: center\n    point_style: none\n    show_value_labels: false\n\
+    \    label_density: 25\n    x_axis_scale: auto\n    y_axis_combined: true\n  \
+    \  show_null_points: true\n    interpolation: linear\n    defaults_version: 1\n\
+    \    listen: {}\n    row: 0\n    col: 0\n    width: 13\n    height: 6\n  - title:
+    \"# Intakes\"\n    name: \"# Intakes\"\n    model: demo_prod_carelogic\n    explore:
+    admissions\n    type: single_value\n    fields: [admissions.count_intake]\n  \
+    \  limit: 500\n    column_limit: 50\n    custom_color_enabled: true\n    show_single_value_title:
+    true\n    show_comparison: false\n    comparison_type: value\n    comparison_reverse_colors:
+    false\n    show_comparison_label: true\n    enable_conditional_formatting: false\n\
+    \    conditional_formatting_include_totals: false\n    conditional_formatting_include_nulls:
+    false\n    defaults_version: 1\n    row: 0\n    col: 13\n    width: 4\n    height:
+    3\n  - title: Programs\n    name: Programs\n    model: demo_prod_carelogic\n \
+    \   explore: admissions\n    type: looker_column\n    fields: [program_detail.program_code,
+    admissions.count_intake]\n    sorts: [admissions.count_intake desc 0]\n    limit:
+    500\n    column_limit: 50\n    x_axis_gridlines: false\n    y_axis_gridlines:
+    true\n    show_view_names: false\n    show_y_axis_labels: true\n    show_y_axis_ticks:
+    true\n    y_axis_tick_density: default\n    y_axis_tick_density_custom: 5\n  \
+    \  show_x_axis_label: true\n    show_x_axis_ticks: true\n    y_axis_scale_mode:
+    linear\n    x_axis_reversed: false\n    y_axis_reversed: false\n    plot_size_by_field:
+    false\n    trellis: ''\n    stacking: ''\n    limit_displayed_rows: false\n  \
+    \  legend_position: center\n    point_style: none\n    show_value_labels: false\n\
+    \    label_density: 25\n    x_axis_scale: auto\n    y_axis_combined: true\n  \
+    \  ordering: none\n    show_null_labels: false\n    show_totals_labels: false\n\
+    \    show_silhouette: false\n    totals_color: \"#808080\"\n    defaults_version:
+    1\n    row: 6\n    col: 0\n    width: 13\n    height: 6\n  - title: Episode Types\n\
+    \    name: Episode Types\n    model: demo_prod_carelogic\n    explore: admissions\n\
+    \    type: looker_column\n    fields: [admissions.episode_type, admissions.count_intake,
+    client.count_of_clients]\n    sorts: [admissions.count_intake desc 0]\n    limit:
+    500\n    column_limit: 50\n    x_axis_gridlines: false\n    y_axis_gridlines:
+    true\n    show_view_names: false\n    show_y_axis_labels: true\n    show_y_axis_ticks:
+    true\n    y_axis_tick_density: default\n    y_axis_tick_density_custom: 5\n  \
+    \  show_x_axis_label: true\n    show_x_axis_ticks: true\n    y_axis_scale_mode:
+    linear\n    x_axis_reversed: false\n    y_axis_reversed: false\n    plot_size_by_field:
+    false\n    trellis: ''\n    stacking: ''\n    limit_displayed_rows: false\n  \
+    \  legend_position: center\n    point_style: none\n    show_value_labels: false\n\
+    \    label_density: 25\n    x_axis_scale: auto\n    y_axis_combined: true\n  \
+    \  ordering: none\n    show_null_labels: false\n    show_totals_labels: false\n\
+    \    show_silhouette: false\n    totals_color: \"#808080\"\n    defaults_version:
+    1\n    row: 0\n    col: 17\n    width: 7\n    height: 6\n  - title: \"# Clients\"\
+    \n    name: \"# Clients\"\n    model: demo_prod_carelogic\n    explore: admissions\n\
+    \    type: single_value\n    fields: [client.count_of_clients]\n    limit: 500\n\
+    \    custom_color_enabled: true\n    show_single_value_title: true\n    show_comparison:
+    false\n    comparison_type: value\n    comparison_reverse_colors: false\n    show_comparison_label:
+    true\n    enable_conditional_formatting: false\n    conditional_formatting_include_totals:
+    false\n    conditional_formatting_include_nulls: false\n    defaults_version:
+    1\n    row: 3\n    col: 13\n    width: 4\n    height: 3\n  - title: Discharge
+    Reason\n    name: Discharge Reason\n    model: demo_prod_carelogic\n    explore:
+    admissions\n    type: looker_column\n    fields: [client_program.program_discharge_reason,
+    admissions.count_intake]\n    sorts: [admissions.count_intake desc 0]\n    limit:
+    500\n    column_limit: 50\n    x_axis_gridlines: false\n    y_axis_gridlines:
+    true\n    show_view_names: false\n    show_y_axis_labels: true\n    show_y_axis_ticks:
+    true\n    y_axis_tick_density: default\n    y_axis_tick_density_custom: 5\n  \
+    \  show_x_axis_label: true\n    show_x_axis_ticks: true\n    y_axis_scale_mode:
+    linear\n    x_axis_reversed: false\n    y_axis_reversed: false\n    plot_size_by_field:
+    false\n    trellis: ''\n    stacking: ''\n    limit_displayed_rows: false\n  \
+    \  legend_position: center\n    point_style: none\n    show_value_labels: false\n\
+    \    label_density: 25\n    x_axis_scale: auto\n    y_axis_combined: true\n  \
+    \  ordering: none\n    show_null_labels: false\n    show_totals_labels: false\n\
+    \    show_silhouette: false\n    totals_color: \"#808080\"\n    defaults_version:
+    1\n    row: 6\n    col: 13\n    width: 11\n    height: 6\n"
+  dashboard_id: '32'
+  dashboard_slug: 5hXzVicBnmq7jemP9T413K
+  dashboard_element_alert_counts:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  scheduled_plans:
+  - !ScheduledPlan
+    name: Testing - Admission Clients
+    user_id: '2'
+    run_as_recipient: false
+    enabled: true
+    look_id:
+    dashboard_id: '32'
+    lookml_dashboard_id:
+    filters_string: '?'
+    dashboard_filters: '?'
+    require_results: false
+    require_no_results: false
+    require_change: false
+    send_all_results: false
+    crontab: 40 14 * * *
+    datagroup: ''
+    timezone: US/Central
+    query_id: ''
+    scheduled_plan_destination:
+    - !ScheduledPlanDestination
+      id: '25'
+      scheduled_plan_id: '5'
+      format: wysiwyg_pdf
+      apply_formatting: true
+      apply_vis: true
+      address: maria.garcia@qualifacts.com
+      looker_recipient: true
+      type: email
+      parameters: ''
+      secret_parameters:
+      message: ''
+    - !ScheduledPlanDestination
+      id: '26'
+      scheduled_plan_id: '5'
+      format: wysiwyg_pdf
+      apply_formatting: true
+      apply_vis: true
+      address: brittny.thomas@qualifacts.com
+      looker_recipient: false
+      type: email
+      parameters: ''
+      secret_parameters:
+      message: ''
+    - !ScheduledPlanDestination
+      id: '27'
+      scheduled_plan_id: '5'
+      format: wysiwyg_pdf
+      apply_formatting: true
+      apply_vis: true
+      address: nathan.villegas@qualifacts.com
+      looker_recipient: true
+      type: email
+      parameters: ''
+      secret_parameters:
+      message: ''
+    - !ScheduledPlanDestination
+      id: '28'
+      scheduled_plan_id: '5'
+      format: wysiwyg_pdf
+      apply_formatting: true
+      apply_vis: true
+      address: rbobrowski@google.com
+      looker_recipient: true
+      type: email
+      parameters: ''
+      secret_parameters:
+      message: ''
+    run_once: false
+    include_links: false
+    custom_url_base: ''
+    custom_url_params: /dashboards/32
+    custom_url_label: ''
+    show_custom_url: false
+    pdf_paper_size: ''
+    pdf_landscape: false
+    embed: false
+    color_theme: ~default
+    long_tables: false
+    inline_table_width:
+    id: '5'
+    created_at: 2024-07-12 16:57:07+00:00
+    updated_at: 2024-07-12 17:47:43+00:00
+    title: Testing - Admission Clients
+    user: !UserPublic
+      can:
+        index: true
+        index_details: true
+        show: true
+        show_creds: true
+        show_details: true
+        sudo: true
+        update_creds: true
+        view_in_ui: true
+      id: '2'
+      first_name: Maria
+      last_name: Garcia
+      display_name: Maria Garcia
+      avatar_url: 
+        https://gravatar.lookercdn.com/avatar/8d818bf2ad8b84ed92a01385f948b927?s=156&d=blank
+      url: https://localhost:19999/api/4.0/users/2
+    next_run_at: 2024-08-26 19:40:00+00:00
+    last_run_at: 2024-08-25 19:41:07+00:00
+    can:
+      create: true
+      destroy: true
+      download_unlimited: true
+      email_to_others: true
+      index: true
+      find_and_replace: true
+      show_errors: true
+      run: true
+      see_other_user_schedules: true
+      show: true
+      update: true
+  alerts: []
+- !DashboardObject
+  legacy_folder_id:
+    folder_id: '60'
+    slug: rHM3BMniRZO4TS0jZvlIBj
+  lookml: "---\n- dashboard: activities\n  title: Activities\n  layout: newspaper\n\
+    \  preferred_viewer: dashboards-next\n  description: ''\n  preferred_slug: rHM3BMniRZO4TS0jZvlIBj\n\
+    \  elements:\n  - title: Client Activities\n    name: Client Activities\n    model:
+    demo_prod_carelogic\n    explore: schedule\n    type: single_value\n    fields:
+    [schedule.activities_count]\n    filters:\n      schedule.activity_type: Client\n\
+    \    limit: 500\n    column_limit: 50\n    custom_color_enabled: true\n    show_single_value_title:
+    true\n    show_comparison: false\n    comparison_type: value\n    comparison_reverse_colors:
+    false\n    show_comparison_label: true\n    enable_conditional_formatting: false\n\
+    \    conditional_formatting_include_totals: false\n    conditional_formatting_include_nulls:
+    false\n    defaults_version: 1\n    row: 0\n    col: 0\n    width: 4\n    height:
+    3\n  - title: Kept Activities\n    name: Kept Activities\n    model: demo_prod_carelogic\n\
+    \    explore: schedule\n    type: single_value\n    fields: [schedule.activities_count]\n\
+    \    filters:\n      activity_detail.activity_client_status: Kept\n    limit:
+    500\n    column_limit: 50\n    custom_color_enabled: true\n    show_single_value_title:
+    true\n    show_comparison: false\n    comparison_type: value\n    comparison_reverse_colors:
+    false\n    show_comparison_label: true\n    enable_conditional_formatting: false\n\
+    \    conditional_formatting_include_totals: false\n    conditional_formatting_include_nulls:
+    false\n    defaults_version: 1\n    row: 0\n    col: 4\n    width: 4\n    height:
+    3\n  - title: Activities\n    name: Activities\n    model: demo_prod_carelogic\n\
+    \    explore: schedule\n    type: looker_column\n    fields: [activity.activity_code,
+    schedule.activities_count]\n    sorts: [schedule.activities_count desc 0]\n  \
+    \  limit: 500\n    column_limit: 50\n    x_axis_gridlines: false\n    y_axis_gridlines:
+    true\n    show_view_names: false\n    show_y_axis_labels: true\n    show_y_axis_ticks:
+    true\n    y_axis_tick_density: default\n    y_axis_tick_density_custom: 5\n  \
+    \  show_x_axis_label: true\n    show_x_axis_ticks: true\n    y_axis_scale_mode:
+    linear\n    x_axis_reversed: false\n    y_axis_reversed: false\n    plot_size_by_field:
+    false\n    trellis: ''\n    stacking: ''\n    limit_displayed_rows: false\n  \
+    \  legend_position: center\n    point_style: none\n    show_value_labels: false\n\
+    \    label_density: 25\n    x_axis_scale: auto\n    y_axis_combined: true\n  \
+    \  ordering: none\n    show_null_labels: false\n    show_totals_labels: false\n\
+    \    show_silhouette: false\n    totals_color: \"#808080\"\n    defaults_version:
+    1\n    row: 0\n    col: 8\n    width: 16\n    height: 6\n  - title: Group Activities\n\
+    \    name: Group Activities\n    model: demo_prod_carelogic\n    explore: schedule\n\
+    \    type: single_value\n    fields: [schedule.activities_count]\n    filters:\n\
+    \      schedule.activity_type: Group\n    limit: 500\n    column_limit: 50\n \
+    \   custom_color_enabled: true\n    show_single_value_title: true\n    show_comparison:
+    false\n    comparison_type: value\n    comparison_reverse_colors: false\n    show_comparison_label:
+    true\n    enable_conditional_formatting: false\n    conditional_formatting_include_totals:
+    false\n    conditional_formatting_include_nulls: false\n    defaults_version:
+    1\n    row: 3\n    col: 0\n    width: 4\n    height: 3\n  - title: Activities
+    by Service Date\n    name: Activities by Service Date\n    model: demo_prod_carelogic\n\
+    \    explore: schedule\n    type: looker_line\n    fields: [schedule.service_year_month,
+    schedule.activities_count]\n    fill_fields: [schedule.service_year_month]\n \
+    \   sorts: [schedule.service_year_month desc]\n    limit: 500\n    column_limit:
+    50\n    x_axis_gridlines: false\n    y_axis_gridlines: true\n    show_view_names:
+    false\n    show_y_axis_labels: true\n    show_y_axis_ticks: true\n    y_axis_tick_density:
+    default\n    y_axis_tick_density_custom: 5\n    show_x_axis_label: true\n    show_x_axis_ticks:
+    true\n    y_axis_scale_mode: linear\n    x_axis_reversed: false\n    y_axis_reversed:
+    false\n    plot_size_by_field: false\n    trellis: ''\n    stacking: ''\n    limit_displayed_rows:
+    false\n    legend_position: center\n    point_style: none\n    show_value_labels:
+    false\n    label_density: 25\n    x_axis_scale: auto\n    y_axis_combined: true\n\
+    \    show_null_points: true\n    interpolation: linear\n    hidden_pivots: {}\n\
+    \    defaults_version: 1\n    row: 6\n    col: 0\n    width: 24\n    height: 6\n\
+    \  - title: Not Kept Activities\n    name: Not Kept Activities\n    model: demo_prod_carelogic\n\
+    \    explore: schedule\n    type: single_value\n    fields: [schedule.activities_count]\n\
+    \    filters:\n      activity_detail.activity_client_status: \"-Kept\"\n    limit:
+    500\n    column_limit: 50\n    custom_color_enabled: true\n    show_single_value_title:
+    true\n    show_comparison: false\n    comparison_type: value\n    comparison_reverse_colors:
+    false\n    show_comparison_label: true\n    enable_conditional_formatting: false\n\
+    \    conditional_formatting_include_totals: false\n    conditional_formatting_include_nulls:
+    false\n    defaults_version: 1\n    row: 3\n    col: 4\n    width: 4\n    height:
+    3\n"
+  dashboard_id: '33'
+  dashboard_slug: rHM3BMniRZO4TS0jZvlIBj
+  dashboard_element_alert_counts:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  scheduled_plans:
+  - !ScheduledPlan
+    name: Testing - Activities
+    user_id: '2'
+    run_as_recipient: false
+    enabled: true
+    look_id:
+    dashboard_id: '33'
+    lookml_dashboard_id:
+    filters_string: '?'
+    dashboard_filters: '?'
+    require_results: false
+    require_no_results: false
+    require_change: false
+    send_all_results: false
+    crontab: 20 14 * * *
+    datagroup: ''
+    timezone: US/Central
+    query_id: ''
+    scheduled_plan_destination:
+    - !ScheduledPlanDestination
+      id: '29'
+      scheduled_plan_id: '6'
+      format: wysiwyg_pdf
+      apply_formatting: true
+      apply_vis: true
+      address: maria.garcia@qualifacts.com
+      looker_recipient: true
+      type: email
+      parameters: ''
+      secret_parameters:
+      message: ''
+    - !ScheduledPlanDestination
+      id: '30'
+      scheduled_plan_id: '6'
+      format: wysiwyg_pdf
+      apply_formatting: true
+      apply_vis: true
+      address: rbobrowski@google.com
+      looker_recipient: true
+      type: email
+      parameters: ''
+      secret_parameters:
+      message: ''
+    - !ScheduledPlanDestination
+      id: '31'
+      scheduled_plan_id: '6'
+      format: wysiwyg_pdf
+      apply_formatting: true
+      apply_vis: true
+      address: nathan.villegas@qualifacts.com
+      looker_recipient: true
+      type: email
+      parameters: ''
+      secret_parameters:
+      message: ''
+    run_once: false
+    include_links: false
+    custom_url_base: ''
+    custom_url_params: /dashboards/33
+    custom_url_label: ''
+    show_custom_url: false
+    pdf_paper_size: ''
+    pdf_landscape: false
+    embed: false
+    color_theme: ~default
+    long_tables: false
+    inline_table_width:
+    id: '6'
+    created_at: 2024-07-12 16:58:10+00:00
+    updated_at: 2024-07-12 17:48:17+00:00
+    title: Testing - Activities
+    user: !UserPublic
+      can:
+        index: true
+        index_details: true
+        show: true
+        show_creds: true
+        show_details: true
+        sudo: true
+        update_creds: true
+        view_in_ui: true
+      id: '2'
+      first_name: Maria
+      last_name: Garcia
+      display_name: Maria Garcia
+      avatar_url: 
+        https://gravatar.lookercdn.com/avatar/8d818bf2ad8b84ed92a01385f948b927?s=156&d=blank
+      url: https://localhost:19999/api/4.0/users/2
+    next_run_at: 2024-08-26 19:20:00+00:00
+    last_run_at: 2024-08-25 19:20:23+00:00
+    can:
+      create: true
+      destroy: true
+      download_unlimited: true
+      email_to_others: true
+      index: true
+      find_and_replace: true
+      show_errors: true
+      run: true
+      see_other_user_schedules: true
+      show: true
+      update: true
+  alerts: []
+- !DashboardObject
+  legacy_folder_id:
+    folder_id: '63'
+    slug: oKiaF0ccazXAgyNJKH5XUt
+  lookml: "---\n- dashboard: staff_productivity\n  title: Staff Productivity\n  layout:
+    newspaper\n  preferred_viewer: dashboards-next\n  description: ''\n  preferred_slug:
+    oKiaF0ccazXAgyNJKH5XUt\n  elements:\n  - title: Top 10 - Staff w/Programs\n  \
+    \  name: Top 10 - Staff w/Programs\n    model: demo_prod_carelogic\n    explore:
+    admissions\n    type: looker_bar\n    fields: [admissions.count_intake, program_staff.staff_name]\n\
+    \    sorts: [admissions.count_intake desc 0]\n    limit: 10\n    column_limit:
+    50\n    x_axis_gridlines: false\n    y_axis_gridlines: true\n    show_view_names:
+    false\n    show_y_axis_labels: true\n    show_y_axis_ticks: true\n    y_axis_tick_density:
+    default\n    y_axis_tick_density_custom: 5\n    show_x_axis_label: true\n    show_x_axis_ticks:
+    true\n    y_axis_scale_mode: linear\n    x_axis_reversed: false\n    y_axis_reversed:
+    false\n    plot_size_by_field: false\n    trellis: ''\n    stacking: ''\n    limit_displayed_rows:
+    false\n    legend_position: center\n    point_style: none\n    show_value_labels:
+    false\n    label_density: 25\n    x_axis_scale: auto\n    y_axis_combined: true\n\
+    \    ordering: none\n    show_null_labels: false\n    show_totals_labels: false\n\
+    \    show_silhouette: false\n    totals_color: \"#808080\"\n    defaults_version:
+    1\n    row: 0\n    col: 8\n    width: 8\n    height: 6\n  - title: Staff w/Documents\n\
+    \    name: Staff w/Documents\n    model: demo_prod_carelogic\n    explore: document\n\
+    \    type: looker_column\n    fields: [doc_staff.staff_name, document.count_of_documents]\n\
+    \    sorts: [document.count_of_documents desc 0]\n    limit: 500\n    column_limit:
+    50\n    x_axis_gridlines: false\n    y_axis_gridlines: true\n    show_view_names:
+    false\n    show_y_axis_labels: true\n    show_y_axis_ticks: true\n    y_axis_tick_density:
+    default\n    y_axis_tick_density_custom: 5\n    show_x_axis_label: true\n    show_x_axis_ticks:
+    true\n    y_axis_scale_mode: linear\n    x_axis_reversed: false\n    y_axis_reversed:
+    false\n    plot_size_by_field: false\n    trellis: ''\n    stacking: ''\n    limit_displayed_rows:
+    false\n    legend_position: center\n    point_style: none\n    show_value_labels:
+    false\n    label_density: 25\n    x_axis_scale: auto\n    y_axis_combined: true\n\
+    \    ordering: none\n    show_null_labels: false\n    show_totals_labels: false\n\
+    \    show_silhouette: false\n    totals_color: \"#808080\"\n    defaults_version:
+    1\n    row: 6\n    col: 8\n    width: 16\n    height: 6\n  - title: Staff w/Claims\n\
+    \    name: Staff w/Claims\n    model: demo_prod_carelogic\n    explore: financial\n\
+    \    type: looker_column\n    fields: [claim_staff.staff_name, count_of_claim_id]\n\
+    \    sorts: [count_of_claim_id desc 0]\n    limit: 500\n    column_limit: 50\n\
+    \    dynamic_fields:\n    - _kind_hint: measure\n      _type_hint: number\n  \
+    \    based_on: claim.claim_id\n      expression: ''\n      label: Count of Claim
+    ID\n      measure: count_of_claim_id\n      type: count_distinct\n    x_axis_gridlines:
+    false\n    y_axis_gridlines: true\n    show_view_names: false\n    show_y_axis_labels:
+    true\n    show_y_axis_ticks: true\n    y_axis_tick_density: default\n    y_axis_tick_density_custom:
+    5\n    show_x_axis_label: true\n    show_x_axis_ticks: true\n    y_axis_scale_mode:
+    linear\n    x_axis_reversed: false\n    y_axis_reversed: false\n    plot_size_by_field:
+    false\n    trellis: ''\n    stacking: ''\n    limit_displayed_rows: false\n  \
+    \  legend_position: center\n    point_style: none\n    show_value_labels: false\n\
+    \    label_density: 25\n    x_axis_scale: auto\n    y_axis_combined: true\n  \
+    \  ordering: none\n    show_null_labels: false\n    show_totals_labels: false\n\
+    \    show_silhouette: false\n    totals_color: \"#808080\"\n    defaults_version:
+    1\n    row: 6\n    col: 0\n    width: 8\n    height: 6\n  - title: Top 10 - Staff
+    w/Activities\n    name: Top 10 - Staff w/Activities\n    model: demo_prod_carelogic\n\
+    \    explore: schedule\n    type: looker_bar\n    fields: [activity_staff.staff_name,
+    schedule.activities_count]\n    sorts: [schedule.activities_count desc 0]\n  \
+    \  limit: 10\n    column_limit: 50\n    x_axis_gridlines: false\n    y_axis_gridlines:
+    true\n    show_view_names: false\n    show_y_axis_labels: true\n    show_y_axis_ticks:
+    true\n    y_axis_tick_density: default\n    y_axis_tick_density_custom: 5\n  \
+    \  show_x_axis_label: true\n    show_x_axis_ticks: true\n    y_axis_scale_mode:
+    linear\n    x_axis_reversed: false\n    y_axis_reversed: false\n    plot_size_by_field:
+    false\n    trellis: ''\n    stacking: ''\n    limit_displayed_rows: false\n  \
+    \  legend_position: center\n    point_style: none\n    show_value_labels: false\n\
+    \    label_density: 25\n    x_axis_scale: auto\n    y_axis_combined: true\n  \
+    \  ordering: none\n    show_null_labels: false\n    show_totals_labels: false\n\
+    \    show_silhouette: false\n    totals_color: \"#808080\"\n    defaults_version:
+    1\n    row: 0\n    col: 0\n    width: 8\n    height: 6\n  - title: Staff w/Primary
+    Caseload\n    name: Staff w/Primary Caseload\n    model: demo_prod_carelogic\n\
+    \    explore: admissions\n    type: looker_column\n    fields: [caseload_staff.staff_name,
+    count_of_client_staff_id]\n    filters:\n      dim_caseload.primary: Primary\n\
+    \    sorts: [count_of_client_staff_id desc 0]\n    limit: 500\n    column_limit:
+    50\n    dynamic_fields:\n    - _kind_hint: measure\n      _type_hint: number\n\
+    \      based_on: dim_caseload.client_staff_id\n      expression: ''\n      label:
+    Count of Client Staff ID\n      measure: count_of_client_staff_id\n      type:
+    count_distinct\n    x_axis_gridlines: false\n    y_axis_gridlines: true\n    show_view_names:
+    false\n    show_y_axis_labels: true\n    show_y_axis_ticks: true\n    y_axis_tick_density:
+    default\n    y_axis_tick_density_custom: 5\n    show_x_axis_label: true\n    show_x_axis_ticks:
+    true\n    y_axis_scale_mode: linear\n    x_axis_reversed: false\n    y_axis_reversed:
+    false\n    plot_size_by_field: false\n    trellis: ''\n    stacking: ''\n    limit_displayed_rows:
+    false\n    legend_position: center\n    point_style: none\n    show_value_labels:
+    false\n    label_density: 25\n    x_axis_scale: auto\n    y_axis_combined: true\n\
+    \    ordering: none\n    show_null_labels: false\n    show_totals_labels: false\n\
+    \    show_silhouette: false\n    totals_color: \"#808080\"\n    defaults_version:
+    1\n    row: 0\n    col: 16\n    width: 8\n    height: 6\n"
+  dashboard_id: '34'
+  dashboard_slug: oKiaF0ccazXAgyNJKH5XUt
+  dashboard_element_alert_counts:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  scheduled_plans: []
+  alerts: []
+- !DashboardObject
+  legacy_folder_id:
+    folder_id: '8'
+    slug: 22psIxC5uUvxeUP7gTkhhn
+  lookml: "---\n- dashboard: client_data\n  title: Client Data\n  layout: newspaper\n\
+    \  preferred_viewer: dashboards-next\n  description: ''\n  preferred_slug: 22psIxC5uUvxeUP7gTkhhn\n\
+    \  elements:\n  - title: Admission Programs\n    name: Admission Programs\n  \
+    \  model: demo6_prod_carelogic\n    explore: admissions\n    type: looker_column\n\
+    \    fields: [program_detail.program_code, admissions.count_intake]\n    sorts:
+    [admissions.count_intake desc 0]\n    limit: 500\n    column_limit: 50\n    x_axis_gridlines:
+    false\n    y_axis_gridlines: true\n    show_view_names: false\n    show_y_axis_labels:
+    true\n    show_y_axis_ticks: true\n    y_axis_tick_density: default\n    y_axis_tick_density_custom:
+    5\n    show_x_axis_label: true\n    show_x_axis_ticks: true\n    y_axis_scale_mode:
+    linear\n    x_axis_reversed: false\n    y_axis_reversed: false\n    plot_size_by_field:
+    false\n    trellis: ''\n    stacking: ''\n    limit_displayed_rows: false\n  \
+    \  legend_position: center\n    point_style: none\n    show_value_labels: false\n\
+    \    label_density: 25\n    x_axis_scale: auto\n    y_axis_combined: true\n  \
+    \  ordering: none\n    show_null_labels: false\n    show_totals_labels: false\n\
+    \    show_silhouette: false\n    totals_color: \"#808080\"\n    defaults_version:
+    1\n    listen: {}\n    row: 0\n    col: 0\n    width: 23\n    height: 7\n  - title:
+    Scheduled Activities\n    name: Scheduled Activities\n    model: demo6_prod_carelogic\n\
+    \    explore: schedule\n    type: looker_line\n    fields: [activity.activity_code,
+    activity_detail.activity_detail_count]\n    sorts: [activity_detail.activity_detail_count
+    desc 0]\n    limit: 500\n    column_limit: 50\n    x_axis_gridlines: false\n \
+    \   y_axis_gridlines: true\n    show_view_names: false\n    show_y_axis_labels:
+    true\n    show_y_axis_ticks: true\n    y_axis_tick_density: default\n    y_axis_tick_density_custom:
+    5\n    show_x_axis_label: true\n    show_x_axis_ticks: true\n    y_axis_scale_mode:
+    linear\n    x_axis_reversed: false\n    y_axis_reversed: false\n    plot_size_by_field:
+    false\n    trellis: ''\n    stacking: ''\n    limit_displayed_rows: false\n  \
+    \  legend_position: center\n    point_style: none\n    show_value_labels: false\n\
+    \    label_density: 25\n    x_axis_scale: auto\n    y_axis_combined: true\n  \
+    \  show_null_points: true\n    interpolation: linear\n    ordering: none\n   \
+    \ show_null_labels: false\n    show_totals_labels: false\n    show_silhouette:
+    false\n    totals_color: \"#808080\"\n    defaults_version: 1\n    row: 7\n  \
+    \  col: 8\n    width: 15\n    height: 6\n  - title: Residential Stays\n    name:
+    Residential Stays\n    model: demo6_prod_carelogic\n    explore: residential\n\
+    \    type: looker_column\n    fields: [obt_bed_status.bed_stay_status, obt_bed_status.stay_count]\n\
+    \    sorts: [obt_bed_status.stay_count desc 0]\n    limit: 500\n    column_limit:
+    50\n    x_axis_gridlines: false\n    y_axis_gridlines: true\n    show_view_names:
+    false\n    show_y_axis_labels: true\n    show_y_axis_ticks: true\n    y_axis_tick_density:
+    default\n    y_axis_tick_density_custom: 5\n    show_x_axis_label: true\n    show_x_axis_ticks:
+    true\n    y_axis_scale_mode: linear\n    x_axis_reversed: false\n    y_axis_reversed:
+    false\n    plot_size_by_field: false\n    trellis: ''\n    stacking: ''\n    limit_displayed_rows:
+    false\n    legend_position: center\n    point_style: none\n    show_value_labels:
+    false\n    label_density: 25\n    x_axis_scale: auto\n    y_axis_combined: true\n\
+    \    ordering: none\n    show_null_labels: false\n    show_totals_labels: false\n\
+    \    show_silhouette: false\n    totals_color: \"#808080\"\n    defaults_version:
+    1\n    row: 7\n    col: 0\n    width: 8\n    height: 6\n"
+  dashboard_id: '35'
+  dashboard_slug: 22psIxC5uUvxeUP7gTkhhn
+  dashboard_element_alert_counts:
+  - 1
+  - 0
+  - 0
+  scheduled_plans: []
+  alerts:
+  - !AlertObject
+    applied_dashboard_filters: []
+    comparison_type: GREATER_THAN
+    cron: 0 5 * * *
+    custom_title: ''
+    description: ''
+    destinations:
+    - !AlertDestinationObject
+      destination_type: EMAIL
+      email_address: rbobrowski@google.com
+    field: !AlertFieldObject
+      title: Any Count of Intakes
+      name: admissions.count_intake
+      filter: []
+    is_disabled: false
+    is_public: false
+    disabled_reason: ''
+    owner_id: '9'
+    threshold: 150.0
+- !DashboardObject
+  legacy_folder_id:
+    folder_id: '8'
+    slug: YZ5aalbYSZFqq1aWSaR8Qo
+  lookml: "---\n- dashboard: residential_dashboard\n  title: Residential Dashboard\n\
+    \  layout: newspaper\n  preferred_viewer: dashboards-next\n  description: ''\n\
+    \  preferred_slug: YZ5aalbYSZFqq1aWSaR8Qo\n  elements:\n  - title: Stays\n   \
+    \ name: Stays\n    model: demo6_prod_carelogic\n    explore: residential\n   \
+    \ type: looker_line\n    fields: [obt_bed_status.stay_begin_year_month, obt_bed_status.stay_count,
+    client.count_of_clients]\n    fill_fields: [obt_bed_status.stay_begin_year_month]\n\
+    \    sorts: [obt_bed_status.stay_begin_year_month desc]\n    limit: 500\n    column_limit:
+    50\n    x_axis_gridlines: false\n    y_axis_gridlines: true\n    show_view_names:
+    false\n    show_y_axis_labels: true\n    show_y_axis_ticks: true\n    y_axis_tick_density:
+    default\n    y_axis_tick_density_custom: 5\n    show_x_axis_label: true\n    show_x_axis_ticks:
+    true\n    y_axis_scale_mode: linear\n    x_axis_reversed: false\n    y_axis_reversed:
+    false\n    plot_size_by_field: false\n    trellis: ''\n    stacking: ''\n    limit_displayed_rows:
+    false\n    legend_position: center\n    point_style: none\n    show_value_labels:
+    false\n    label_density: 25\n    x_axis_scale: auto\n    y_axis_combined: true\n\
+    \    show_null_points: true\n    interpolation: linear\n    defaults_version:
+    1\n    row: 0\n    col: 0\n    width: 24\n    height: 7\n"
+  dashboard_id: '36'
+  dashboard_slug: YZ5aalbYSZFqq1aWSaR8Qo
+  dashboard_element_alert_counts:
+  - 0
+  scheduled_plans:
+  - !ScheduledPlan
+    name: Test Demo6 - Residential Dashboard
+    user_id: '2'
+    run_as_recipient: false
+    enabled: true
+    look_id:
+    dashboard_id: '36'
+    lookml_dashboard_id:
+    filters_string: '?'
+    dashboard_filters: '?'
+    require_results: false
+    require_no_results: false
+    require_change: false
+    send_all_results: false
+    crontab: 30 14 * * *
+    datagroup: ''
+    timezone: US/Central
+    query_id: ''
+    scheduled_plan_destination:
+    - !ScheduledPlanDestination
+      id: '22'
+      scheduled_plan_id: '7'
+      format: wysiwyg_pdf
+      apply_formatting: true
+      apply_vis: true
+      address: maria.garcia@qualifacts.com
+      looker_recipient: true
+      type: email
+      parameters: ''
+      secret_parameters:
+      message: ''
+    - !ScheduledPlanDestination
+      id: '23'
+      scheduled_plan_id: '7'
+      format: wysiwyg_pdf
+      apply_formatting: true
+      apply_vis: true
+      address: nathan.villegas@qualifacts.com
+      looker_recipient: true
+      type: email
+      parameters: ''
+      secret_parameters:
+      message: ''
+    - !ScheduledPlanDestination
+      id: '24'
+      scheduled_plan_id: '7'
+      format: wysiwyg_pdf
+      apply_formatting: true
+      apply_vis: true
+      address: rbobrowski@google.com
+      looker_recipient: true
+      type: email
+      parameters: ''
+      secret_parameters:
+      message: ''
+    run_once: false
+    include_links: true
+    custom_url_base: ''
+    custom_url_params: /dashboards/36
+    custom_url_label: ''
+    show_custom_url: false
+    pdf_paper_size: ''
+    pdf_landscape: false
+    embed: false
+    color_theme: ~default
+    long_tables: false
+    inline_table_width:
+    id: '7'
+    created_at: 2024-07-12 17:45:57+00:00
+    updated_at: 2024-07-12 17:47:15+00:00
+    title: Test Demo6 - Residential Dashboard
+    user: !UserPublic
+      can:
+        index: true
+        index_details: true
+        show: true
+        show_creds: true
+        show_details: true
+        sudo: true
+        update_creds: true
+        view_in_ui: true
+      id: '2'
+      first_name: Maria
+      last_name: Garcia
+      display_name: Maria Garcia
+      avatar_url: 
+        https://gravatar.lookercdn.com/avatar/8d818bf2ad8b84ed92a01385f948b927?s=156&d=blank
+      url: https://localhost:19999/api/4.0/users/2
+    next_run_at: 2024-08-26 19:30:00+00:00
+    last_run_at: 2024-08-25 19:30:12+00:00
+    can:
+      create: true
+      destroy: true
+      download_unlimited: true
+      email_to_others: true
+      index: true
+      find_and_replace: true
+      show_errors: true
+      run: true
+      see_other_user_schedules: true
+      show: true
+      update: true
+  alerts: []
+- !DashboardObject
+  legacy_folder_id:
+    folder_id: '31'
+    slug: RqHfhKS5GO1X57rrqL3CyD
+  lookml: "---\n- dashboard: detail_by_posting_date_4_1_233_31_24\n  title: Detail
+    by Posting Date 4.1.23-3.31.24\n  layout: newspaper\n  preferred_viewer: dashboards-next\n\
+    \  preferred_slug: RqHfhKS5GO1X57rrqL3CyD\n  elements:\n  - title: Detail by Posting
+    Date 4123-33124\n    name: Detail by Posting Date 4123-33124\n    model: meridian_prod_carelogic\n\
+    \    explore: financial\n    type: looker_grid\n    fields: [claim.payer_plan_name,
+    payer_plan.payer_type, client.client_name, claim.service_date,\n      procedure.procedure_code,
+    claim.claim_id, claim.claim_status, claim_line_program.program_name,\n      claim.organization_name,
+    financial.net_gross_revenue, financial.net_contractual_adjustments,\n      financial.net_write_up_write_off,
+    financial.net_transfers, financial.net_true_expected_revenue,\n      financial.payment_amount,
+    financial.balance_amount, financial.post_date]\n    filters: {}\n    sorts: [financial.net_gross_revenue
+    desc]\n    limit: 5000\n    column_limit: 50\n    show_view_names: false\n   \
+    \ show_row_numbers: true\n    transpose: false\n    truncate_text: true\n    hide_totals:
+    false\n    hide_row_totals: false\n    size_to_fit: true\n    table_theme: white\n\
+    \    limit_displayed_rows: false\n    enable_conditional_formatting: false\n \
+    \   header_text_alignment: left\n    header_font_size: '12'\n    rows_font_size:
+    '12'\n    conditional_formatting_include_totals: false\n    conditional_formatting_include_nulls:
+    false\n    show_sql_query_menu_options: false\n    show_totals: true\n    show_row_totals:
+    true\n    truncate_header: false\n    series_cell_visualizations:\n      financial.net_gross_revenue:\n\
+    \        is_active: false\n    limit_displayed_rows_values:\n      show_hide:
+    show\n      first_last: first\n      num_rows: '25'\n    x_axis_gridlines: false\n\
+    \    y_axis_gridlines: true\n    show_y_axis_labels: true\n    show_y_axis_ticks:
+    true\n    y_axis_tick_density: default\n    y_axis_tick_density_custom: 5\n  \
+    \  show_x_axis_label: true\n    show_x_axis_ticks: true\n    y_axis_scale_mode:
+    linear\n    x_axis_reversed: false\n    y_axis_reversed: false\n    plot_size_by_field:
+    false\n    trellis: ''\n    stacking: ''\n    legend_position: center\n    point_style:
+    none\n    show_value_labels: false\n    label_density: 25\n    x_axis_scale: auto\n\
+    \    y_axis_combined: true\n    ordering: none\n    show_null_labels: false\n\
+    \    show_totals_labels: false\n    show_silhouette: false\n    totals_color:
+    \"#808080\"\n    show_null_points: true\n    interpolation: linear\n    defaults_version:
+    1\n    listen:\n      Program Name: caseload_program.program_name\n      Organization
+    Name: claim.organization_name\n      Payer Type: payer_plan.payer_type\n     \
+    \ Payer Name: claim.payer_name\n      Payer Plan Name: claim.payer_plan_name\n\
+    \      Service Date: claim.service_date\n      Claim Batched (Billed/Unbilled):
+    claim.claim_batched\n      Post Date: financial.post_date\n    row: 0\n    col:
+    0\n    width: 24\n    height: 12\n  filters:\n  - name: Payer Name\n    title:
+    Payer Name\n    type: field_filter\n    default_value: ''\n    allow_multiple_values:
+    true\n    required: false\n    ui_config:\n      type: advanced\n      display:
+    popover\n    model: meridian_prod_carelogic\n    explore: financial\n    listens_to_filters:
+    []\n    field: claim.payer_name\n  - name: Payer Plan Name\n    title: Payer Plan
+    Name\n    type: field_filter\n    default_value: ''\n    allow_multiple_values:
+    true\n    required: false\n    ui_config:\n      type: advanced\n      display:
+    popover\n    model: meridian_prod_carelogic\n    explore: financial\n    listens_to_filters:
+    []\n    field: claim.payer_plan_name\n  - name: Payer Type\n    title: Payer Type\n\
+    \    type: field_filter\n    default_value: ''\n    allow_multiple_values: true\n\
+    \    required: false\n    ui_config:\n      type: advanced\n      display: popover\n\
+    \    model: meridian_prod_carelogic\n    explore: financial\n    listens_to_filters:
+    []\n    field: payer_plan.payer_type\n  - name: Program Name\n    title: Program
+    Name\n    type: field_filter\n    default_value: ''\n    allow_multiple_values:
+    true\n    required: false\n    ui_config:\n      type: advanced\n      display:
+    popover\n    model: meridian_prod_carelogic\n    explore: financial\n    listens_to_filters:
+    []\n    field: caseload_program.program_name\n  - name: Organization Name\n  \
+    \  title: Organization Name\n    type: field_filter\n    default_value: ''\n \
+    \   allow_multiple_values: true\n    required: false\n    ui_config:\n      type:
+    advanced\n      display: popover\n    model: meridian_prod_carelogic\n    explore:
+    financial\n    listens_to_filters: []\n    field: claim.organization_name\n  -
+    name: Service Date\n    title: Service Date\n    type: field_filter\n    default_value:
+    ''\n    allow_multiple_values: true\n    required: false\n    ui_config:\n   \
+    \   type: relative_timeframes\n      display: inline\n    model: meridian_prod_carelogic\n\
+    \    explore: financial\n    listens_to_filters: []\n    field: claim.service_date\n\
+    \  - name: Claim Batched (Billed/Unbilled)\n    title: Claim Batched (Billed/Unbilled)\n\
+    \    type: field_filter\n    default_value: ''\n    allow_multiple_values: true\n\
+    \    required: false\n    ui_config:\n      type: advanced\n      display: popover\n\
+    \    model: meridian_prod_carelogic\n    explore: financial\n    listens_to_filters:
+    []\n    field: claim.claim_batched\n  - name: Post Date\n    title: Post Date\n\
+    \    type: field_filter\n    default_value: 2023/04/01 to 2024/03/31\n    allow_multiple_values:
+    true\n    required: false\n    ui_config:\n      type: relative_timeframes\n \
+    \     display: inline\n    model: meridian_prod_carelogic\n    explore: financial\n\
+    \    listens_to_filters: []\n    field: financial.post_date\n"
+  dashboard_id: '37'
+  dashboard_slug: RqHfhKS5GO1X57rrqL3CyD
+  dashboard_element_alert_counts:
+  - 0
+  scheduled_plans: []
+  alerts: []
+- !DashboardObject
+  legacy_folder_id:
+    folder_id: '31'
+    slug: fN6NkAcQdGAeoJbAMFZrdl
+  lookml: "---\n- dashboard: all_detail_by_posting_and_gl_end_date_4_17_12_2024\n\
+    \  title: All Detail by Posting and GL End Date 4.1-7.12.2024\n  layout: newspaper\n\
+    \  preferred_viewer: dashboards-next\n  description: ''\n  preferred_slug: fN6NkAcQdGAeoJbAMFZrdl\n\
+    \  elements:\n  - title: All Detail by Posting and GL End Date 41-7122024\n  \
+    \  name: All Detail by Posting and GL End Date 41-7122024\n    model: meridian_prod_carelogic\n\
+    \    explore: financial\n    type: looker_grid\n    fields: [claim.payer_plan_name,
+    payer_plan.payer_type, client.client_name, claim.service_date,\n      procedure.procedure_code,
+    claim.claim_id, claim.claim_status, claim_line_program.program_name,\n      claim.organization_name,
+    financial.net_gross_revenue, financial.net_contractual_adjustments,\n      financial.net_write_up_write_off,
+    financial.net_transfers, financial.net_true_expected_revenue,\n      financial.payment_amount,
+    financial.balance_amount, financial.post_date, financial.account_period_end_date]\n\
+    \    filters: {}\n    sorts: [financial.net_gross_revenue desc]\n    limit: 5000\n\
+    \    column_limit: 50\n    show_view_names: false\n    show_row_numbers: true\n\
+    \    transpose: false\n    truncate_text: true\n    hide_totals: false\n    hide_row_totals:
+    false\n    size_to_fit: true\n    table_theme: white\n    limit_displayed_rows:
+    false\n    enable_conditional_formatting: false\n    header_text_alignment: left\n\
+    \    header_font_size: '12'\n    rows_font_size: '12'\n    conditional_formatting_include_totals:
+    false\n    conditional_formatting_include_nulls: false\n    show_sql_query_menu_options:
+    false\n    show_totals: true\n    show_row_totals: true\n    truncate_header:
+    false\n    series_cell_visualizations:\n      financial.net_gross_revenue:\n \
+    \       is_active: false\n    limit_displayed_rows_values:\n      show_hide: show\n\
+    \      first_last: first\n      num_rows: '25'\n    x_axis_gridlines: false\n\
+    \    y_axis_gridlines: true\n    show_y_axis_labels: true\n    show_y_axis_ticks:
+    true\n    y_axis_tick_density: default\n    y_axis_tick_density_custom: 5\n  \
+    \  show_x_axis_label: true\n    show_x_axis_ticks: true\n    y_axis_scale_mode:
+    linear\n    x_axis_reversed: false\n    y_axis_reversed: false\n    plot_size_by_field:
+    false\n    trellis: ''\n    stacking: ''\n    legend_position: center\n    point_style:
+    none\n    show_value_labels: false\n    label_density: 25\n    x_axis_scale: auto\n\
+    \    y_axis_combined: true\n    ordering: none\n    show_null_labels: false\n\
+    \    show_totals_labels: false\n    show_silhouette: false\n    totals_color:
+    \"#808080\"\n    show_null_points: true\n    interpolation: linear\n    defaults_version:
+    1\n    listen:\n      Program Name: caseload_program.program_name\n      Organization
+    Name: claim.organization_name\n      Payer Type: payer_plan.payer_type\n     \
+    \ Payer Name: claim.payer_name\n      Payer Plan Name: claim.payer_plan_name\n\
+    \      Service Date: claim.service_date\n      Claim Batched (Billed/Unbilled):
+    claim.claim_batched\n      Post Date: financial.post_date\n      GL Account Period
+    End Date: financial.account_period_end_date\n    row: 0\n    col: 0\n    width:
+    24\n    height: 12\n  - title: All Claim Detail by Posting Date 4123-33124\n \
+    \   name: All Claim Detail by Posting Date 4123-33124\n    model: meridian_prod_carelogic\n\
+    \    explore: financial\n    type: looker_grid\n    fields: [claim.payer_plan_name,
+    payer_plan.payer_type, client.client_name, claim.service_date,\n      procedure.procedure_code,
+    claim.claim_id, claim.claim_status, claim_line_program.program_name,\n      claim.organization_name,
+    financial.net_gross_revenue, financial.net_contractual_adjustments,\n      financial.net_write_up_write_off,
+    financial.net_transfers, financial.net_true_expected_revenue,\n      financial.payment_amount,
+    financial.balance_amount, financial.post_date, financial.account_period_end_date,\n\
+    \      billed_units]\n    filters:\n      caseload_program.program_name: ''\n\
+    \      claim.organization_name: ''\n      payer_plan.payer_type: ''\n      claim.payer_name:
+    ''\n      claim.payer_plan_name: ''\n      claim.service_date: ''\n      claim.claim_batched:
+    ''\n    sorts: [financial.net_gross_revenue desc]\n    limit: 5000\n    column_limit:
+    50\n    dynamic_fields:\n    - category: dimension\n      expression: \"${claim_item_line.billed_units}\"\
+    \n      label: Billed Units\n      value_format:\n      value_format_name:\n \
+    \     dimension: billed_units\n      _kind_hint: dimension\n      _type_hint:
+    number\n    show_view_names: false\n    show_row_numbers: true\n    transpose:
+    false\n    truncate_text: true\n    hide_totals: false\n    hide_row_totals: false\n\
+    \    size_to_fit: true\n    table_theme: white\n    limit_displayed_rows: false\n\
+    \    enable_conditional_formatting: false\n    header_text_alignment: left\n \
+    \   header_font_size: '12'\n    rows_font_size: '12'\n    conditional_formatting_include_totals:
+    false\n    conditional_formatting_include_nulls: false\n    show_sql_query_menu_options:
+    false\n    show_totals: true\n    show_row_totals: true\n    truncate_header:
+    false\n    series_cell_visualizations:\n      financial.net_gross_revenue:\n \
+    \       is_active: false\n    limit_displayed_rows_values:\n      show_hide: show\n\
+    \      first_last: first\n      num_rows: '25'\n    x_axis_gridlines: false\n\
+    \    y_axis_gridlines: true\n    show_y_axis_labels: true\n    show_y_axis_ticks:
+    true\n    y_axis_tick_density: default\n    y_axis_tick_density_custom: 5\n  \
+    \  show_x_axis_label: true\n    show_x_axis_ticks: true\n    y_axis_scale_mode:
+    linear\n    x_axis_reversed: false\n    y_axis_reversed: false\n    plot_size_by_field:
+    false\n    trellis: ''\n    stacking: ''\n    legend_position: center\n    point_style:
+    none\n    show_value_labels: false\n    label_density: 25\n    x_axis_scale: auto\n\
+    \    y_axis_combined: true\n    ordering: none\n    show_null_labels: false\n\
+    \    show_totals_labels: false\n    show_silhouette: false\n    totals_color:
+    \"#808080\"\n    show_null_points: true\n    interpolation: linear\n    defaults_version:
+    1\n    listen:\n      Post Date: financial.post_date\n      GL Account Period
+    End Date: financial.account_period_end_date\n    row: 12\n    col: 0\n    width:
+    24\n    height: 12\n  filters:\n  - name: Organization Name\n    title: Organization
+    Name\n    type: field_filter\n    default_value: ''\n    allow_multiple_values:
+    true\n    required: false\n    ui_config:\n      type: advanced\n      display:
+    popover\n    model: meridian_prod_carelogic\n    explore: financial\n    listens_to_filters:
+    []\n    field: claim.organization_name\n  - name: Program Name\n    title: Program
+    Name\n    type: field_filter\n    default_value: ''\n    allow_multiple_values:
+    true\n    required: false\n    ui_config:\n      type: advanced\n      display:
+    popover\n    model: meridian_prod_carelogic\n    explore: financial\n    listens_to_filters:
+    []\n    field: caseload_program.program_name\n  - name: Payer Type\n    title:
+    Payer Type\n    type: field_filter\n    default_value: ''\n    allow_multiple_values:
+    true\n    required: false\n    ui_config:\n      type: advanced\n      display:
+    popover\n    model: meridian_prod_carelogic\n    explore: financial\n    listens_to_filters:
+    []\n    field: payer_plan.payer_type\n  - name: Payer Plan Name\n    title: Payer
+    Plan Name\n    type: field_filter\n    default_value: ''\n    allow_multiple_values:
+    true\n    required: false\n    ui_config:\n      type: advanced\n      display:
+    popover\n    model: meridian_prod_carelogic\n    explore: financial\n    listens_to_filters:
+    []\n    field: claim.payer_plan_name\n  - name: Payer Name\n    title: Payer Name\n\
+    \    type: field_filter\n    default_value: ''\n    allow_multiple_values: true\n\
+    \    required: false\n    ui_config:\n      type: advanced\n      display: popover\n\
+    \    model: meridian_prod_carelogic\n    explore: financial\n    listens_to_filters:
+    []\n    field: claim.payer_name\n  - name: Service Date\n    title: Service Date\n\
+    \    type: field_filter\n    default_value: ''\n    allow_multiple_values: true\n\
+    \    required: false\n    ui_config:\n      type: relative_timeframes\n      display:
+    inline\n    model: meridian_prod_carelogic\n    explore: financial\n    listens_to_filters:
+    []\n    field: claim.service_date\n  - name: Post Date\n    title: Post Date\n\
+    \    type: field_filter\n    default_value: 2024/04/01 to 2024/07/12\n    allow_multiple_values:
+    true\n    required: false\n    ui_config:\n      type: relative_timeframes\n \
+    \     display: inline\n    model: meridian_prod_carelogic\n    explore: financial\n\
+    \    listens_to_filters: []\n    field: financial.post_date\n  - name: GL Account
+    Period End Date\n    title: GL Account Period End Date\n    type: field_filter\n\
+    \    default_value: 2024/04/01 to 2024/07/12\n    allow_multiple_values: true\n\
+    \    required: false\n    ui_config:\n      type: advanced\n      display: popover\n\
+    \    model: meridian_prod_carelogic\n    explore: financial\n    listens_to_filters:
+    []\n    field: financial.account_period_end_date\n  - name: Claim Batched (Billed/Unbilled)\n\
+    \    title: Claim Batched (Billed/Unbilled)\n    type: field_filter\n    default_value:
+    ''\n    allow_multiple_values: true\n    required: false\n    ui_config:\n   \
+    \   type: advanced\n      display: popover\n    model: meridian_prod_carelogic\n\
+    \    explore: financial\n    listens_to_filters: []\n    field: claim.claim_batched\n"
+  dashboard_id: '38'
+  dashboard_slug: fN6NkAcQdGAeoJbAMFZrdl
+  dashboard_element_alert_counts:
+  - 0
+  - 0
+  scheduled_plans: []
+  alerts: []
+- !DashboardObject
+  legacy_folder_id:
+    folder_id: '31'
+    slug: iqJRF4itj1a6kzwHFKEtH6
+  lookml: "---\n- dashboard: monthly_kpi_report\n  title: Monthly KPI Report\n  layout:
+    newspaper\n  preferred_viewer: dashboards-next\n  description: ''\n  preferred_slug:
+    iqJRF4itj1a6kzwHFKEtH6\n  elements:\n  - title: Monthly KPI Report\n    name:
+    Monthly KPI Report\n    model: meridian_prod_carelogic\n    explore: financial\n\
+    \    type: looker_grid\n    fields: [payer_plan.payer_type, payerguarantor, client.client_name,
+    claim_staff.staff_name,\n      client.client_id, claim.claim_id, claim.claim_item_id,
+    claim.service_date, claim.claim_status,\n      claim.claim_item_status, claim.claim_batched,
+    procedure, claim.item_billed,\n      claim.item_expected, claim.item_balance,
+    claim_program.program_name, claim.organization_name,\n      financial.payment_amount,
+    edi_denials.denial_description]\n    filters: {}\n    sorts: [claim.claim_item_id
+    desc]\n    limit: 5000\n    column_limit: 50\n    total: true\n    dynamic_fields:\n\
+    \    - category: dimension\n      expression: if(is_null(${payer_plan.payer_plan_id}),${claim_guarantor.guarantor_name},${claim.payer_plan_name})\n\
+    \      label: Payer/Guarantor\n      value_format:\n      value_format_name:\n\
+    \      dimension: payerguarantor\n      _kind_hint: dimension\n      _type_hint:
+    string\n    - category: dimension\n      expression: if(is_null(${procedure.procedure_id}),null,concat(if(is_null(${procedure.procedure_code}),\"\
+    \",concat(\n        ${procedure.procedure_code},\" - \")),if(is_null(${procedure.revenue_code}),\"\
+    \",concat(${procedure.revenue_code},\"\n        - \")),if(is_null(${procedure.procedure_name}),\"\
+    \",${procedure.procedure_name})))\n      label: Procedure\n      value_format:\n\
+    \      value_format_name:\n      dimension: procedure\n      _kind_hint: dimension\n\
+    \      _type_hint: string\n    filter_expression: NOT is_null(${payer_plan.payer_plan_id})
+    OR NOT is_null(${claim_guarantor.guarantor_id})\n    show_view_names: false\n\
+    \    show_row_numbers: true\n    transpose: false\n    truncate_text: true\n \
+    \   hide_totals: false\n    hide_row_totals: false\n    size_to_fit: true\n  \
+    \  table_theme: white\n    limit_displayed_rows: false\n    enable_conditional_formatting:
+    false\n    header_text_alignment: left\n    header_font_size: '12'\n    rows_font_size:
+    '12'\n    conditional_formatting_include_totals: false\n    conditional_formatting_include_nulls:
+    false\n    show_sql_query_menu_options: false\n    column_order: [\"$$$_row_numbers_$$$\"\
+    , payer_plan.payer_type, payerguarantor, client.client_name,\n      claim_staff.staff_name,
+    client.client_id, claim.claim_id, claim.claim_item_id,\n      claim.service_date,
+    claim.service_end_date, claim.item_billed, claim.item_expected,\n      claim.item_balance,
+    claim.claim_status, claim.claim_item_status, claim.claim_batched,\n      procedure]\n\
+    \    show_totals: true\n    show_row_totals: true\n    truncate_header: false\n\
+    \    series_labels:\n      claim.claim_batched: Batched\n    series_column_widths:\n\
+    \      payer_plan.payer_type: 159\n      payerguarantor: 278\n      client.client_name:
+    172\n      claim_staff.staff_name: 169\n      client.client_id: 84\n      claim.claim_id:
+    83\n      claim.claim_item_id: 111\n      claim.service_date: 107\n      claim.item_billed:
+    136\n      claim.item_expected: 124\n      claim.item_balance: 124\n      claim.claim_status:
+    125\n      claim.claim_item_status: 147\n      claim.claim_batched: 83\n     \
+    \ procedure: 308\n    series_cell_visualizations:\n      claim.item_billed:\n\
+    \        is_active: false\n    defaults_version: 1\n    listen:\n      Claim Line
+    Active: claim_item_line.claim_line_active\n      Claim Item Status: claim.claim_item_status\n\
+    \      Service End Date: claim.service_end_date\n      Client Name: client.client_name\n\
+    \      Organization Name: claim.organization_name\n      Payer Plan Name: claim.payer_plan_name\n\
+    \      Payer Type: payer_plan.payer_type\n      Program Code: claim_line_program.program_code\n\
+    \      Program Name: claim_line_program.program_name\n      Staff Name: claim_staff.staff_name\n\
+    \      Item Balance: claim.item_balance\n    row: 0\n    col: 0\n    width: 11\n\
+    \    height: 6\n  - title: June KPI Report with Activity ID\n    name: June KPI
+    Report with Activity ID\n    model: meridian_prod_carelogic\n    explore: financial\n\
+    \    type: looker_grid\n    fields: [payer_plan.payer_type, payerguarantor, client.client_name,
+    claim_staff.staff_name,\n      client.client_id, claim.claim_id, claim.claim_item_id,
+    claim.service_date, claim.claim_status,\n      claim.claim_item_status, claim.claim_batched,
+    procedure, claim_program.program_name,\n      claim_activity.activity_code, claim.organization_name,
+    edi_denials.denial_description,\n      claim.item_billed, claim.item_expected,
+    claim.item_balance, financial.payment_amount]\n    filters:\n      claim_item_line.claim_line_active:
+    \"-No\"\n      claim.claim_item_status: \"-Claim Item Reversed\"\n      claim.service_end_date:
+    2024/06/01 to 2024/06/30\n      client.client_name: ''\n      claim.organization_name:
+    ''\n      claim.payer_plan_name: ''\n      payer_plan.payer_type: ''\n      claim_line_program.program_code:
+    ''\n      claim_line_program.program_name: ''\n      claim_staff.staff_name: ''\n\
+    \      claim.item_balance: ''\n    sorts: [claim.claim_item_id desc]\n    limit:
+    5000\n    column_limit: 50\n    total: true\n    dynamic_fields:\n    - category:
+    dimension\n      expression: if(is_null(${payer_plan.payer_plan_id}),${claim_guarantor.guarantor_name},${claim.payer_plan_name})\n\
+    \      label: Payer/Guarantor\n      value_format:\n      value_format_name:\n\
+    \      dimension: payerguarantor\n      _kind_hint: dimension\n      _type_hint:
+    string\n    - category: dimension\n      expression: if(is_null(${procedure.procedure_id}),null,concat(if(is_null(${procedure.procedure_code}),\"\
+    \",concat(\n        ${procedure.procedure_code},\" - \")),if(is_null(${procedure.revenue_code}),\"\
+    \",concat(${procedure.revenue_code},\"\n        - \")),if(is_null(${procedure.procedure_name}),\"\
+    \",${procedure.procedure_name})))\n      label: Procedure\n      value_format:\n\
+    \      value_format_name:\n      dimension: procedure\n      _kind_hint: dimension\n\
+    \      _type_hint: string\n    filter_expression: NOT is_null(${payer_plan.payer_plan_id})
+    OR NOT is_null(${claim_guarantor.guarantor_id})\n    show_view_names: false\n\
+    \    show_row_numbers: true\n    transpose: false\n    truncate_text: true\n \
+    \   hide_totals: false\n    hide_row_totals: false\n    size_to_fit: true\n  \
+    \  table_theme: white\n    limit_displayed_rows: false\n    enable_conditional_formatting:
+    false\n    header_text_alignment: left\n    header_font_size: '12'\n    rows_font_size:
+    '12'\n    conditional_formatting_include_totals: false\n    conditional_formatting_include_nulls:
+    false\n    show_sql_query_menu_options: false\n    column_order: [\"$$$_row_numbers_$$$\"\
+    , payer_plan.payer_type, payerguarantor, client.client_name,\n      claim_staff.staff_name,
+    client.client_id, claim.claim_id, claim.claim_item_id,\n      claim.service_date,
+    claim.service_end_date, claim.item_billed, claim.item_expected,\n      claim.item_balance,
+    claim.claim_status, claim.claim_item_status, claim.claim_batched,\n      procedure]\n\
+    \    show_totals: true\n    show_row_totals: true\n    truncate_header: false\n\
+    \    series_labels:\n      claim.claim_batched: Batched\n    series_column_widths:\n\
+    \      payer_plan.payer_type: 159\n      payerguarantor: 278\n      client.client_name:
+    172\n      claim_staff.staff_name: 169\n      client.client_id: 84\n      claim.claim_id:
+    83\n      claim.claim_item_id: 111\n      claim.service_date: 107\n      claim.item_billed:
+    136\n      claim.item_expected: 124\n      claim.item_balance: 124\n      claim.claim_status:
+    125\n      claim.claim_item_status: 147\n      claim.claim_batched: 83\n     \
+    \ procedure: 308\n    series_cell_visualizations:\n      claim.item_billed:\n\
+    \        is_active: false\n    defaults_version: 1\n    listen: {}\n    row: 0\n\
+    \    col: 12\n    width: 12\n    height: 6\n  filters:\n  - name: Claim Line Active\n\
+    \    title: Claim Line Active\n    type: field_filter\n    default_value: \"-No\"\
+    \n    allow_multiple_values: true\n    required: false\n    ui_config:\n     \
+    \ type: advanced\n      display: popover\n    model: meridian_prod_carelogic\n\
+    \    explore: financial\n    listens_to_filters: []\n    field: claim_item_line.claim_line_active\n\
+    \  - name: Client Name\n    title: Client Name\n    type: field_filter\n    default_value:
+    ''\n    allow_multiple_values: true\n    required: false\n    ui_config:\n   \
+    \   type: advanced\n      display: popover\n    model: meridian_prod_carelogic\n\
+    \    explore: financial\n    listens_to_filters: []\n    field: client.client_name\n\
+    \  - name: Organization Name\n    title: Organization Name\n    type: field_filter\n\
+    \    default_value: ''\n    allow_multiple_values: true\n    required: false\n\
+    \    ui_config:\n      type: advanced\n      display: popover\n    model: meridian_prod_carelogic\n\
+    \    explore: financial\n    listens_to_filters: []\n    field: claim.organization_name\n\
+    \  - name: Claim Item Status\n    title: Claim Item Status\n    type: field_filter\n\
+    \    default_value: \"-Claim Item Reversed\"\n    allow_multiple_values: true\n\
+    \    required: false\n    ui_config:\n      type: advanced\n      display: popover\n\
+    \    model: meridian_prod_carelogic\n    explore: financial\n    listens_to_filters:
+    []\n    field: claim.claim_item_status\n  - name: Service End Date\n    title:
+    Service End Date\n    type: field_filter\n    default_value: 2024/06/01 to 2024/06/30\n\
+    \    allow_multiple_values: true\n    required: false\n    ui_config:\n      type:
+    relative_timeframes\n      display: inline\n    model: meridian_prod_carelogic\n\
+    \    explore: financial\n    listens_to_filters: []\n    field: claim.service_end_date\n\
+    \  - name: Payer Type\n    title: Payer Type\n    type: field_filter\n    default_value:
+    ''\n    allow_multiple_values: true\n    required: false\n    ui_config:\n   \
+    \   type: advanced\n      display: popover\n    model: meridian_prod_carelogic\n\
+    \    explore: financial\n    listens_to_filters: []\n    field: payer_plan.payer_type\n\
+    \  - name: Payer Plan Name\n    title: Payer Plan Name\n    type: field_filter\n\
+    \    default_value: ''\n    allow_multiple_values: true\n    required: false\n\
+    \    ui_config:\n      type: advanced\n      display: popover\n    model: meridian_prod_carelogic\n\
+    \    explore: financial\n    listens_to_filters: []\n    field: claim.payer_plan_name\n\
+    \  - name: Staff Name\n    title: Staff Name\n    type: field_filter\n    default_value:
+    ''\n    allow_multiple_values: true\n    required: false\n    ui_config:\n   \
+    \   type: advanced\n      display: popover\n    model: meridian_prod_carelogic\n\
+    \    explore: financial\n    listens_to_filters: []\n    field: claim_staff.staff_name\n\
+    \  - name: Item Balance\n    title: Item Balance\n    type: field_filter\n   \
+    \ default_value: ''\n    allow_multiple_values: true\n    required: false\n  \
+    \  ui_config:\n      type: range_slider\n      display: inline\n    model: meridian_prod_carelogic\n\
+    \    explore: financial\n    listens_to_filters: []\n    field: claim.item_balance\n\
+    \  - name: Program Name\n    title: Program Name\n    type: field_filter\n   \
+    \ default_value: ''\n    allow_multiple_values: true\n    required: false\n  \
+    \  ui_config:\n      type: advanced\n      display: popover\n    model: meridian_prod_carelogic\n\
+    \    explore: financial\n    listens_to_filters: []\n    field: claim_line_program.program_name\n\
+    \  - name: Program Code\n    title: Program Code\n    type: field_filter\n   \
+    \ default_value: ''\n    allow_multiple_values: true\n    required: false\n  \
+    \  ui_config:\n      type: advanced\n      display: popover\n    model: meridian_prod_carelogic\n\
+    \    explore: financial\n    listens_to_filters: []\n    field: claim_line_program.program_code\n"
+  dashboard_id: '46'
+  dashboard_slug: iqJRF4itj1a6kzwHFKEtH6
+  dashboard_element_alert_counts:
+  - 0
+  - 0
+  scheduled_plans: []
+  alerts: []
+- !DashboardObject
+  legacy_folder_id:
+    folder_id: '31'
+    slug: xxb9enFWYu0h5ZPyAJtyG8
+  lookml: "---\n- dashboard: vaya_state_funds_erroneous_ffs_payments_deposited_412333124\n\
+    \  title: Vaya State Funds Erroneous FFS payments deposited 4/1/23-3/31/24\n \
+    \ layout: newspaper\n  preferred_viewer: dashboards-next\n  preferred_slug: xxb9enFWYu0h5ZPyAJtyG8\n\
+    \  elements:\n  - title: Vaya State Funds Erroneous FFS payments deposited 4/1/23-3/31/24\n\
+    \    name: Vaya State Funds Erroneous FFS payments deposited 4/1/23-3/31/24\n\
+    \    model: meridian_prod_carelogic\n    explore: financial\n    type: looker_grid\n\
+    \    fields: [payer_plan.payer_type, payerguarantor, client.client_name, claim_staff.staff_name,\n\
+    \      client.client_id, claim.claim_id, claim.claim_item_id, claim.service_date,
+    claim.service_end_date,\n      claim.claim_status, claim.claim_item_status, claim.claim_batched,
+    procedure,\n      claim.item_billed, claim.item_expected, claim.item_balance,
+    claim_program.program_name,\n      claim.organization_name, financial.deposit_date,
+    financial.payment_amount]\n    filters: {}\n    sorts: [claim.claim_item_id desc]\n\
+    \    limit: 5000\n    column_limit: 50\n    dynamic_fields:\n    - category: dimension\n\
+    \      expression: if(is_null(${payer_plan.payer_plan_id}),${claim_guarantor.guarantor_name},${claim.payer_plan_name})\n\
+    \      label: Payer/Guarantor\n      value_format:\n      value_format_name:\n\
+    \      dimension: payerguarantor\n      _kind_hint: dimension\n      _type_hint:
+    string\n    - category: dimension\n      expression: if(is_null(${procedure.procedure_id}),null,concat(if(is_null(${procedure.procedure_code}),\"\
+    \",concat(\n        ${procedure.procedure_code},\" - \")),if(is_null(${procedure.revenue_code}),\"\
+    \",concat(${procedure.revenue_code},\"\n        - \")),if(is_null(${procedure.procedure_name}),\"\
+    \",${procedure.procedure_name})))\n      label: Procedure\n      value_format:\n\
+    \      value_format_name:\n      dimension: procedure\n      _kind_hint: dimension\n\
+    \      _type_hint: string\n    filter_expression: NOT is_null(${payer_plan.payer_plan_id})
+    OR NOT is_null(${claim_guarantor.guarantor_id})\n    show_view_names: false\n\
+    \    show_row_numbers: true\n    transpose: false\n    truncate_text: true\n \
+    \   hide_totals: false\n    hide_row_totals: false\n    size_to_fit: true\n  \
+    \  table_theme: white\n    limit_displayed_rows: false\n    enable_conditional_formatting:
+    false\n    header_text_alignment: left\n    header_font_size: '12'\n    rows_font_size:
+    '12'\n    conditional_formatting_include_totals: false\n    conditional_formatting_include_nulls:
+    false\n    show_sql_query_menu_options: false\n    column_order: [\"$$$_row_numbers_$$$\"\
+    , payer_plan.payer_type, payerguarantor, client.client_name,\n      claim_staff.staff_name,
+    client.client_id, claim.claim_id, claim.claim_item_id,\n      claim.service_date,
+    claim.service_end_date, claim.item_billed, claim.item_expected,\n      claim.item_balance,
+    claim.claim_status, claim.claim_item_status, claim.claim_batched,\n      procedure]\n\
+    \    show_totals: true\n    show_row_totals: true\n    truncate_header: false\n\
+    \    series_labels:\n      claim.claim_batched: Batched\n    series_column_widths:\n\
+    \      payer_plan.payer_type: 159\n      payerguarantor: 278\n      client.client_name:
+    172\n      claim_staff.staff_name: 169\n      client.client_id: 84\n      claim.claim_id:
+    83\n      claim.claim_item_id: 111\n      claim.service_date: 107\n      claim.service_end_date:
+    131\n      claim.item_billed: 136\n      claim.item_expected: 124\n      claim.item_balance:
+    124\n      claim.claim_status: 125\n      claim.claim_item_status: 147\n     \
+    \ claim.claim_batched: 83\n      procedure: 308\n    series_cell_visualizations:\n\
+    \      claim.item_billed:\n        is_active: false\n    defaults_version: 1\n\
+    \    listen:\n      Claim Line Active: claim_item_line.claim_line_active\n   \
+    \   Claim Item Status: claim.claim_item_status\n      Client Name: client.client_name\n\
+    \      Organization Name: claim.organization_name\n      Payer Plan Name: claim.payer_plan_name\n\
+    \      Payer Type: payer_plan.payer_type\n      Program Code: claim_line_program.program_code\n\
+    \      Program Name: claim_line_program.program_name\n      Staff Name: claim_staff.staff_name\n\
+    \      Deposit Date: financial.deposit_date\n      Payment Amount: financial.payment_amount\n\
+    \    row: 0\n    col: 0\n    width: 24\n    height: 12\n  filters:\n  - name:
+    Payer Plan Name\n    title: Payer Plan Name\n    type: field_filter\n    default_value:
+    Vaya State Funds\n    allow_multiple_values: true\n    required: false\n    ui_config:\n\
+    \      type: advanced\n      display: popover\n    model: meridian_prod_carelogic\n\
+    \    explore: financial\n    listens_to_filters: []\n    field: claim.payer_plan_name\n\
+    \  - name: Organization Name\n    title: Organization Name\n    type: field_filter\n\
+    \    default_value: ''\n    allow_multiple_values: true\n    required: false\n\
+    \    ui_config:\n      type: advanced\n      display: popover\n    model: meridian_prod_carelogic\n\
+    \    explore: financial\n    listens_to_filters: []\n    field: claim.organization_name\n\
+    \  - name: Client Name\n    title: Client Name\n    type: field_filter\n    default_value:
+    ''\n    allow_multiple_values: true\n    required: false\n    ui_config:\n   \
+    \   type: advanced\n      display: popover\n    model: meridian_prod_carelogic\n\
+    \    explore: financial\n    listens_to_filters: []\n    field: client.client_name\n\
+    \  - name: Claim Line Active\n    title: Claim Line Active\n    type: field_filter\n\
+    \    default_value: \"-No\"\n    allow_multiple_values: true\n    required: false\n\
+    \    ui_config:\n      type: advanced\n      display: popover\n    model: meridian_prod_carelogic\n\
+    \    explore: financial\n    listens_to_filters: []\n    field: claim_item_line.claim_line_active\n\
+    \  - name: Claim Item Status\n    title: Claim Item Status\n    type: field_filter\n\
+    \    default_value: \"-Claim Item Reversed\"\n    allow_multiple_values: true\n\
+    \    required: false\n    ui_config:\n      type: advanced\n      display: popover\n\
+    \    model: meridian_prod_carelogic\n    explore: financial\n    listens_to_filters:
+    []\n    field: claim.claim_item_status\n  - name: Payer Type\n    title: Payer
+    Type\n    type: field_filter\n    default_value: ''\n    allow_multiple_values:
+    true\n    required: false\n    ui_config:\n      type: advanced\n      display:
+    popover\n    model: meridian_prod_carelogic\n    explore: financial\n    listens_to_filters:
+    []\n    field: payer_plan.payer_type\n  - name: Program Name\n    title: Program
+    Name\n    type: field_filter\n    default_value: ''\n    allow_multiple_values:
+    true\n    required: false\n    ui_config:\n      type: advanced\n      display:
+    popover\n    model: meridian_prod_carelogic\n    explore: financial\n    listens_to_filters:
+    []\n    field: claim_line_program.program_name\n  - name: Program Code\n    title:
+    Program Code\n    type: field_filter\n    default_value: ''\n    allow_multiple_values:
+    true\n    required: false\n    ui_config:\n      type: advanced\n      display:
+    popover\n    model: meridian_prod_carelogic\n    explore: financial\n    listens_to_filters:
+    []\n    field: claim_line_program.program_code\n  - name: Payment Amount\n   \
+    \ title: Payment Amount\n    type: field_filter\n    default_value: not 0\n  \
+    \  allow_multiple_values: true\n    required: false\n    ui_config:\n      type:
+    range_slider\n      display: inline\n    model: meridian_prod_carelogic\n    explore:
+    financial\n    listens_to_filters: []\n    field: financial.payment_amount\n \
+    \ - name: Staff Name\n    title: Staff Name\n    type: field_filter\n    default_value:
+    ''\n    allow_multiple_values: true\n    required: false\n    ui_config:\n   \
+    \   type: advanced\n      display: popover\n    model: meridian_prod_carelogic\n\
+    \    explore: financial\n    listens_to_filters: []\n    field: claim_staff.staff_name\n\
+    \  - name: Deposit Date\n    title: Deposit Date\n    type: field_filter\n   \
+    \ default_value: 2023/04/01 to 2024/03/31\n    allow_multiple_values: true\n \
+    \   required: false\n    ui_config:\n      type: relative_timeframes\n      display:
+    inline\n    model: meridian_prod_carelogic\n    explore: financial\n    listens_to_filters:
+    []\n    field: financial.deposit_date\n"
+  dashboard_id: '47'
+  dashboard_slug: xxb9enFWYu0h5ZPyAJtyG8
+  dashboard_element_alert_counts:
+  - 0
+  scheduled_plans: []
+  alerts: []
+- !DashboardObject
+  legacy_folder_id:
+    folder_id: '31'
+    slug: cucQPdoFCdX3Ydk5mNb5L2
+  lookml: "---\n- dashboard: vaya_claim_balances_less_than_0\n  title: Vaya Claim
+    Balances less than $0\n  layout: newspaper\n  preferred_viewer: dashboards-next\n\
+    \  description: ''\n  preferred_slug: cucQPdoFCdX3Ydk5mNb5L2\n  elements:\n  -
+    title: Vaya Claim Balances less than $0\n    name: Vaya Claim Balances less than
+    $0\n    model: meridian_prod_carelogic\n    explore: financial\n    type: table\n\
+    \    fields: [claim.payer_name, client.client_name, claim_staff.staff_name, claim.claim_id,\n\
+    \      claim.service_date, claim.claim_batched, procedure.procedure_code, claim_program.program_name,\n\
+    \      claim.organization_name, financial.deposit_id, claim_item_line.activity_billed,\n\
+    \      financial.payment_amount, financial.recouped_amount, financial.balance_amount,\n\
+    \      claim.number_of_units]\n    filters: {}\n    sorts: [claim.service_date
+    desc]\n    limit: 5000\n    column_limit: 50\n    listen:\n      Service Date:
+    claim.service_date\n      Claim Status: claim.claim_status\n      Payer Name:
+    claim.payer_name\n      Payment Amount: financial.payment_amount\n      Balance
+    Amount: financial.balance_amount\n    row: 0\n    col: 0\n    width: 8\n    height:
+    6\n  filters:\n  - name: Service Date\n    title: Service Date\n    type: field_filter\n\
+    \    default_value: 2023/01/01 to 2024/07/31\n    allow_multiple_values: true\n\
+    \    required: false\n    ui_config:\n      type: relative_timeframes\n      display:
+    inline\n    model: meridian_prod_carelogic\n    explore: financial\n    listens_to_filters:
+    []\n    field: claim.service_date\n  - name: Payment Amount\n    title: Payment
+    Amount\n    type: field_filter\n    default_value: not 0\n    allow_multiple_values:
+    true\n    required: false\n    ui_config:\n      type: range_slider\n      display:
+    inline\n    model: meridian_prod_carelogic\n    explore: financial\n    listens_to_filters:
+    []\n    field: financial.payment_amount\n  - name: Balance Amount\n    title:
+    Balance Amount\n    type: field_filter\n    default_value: \"<0\"\n    allow_multiple_values:
+    true\n    required: false\n    ui_config:\n      type: range_slider\n      display:
+    inline\n    model: meridian_prod_carelogic\n    explore: financial\n    listens_to_filters:
+    []\n    field: financial.balance_amount\n  - name: Claim Status\n    title: Claim
+    Status\n    type: field_filter\n    default_value: \"-Claim Reversed\"\n    allow_multiple_values:
+    true\n    required: false\n    ui_config:\n      type: advanced\n      display:
+    popover\n    model: meridian_prod_carelogic\n    explore: financial\n    listens_to_filters:
+    []\n    field: claim.claim_status\n  - name: Payer Name\n    title: Payer Name\n\
+    \    type: field_filter\n    default_value: Vaya LME/MCO\n    allow_multiple_values:
+    true\n    required: false\n    ui_config:\n      type: advanced\n      display:
+    popover\n    model: meridian_prod_carelogic\n    explore: financial\n    listens_to_filters:
+    []\n    field: claim.payer_name\n"
+  dashboard_id: '48'
+  dashboard_slug: cucQPdoFCdX3Ydk5mNb5L2
+  dashboard_element_alert_counts:
+  - 0
+  scheduled_plans: []
+  alerts: []
+- !DashboardObject
+  legacy_folder_id:
+    folder_id: '31'
+    slug: F3g5agg3O77pvWclcIsHoh
+  lookml: "---\n- dashboard: vaya_self_audit__claims_billed_in_error_7_1_2024\n  title:
+    Vaya Self Audit - Claims billed in error 7.1.2024\n  layout: newspaper\n  preferred_viewer:
+    dashboards-next\n  description: ''\n  preferred_slug: F3g5agg3O77pvWclcIsHoh\n\
+    \  elements:\n  - title: Vaya Provider Self Audit - Claims Billed in Error 712024\n\
+    \    name: Vaya Provider Self Audit - Claims Billed in Error 712024\n    model:
+    meridian_prod_carelogic\n    explore: financial\n    type: looker_grid\n    fields:
+    [claim.payer_name, client_payer_plan.payer_plan, client.client_name, claim_staff.staff_name,\n\
+    \      claim.claim_id, claim.service_date, claim.claim_batched, procedure.procedure_code,\n\
+    \      claim_program.program_name, claim.organization_name, financial.deposit_id,
+    client_payer_plan.id_number,\n      claim_item_line.activity_billed, financial.recouped_amount,
+    financial.balance_amount,\n      claim.number_of_units, claim.claim_status, claim.item_billed,
+    financial.payment_amount,\n      claim.item_balance]\n    filters:\n      claim.payer_name:
+    Vaya LME/MCO\n      claim.first_batch_run_date: 2024/07/01\n      claim.claim_status:
+    \"-Claim Reversed\"\n    sorts: [claim.service_date desc]\n    limit: 5000\n \
+    \   column_limit: 50\n    show_view_names: false\n    show_row_numbers: true\n\
+    \    transpose: false\n    truncate_text: true\n    hide_totals: false\n    hide_row_totals:
+    false\n    size_to_fit: true\n    table_theme: white\n    limit_displayed_rows:
+    false\n    enable_conditional_formatting: false\n    header_text_alignment: left\n\
+    \    header_font_size: 12\n    rows_font_size: 12\n    conditional_formatting_include_totals:
+    false\n    conditional_formatting_include_nulls: false\n    hidden_pivots: {}\n\
+    \    defaults_version: 1\n    listen:\n      Balance Amount: financial.balance_amount\n\
+    \      Payment Amount: financial.payment_amount\n      Deposit ID: financial.deposit_id\n\
+    \    row: 0\n    col: 0\n    width: 24\n    height: 8\n  filters:\n  - name: Balance
+    Amount\n    title: Balance Amount\n    type: field_filter\n    default_value:
+    \"<0\"\n    allow_multiple_values: true\n    required: false\n    ui_config:\n\
+    \      type: range_slider\n      display: inline\n    model: meridian_prod_carelogic\n\
+    \    explore: financial\n    listens_to_filters: []\n    field: financial.balance_amount\n\
+    \  - name: Payer Name\n    title: Payer Name\n    type: field_filter\n    default_value:
+    Vaya LME/MCO\n    allow_multiple_values: true\n    required: false\n    ui_config:\n\
+    \      type: advanced\n      display: popover\n    model: meridian_prod_carelogic\n\
+    \    explore: financial\n    listens_to_filters: []\n    field: claim.payer_name\n\
+    \  - name: Payment Amount\n    title: Payment Amount\n    type: field_filter\n\
+    \    default_value: not 0\n    allow_multiple_values: true\n    required: false\n\
+    \    ui_config:\n      type: range_slider\n      display: inline\n    model: meridian_prod_carelogic\n\
+    \    explore: financial\n    listens_to_filters: []\n    field: financial.payment_amount\n\
+    \  - name: Service Date\n    title: Service Date\n    type: field_filter\n   \
+    \ default_value: 2021/07/01 to 2024/07/31\n    allow_multiple_values: true\n \
+    \   required: false\n    ui_config:\n      type: relative_timeframes\n      display:
+    inline\n    model: meridian_prod_carelogic\n    explore: financial\n    listens_to_filters:
+    []\n    field: claim.service_date\n  - name: Claim Status\n    title: Claim Status\n\
+    \    type: field_filter\n    default_value: \"-Claim Reversed\"\n    allow_multiple_values:
+    true\n    required: false\n    ui_config:\n      type: advanced\n      display:
+    popover\n    model: meridian_prod_carelogic\n    explore: financial\n    listens_to_filters:
+    []\n    field: claim.claim_status\n  - name: Deposit ID\n    title: Deposit ID\n\
+    \    type: field_filter\n    default_value: '35158,35159,35160,35161,35162,35167,35169'\n\
+    \    allow_multiple_values: true\n    required: false\n    ui_config:\n      type:
+    range_slider\n      display: inline\n    model: meridian_prod_carelogic\n    explore:
+    financial\n    listens_to_filters: []\n    field: financial.deposit_id\n"
+  dashboard_id: '51'
+  dashboard_slug: F3g5agg3O77pvWclcIsHoh
+  dashboard_element_alert_counts:
+  - 0
+  scheduled_plans: []
+  alerts: []
+- !DashboardObject
+  legacy_folder_id:
+    folder_id: '31'
+    slug: k77y12tKaSAIimgzPHYRwG
+  lookml: "---\n- dashboard: count_of_unique_clients_\n  title: 'Count of Unique Clients
+    '\n  layout: newspaper\n  preferred_viewer: dashboards-next\n  preferred_slug:
+    k77y12tKaSAIimgzPHYRwG\n  elements:\n  - title: 'Count of Unique Clients '\n \
+    \   name: 'Count of Unique Clients '\n    model: meridian_prod_carelogic\n   \
+    \ explore: financial\n    type: looker_grid\n    fields: [payer_plan.payer_type,
+    payerguarantor, client.client_name, claim_staff.staff_name,\n      client.client_id,
+    claim.claim_id, claim.claim_item_id, claim.service_date, claim.claim_status,\n\
+    \      claim.claim_item_status, claim.claim_batched, procedure, claim.item_billed,\n\
+    \      claim.item_expected, claim.item_balance, claim_program.program_name, claim.organization_name,\n\
+    \      financial.payment_amount]\n    filters: {}\n    sorts: [claim.claim_item_id
+    desc]\n    limit: 5000\n    column_limit: 50\n    dynamic_fields:\n    - category:
+    dimension\n      expression: if(is_null(${payer_plan.payer_plan_id}),${claim_guarantor.guarantor_name},${claim.payer_plan_name})\n\
+    \      label: Payer/Guarantor\n      value_format:\n      value_format_name:\n\
+    \      dimension: payerguarantor\n      _kind_hint: dimension\n      _type_hint:
+    string\n    - category: dimension\n      expression: if(is_null(${procedure.procedure_id}),null,concat(if(is_null(${procedure.procedure_code}),\"\
+    \",concat(\n        ${procedure.procedure_code},\" - \")),if(is_null(${procedure.revenue_code}),\"\
+    \",concat(${procedure.revenue_code},\"\n        - \")),if(is_null(${procedure.procedure_name}),\"\
+    \",${procedure.procedure_name})))\n      label: Procedure\n      value_format:\n\
+    \      value_format_name:\n      dimension: procedure\n      _kind_hint: dimension\n\
+    \      _type_hint: string\n    filter_expression: NOT is_null(${payer_plan.payer_plan_id})
+    OR NOT is_null(${claim_guarantor.guarantor_id})\n    show_view_names: false\n\
+    \    show_row_numbers: true\n    transpose: false\n    truncate_text: true\n \
+    \   hide_totals: false\n    hide_row_totals: false\n    size_to_fit: true\n  \
+    \  table_theme: white\n    limit_displayed_rows: false\n    enable_conditional_formatting:
+    false\n    header_text_alignment: left\n    header_font_size: '12'\n    rows_font_size:
+    '12'\n    conditional_formatting_include_totals: false\n    conditional_formatting_include_nulls:
+    false\n    show_sql_query_menu_options: false\n    column_order: [\"$$$_row_numbers_$$$\"\
+    , payer_plan.payer_type, payerguarantor, client.client_name,\n      claim_staff.staff_name,
+    client.client_id, claim.claim_id, claim.claim_item_id,\n      claim.service_date,
+    claim.service_end_date, claim.item_billed, claim.item_expected,\n      claim.item_balance,
+    claim.claim_status, claim.claim_item_status, claim.claim_batched,\n      procedure]\n\
+    \    show_totals: true\n    show_row_totals: true\n    truncate_header: false\n\
+    \    series_labels:\n      claim.claim_batched: Batched\n    series_column_widths:\n\
+    \      payer_plan.payer_type: 159\n      payerguarantor: 278\n      client.client_name:
+    172\n      claim_staff.staff_name: 169\n      client.client_id: 84\n      claim.claim_id:
+    83\n      claim.claim_item_id: 111\n      claim.service_date: 107\n      claim.item_billed:
+    136\n      claim.item_expected: 124\n      claim.item_balance: 124\n      claim.claim_status:
+    125\n      claim.claim_item_status: 147\n      claim.claim_batched: 83\n     \
+    \ procedure: 308\n    series_cell_visualizations:\n      claim.item_billed:\n\
+    \        is_active: false\n    defaults_version: 1\n    listen:\n      Claim Line
+    Active: claim_item_line.claim_line_active\n      Claim Item Status: claim.claim_item_status\n\
+    \      Item Balance: claim.item_balance\n      Client Name: client.client_name\n\
+    \      Organization Name: claim.organization_name\n      Payer Plan Name: claim.payer_plan_name\n\
+    \      Payer Type: payer_plan.payer_type\n      Program Code: claim_line_program.program_code\n\
+    \      Program Name: claim_line_program.program_name\n      Staff Name: claim_staff.staff_name\n\
+    \      Service Date: claim.service_date\n    row: 0\n    col: 0\n    width: 24\n\
+    \    height: 12\n  filters:\n  - name: Claim Item Status\n    title: Claim Item
+    Status\n    type: field_filter\n    default_value: \"-Claim Item Reversed\"\n\
+    \    allow_multiple_values: true\n    required: false\n    ui_config:\n      type:
+    advanced\n      display: popover\n    model: meridian_prod_carelogic\n    explore:
+    financial\n    listens_to_filters: []\n    field: claim.claim_item_status\n  -
+    name: Item Balance\n    title: Item Balance\n    type: field_filter\n    default_value:
+    ''\n    allow_multiple_values: true\n    required: false\n    ui_config:\n   \
+    \   type: range_slider\n      display: inline\n    model: meridian_prod_carelogic\n\
+    \    explore: financial\n    listens_to_filters: []\n    field: claim.item_balance\n\
+    \  - name: Client Name\n    title: Client Name\n    type: field_filter\n    default_value:
+    ''\n    allow_multiple_values: true\n    required: false\n    ui_config:\n   \
+    \   type: advanced\n      display: popover\n    model: meridian_prod_carelogic\n\
+    \    explore: financial\n    listens_to_filters: []\n    field: client.client_name\n\
+    \  - name: Claim Line Active\n    title: Claim Line Active\n    type: field_filter\n\
+    \    default_value: \"-No\"\n    allow_multiple_values: true\n    required: false\n\
+    \    ui_config:\n      type: advanced\n      display: popover\n    model: meridian_prod_carelogic\n\
+    \    explore: financial\n    listens_to_filters: []\n    field: claim_item_line.claim_line_active\n\
+    \  - name: Organization Name\n    title: Organization Name\n    type: field_filter\n\
+    \    default_value: ''\n    allow_multiple_values: true\n    required: false\n\
+    \    ui_config:\n      type: advanced\n      display: popover\n    model: meridian_prod_carelogic\n\
+    \    explore: financial\n    listens_to_filters: []\n    field: claim.organization_name\n\
+    \  - name: Staff Name\n    title: Staff Name\n    type: field_filter\n    default_value:
+    ''\n    allow_multiple_values: true\n    required: false\n    ui_config:\n   \
+    \   type: advanced\n      display: popover\n    model: meridian_prod_carelogic\n\
+    \    explore: financial\n    listens_to_filters: []\n    field: claim_staff.staff_name\n\
+    \  - name: Payer Type\n    title: Payer Type\n    type: field_filter\n    default_value:
+    ''\n    allow_multiple_values: true\n    required: false\n    ui_config:\n   \
+    \   type: advanced\n      display: popover\n    model: meridian_prod_carelogic\n\
+    \    explore: financial\n    listens_to_filters: []\n    field: payer_plan.payer_type\n\
+    \  - name: Program Code\n    title: Program Code\n    type: field_filter\n   \
+    \ default_value: ''\n    allow_multiple_values: true\n    required: false\n  \
+    \  ui_config:\n      type: advanced\n      display: popover\n    model: meridian_prod_carelogic\n\
+    \    explore: financial\n    listens_to_filters: []\n    field: claim_line_program.program_code\n\
+    \  - name: Payer Plan Name\n    title: Payer Plan Name\n    type: field_filter\n\
+    \    default_value: ''\n    allow_multiple_values: true\n    required: false\n\
+    \    ui_config:\n      type: advanced\n      display: popover\n    model: meridian_prod_carelogic\n\
+    \    explore: financial\n    listens_to_filters: []\n    field: claim.payer_plan_name\n\
+    \  - name: Program Name\n    title: Program Name\n    type: field_filter\n   \
+    \ default_value: ''\n    allow_multiple_values: true\n    required: false\n  \
+    \  ui_config:\n      type: advanced\n      display: popover\n    model: meridian_prod_carelogic\n\
+    \    explore: financial\n    listens_to_filters: []\n    field: claim_line_program.program_name\n\
+    \  - name: Service Date\n    title: Service Date\n    type: field_filter\n   \
+    \ default_value: 2023/04/01 to 2024/06/30\n    allow_multiple_values: true\n \
+    \   required: false\n    ui_config:\n      type: relative_timeframes\n      display:
+    inline\n    model: meridian_prod_carelogic\n    explore: financial\n    listens_to_filters:
+    []\n    field: claim.service_date\n"
+  dashboard_id: '52'
+  dashboard_slug: k77y12tKaSAIimgzPHYRwG
+  dashboard_element_alert_counts:
+  - 0
+  scheduled_plans: []
+  alerts: []

@@ -1,0 +1,353 @@
+# FOLDER_PERMISSIONS
+# Opening Session Welcome to the Capturator, this is the Folder place
+# -----------------------------------------------------
+
+- !LookerFolder
+  parent_id:
+  id: '1'
+  name: Shared
+  subfolder:
+  - !LookerFolder
+    parent_id: '1'
+    id: '8'
+    name: DEMO2
+    subfolder:
+    - !LookerFolder
+      parent_id: '8'
+      id: '46'
+      name: General/Miscellaneous
+      subfolder: []
+      content_metadata_id: '399'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '45'
+      name: Utilization
+      subfolder: []
+      content_metadata_id: '398'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '44'
+      name: Supervisory
+      subfolder: []
+      content_metadata_id: '397'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '43'
+      name: System Admin
+      subfolder: []
+      content_metadata_id: '396'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '42'
+      name: Report Writer/Templates
+      subfolder: []
+      content_metadata_id: '395'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '41'
+      name: QA/Compliance
+      subfolder: []
+      content_metadata_id: '394'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '40'
+      name: Outcomes
+      subfolder: []
+      content_metadata_id: '393'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '39'
+      name: Operations
+      subfolder: []
+      content_metadata_id: '392'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '38'
+      name: External/Grants
+      subfolder: []
+      content_metadata_id: '391'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '37'
+      name: Executive
+      subfolder: []
+      content_metadata_id: '390'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '36'
+      name: Clinical
+      subfolder: []
+      content_metadata_id: '389'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '35'
+      name: Billing/AR
+      subfolder: []
+      content_metadata_id: '388'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '34'
+      name: Administrative
+      subfolder: []
+      content_metadata_id: '387'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '33'
+      name: In Progress
+      subfolder: []
+      content_metadata_id: '386'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '28'
+      name: Editable Standard Dashboards
+      subfolder: []
+      content_metadata_id: '195'
+      team_edit: []
+      team_view: []
+    content_metadata_id: '9'
+    team_edit:
+    - DEMO2_Writer
+    team_view:
+    - DEMO2_Viewer
+  content_metadata_id: '1'
+  team_edit: []
+  team_view:
+  - DEMO2_Viewer
+  - DEMO2_Writer
+# Looker Role
+# Opening Session Welcome to the Capturator, this is the Role place
+# -----------------------------------------------------
+
+
+
+# PERMISSION SETS
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_custom_fields
+  - create_table_calculations
+  - download_without_limit
+  - explore
+  - mobile_app_access
+  - save_content
+  - save_dashboards
+  - save_looks
+  - see_drill_overlay
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  name: Report Writer
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_custom_fields
+  - create_table_calculations
+  - download_without_limit
+  - explore
+  - manage_spaces
+  - mobile_app_access
+  - save_content
+  - save_dashboards
+  - save_looks
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_sql
+  - see_user_dashboards
+  - send_to_integration
+  name: User
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - clear_cache_refresh
+  - download_with_limit
+  - mobile_app_access
+  - see_drill_overlay
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  name: Report Viewer
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_custom_fields
+  - create_table_calculations
+  - deploy
+  - develop
+  - download_without_limit
+  - explore
+  - manage_groups
+  - manage_project_models
+  - manage_spaces
+  - mobile_app_access
+  - save_content
+  - save_dashboards
+  - save_looks
+  - schedule_external_look_emails
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_pdts
+  - see_queries
+  - see_sql
+  - see_user_dashboards
+  - see_users
+  - send_to_integration
+  - use_global_connections
+  - use_sql_runner
+  name: Developer
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - clear_cache_refresh
+  - download_without_limit
+  - mobile_app_access
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  - send_to_integration
+  name: Viewer
+
+
+# MODEL SETS
+- !LookerModelSet
+  models:
+  - demo2_prod_carelogic
+  name: DEMO2
+- !LookerModelSet
+  models:
+  - demo2_prod_carelogic
+  - extension-api-explorer
+  name: All
+
+
+# LOOKER ROLES
+- !LookerRoles
+  permission_set: User
+  model_set: All
+  teams:
+  - User
+  name: User
+- !LookerRoles
+  permission_set: Developer
+  model_set: All
+  teams: []
+  name: Developer
+- !LookerRoles
+  permission_set: Viewer
+  model_set: All
+  teams: []
+  name: Viewer
+- !LookerRoles
+  permission_set: Report Viewer
+  model_set: DEMO2
+  teams: []
+  name: Viewer-DEMO2
+- !LookerRoles
+  permission_set: Report Writer
+  model_set: DEMO2
+  teams: []
+  name: Writer-DEMO2
+
+
+# USER_ATTRIBUTES
+- !LookerUserAttribute
+  name: allowed_customer_schemas
+  uatype: string
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  default_value: ''
+  teams:
+  - DEMO2_Viewer: demo2_prod
+  - DEMO2_Writer: demo2_prod
+- !LookerUserAttribute
+  name: landing_page
+  uatype: relative_url
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  default_value: /browse
+  teams: []
+- !LookerUserAttribute
+  name: locale
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: looker_internal_email_domain_allowlist
+  uatype: string
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: number_format
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: signed_in_org
+  uatype: number
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  default_value: ''
+  teams:
+  - DEMO2_Viewer: '1000'
+  - DEMO2_Writer: '1000'
+- !LookerUserAttribute
+  name: staff_id
+  uatype: number
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: ''
+  teams: []

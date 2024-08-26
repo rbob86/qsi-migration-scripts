@@ -1,0 +1,543 @@
+# FOLDER_PERMISSIONS
+# Opening Session Welcome to the Capturator, this is the Folder place
+# -----------------------------------------------------
+
+- !LookerFolder
+  parent_id:
+  id: '1'
+  name: Shared
+  subfolder:
+  - !LookerFolder
+    parent_id: '1'
+    id: '9'
+    name: DEMO
+    subfolder:
+    - !LookerFolder
+      parent_id: '9'
+      id: '70'
+      name: General/Miscellaneous
+      subfolder: []
+      content_metadata_id: '150'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '9'
+      id: '69'
+      name: Utilization
+      subfolder: []
+      content_metadata_id: '149'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '9'
+      id: '68'
+      name: Supervisory
+      subfolder: []
+      content_metadata_id: '148'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '9'
+      id: '67'
+      name: System Admin
+      subfolder: []
+      content_metadata_id: '147'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '9'
+      id: '66'
+      name: Report Writer/Templates
+      subfolder: []
+      content_metadata_id: '146'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '9'
+      id: '65'
+      name: QA/Compliance
+      subfolder: []
+      content_metadata_id: '145'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '9'
+      id: '64'
+      name: Outcomes
+      subfolder: []
+      content_metadata_id: '144'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '9'
+      id: '63'
+      name: Operations
+      subfolder: []
+      content_metadata_id: '143'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '9'
+      id: '62'
+      name: External/Grants
+      subfolder: []
+      content_metadata_id: '142'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '9'
+      id: '61'
+      name: Executive
+      subfolder: []
+      content_metadata_id: '141'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '9'
+      id: '60'
+      name: Clinical
+      subfolder: []
+      content_metadata_id: '140'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '9'
+      id: '59'
+      name: Billing/AR
+      subfolder: []
+      content_metadata_id: '139'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '9'
+      id: '58'
+      name: Administrative
+      subfolder: []
+      content_metadata_id: '138'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '9'
+      id: '57'
+      name: In Progress
+      subfolder: []
+      content_metadata_id: '137'
+      team_edit: []
+      team_view: []
+    content_metadata_id: '10'
+    team_edit:
+    - DEMO_Writer
+    team_view:
+    - DEMO_Viewer
+  - !LookerFolder
+    parent_id: '1'
+    id: '8'
+    name: DEMO6
+    subfolder:
+    - !LookerFolder
+      parent_id: '8'
+      id: '56'
+      name: General/Miscellaneous
+      subfolder: []
+      content_metadata_id: '136'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '55'
+      name: Utilization
+      subfolder: []
+      content_metadata_id: '135'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '54'
+      name: Supervisory
+      subfolder: []
+      content_metadata_id: '134'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '53'
+      name: System Admin
+      subfolder: []
+      content_metadata_id: '133'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '52'
+      name: Report Writer/Templates
+      subfolder: []
+      content_metadata_id: '132'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '51'
+      name: QA/Compliance
+      subfolder: []
+      content_metadata_id: '131'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '50'
+      name: Outcomes
+      subfolder: []
+      content_metadata_id: '130'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '49'
+      name: Operations
+      subfolder: []
+      content_metadata_id: '129'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '48'
+      name: External/Grants
+      subfolder: []
+      content_metadata_id: '128'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '47'
+      name: Executive
+      subfolder: []
+      content_metadata_id: '127'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '46'
+      name: Clinical
+      subfolder: []
+      content_metadata_id: '126'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '45'
+      name: Billing/AR
+      subfolder: []
+      content_metadata_id: '125'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '44'
+      name: Administrative
+      subfolder: []
+      content_metadata_id: '124'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '8'
+      id: '43'
+      name: In Progress
+      subfolder: []
+      content_metadata_id: '123'
+      team_edit: []
+      team_view: []
+    content_metadata_id: '9'
+    team_edit:
+    - DEMO6_Writer
+    team_view:
+    - DEMO6_Viewer
+  - !LookerFolder
+    parent_id: '1'
+    id: '7'
+    name: MERIDIAN
+    subfolder:
+    - !LookerFolder
+      parent_id: '7'
+      id: '42'
+      name: General/Miscellaneous
+      subfolder: []
+      content_metadata_id: '122'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '7'
+      id: '41'
+      name: Utilization
+      subfolder: []
+      content_metadata_id: '121'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '7'
+      id: '40'
+      name: Supervisory
+      subfolder: []
+      content_metadata_id: '120'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '7'
+      id: '39'
+      name: System Admin
+      subfolder: []
+      content_metadata_id: '119'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '7'
+      id: '38'
+      name: Report Writer/Templates
+      subfolder: []
+      content_metadata_id: '118'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '7'
+      id: '37'
+      name: QA/Compliance
+      subfolder: []
+      content_metadata_id: '117'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '7'
+      id: '36'
+      name: Outcomes
+      subfolder: []
+      content_metadata_id: '116'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '7'
+      id: '35'
+      name: Operations
+      subfolder: []
+      content_metadata_id: '115'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '7'
+      id: '34'
+      name: External/Grants
+      subfolder: []
+      content_metadata_id: '114'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '7'
+      id: '33'
+      name: Executive
+      subfolder: []
+      content_metadata_id: '113'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '7'
+      id: '32'
+      name: Clinical
+      subfolder: []
+      content_metadata_id: '112'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '7'
+      id: '31'
+      name: Billing/AR
+      subfolder: []
+      content_metadata_id: '111'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '7'
+      id: '30'
+      name: Administrative
+      subfolder: []
+      content_metadata_id: '110'
+      team_edit: []
+      team_view: []
+    - !LookerFolder
+      parent_id: '7'
+      id: '29'
+      name: In Progress
+      subfolder: []
+      content_metadata_id: '109'
+      team_edit: []
+      team_view: []
+    content_metadata_id: '8'
+    team_edit:
+    - MERIDIAN_Writer
+    team_view:
+    - MERIDIAN_Viewer
+  content_metadata_id: '1'
+  team_edit: []
+  team_view:
+  - MERIDIAN_Viewer
+  - MERIDIAN_Writer
+  - DEMO6_Viewer
+  - DEMO6_Writer
+  - DEMO_Viewer
+  - DEMO_Writer
+# Looker Role
+# Opening Session Welcome to the Capturator, this is the Role place
+# -----------------------------------------------------
+
+
+
+# PERMISSION SETS
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_custom_fields
+  - create_table_calculations
+  - deploy
+  - develop
+  - download_without_limit
+  - explore
+  - manage_project_models
+  - manage_spaces
+  - mobile_app_access
+  - save_content
+  - save_dashboards
+  - save_looks
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_pdts
+  - see_sql
+  - see_user_dashboards
+  - send_to_integration
+  - use_global_connections
+  - use_sql_runner
+  name: Developer
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - clear_cache_refresh
+  - download_without_limit
+  - mobile_app_access
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml_dashboards
+  - see_looks
+  - see_user_dashboards
+  - send_to_integration
+  name: Viewer
+- !LookerPermissionSet
+  permissions:
+  - access_data
+  - can_create_forecast
+  - clear_cache_refresh
+  - create_custom_fields
+  - create_table_calculations
+  - download_without_limit
+  - explore
+  - manage_spaces
+  - mobile_app_access
+  - save_content
+  - save_dashboards
+  - save_looks
+  - schedule_look_emails
+  - see_drill_overlay
+  - see_lookml
+  - see_lookml_dashboards
+  - see_looks
+  - see_sql
+  - see_user_dashboards
+  - send_to_integration
+  name: User
+
+
+# MODEL SETS
+- !LookerModelSet
+  models:
+  - demo_prod_carelogic
+  - demo6_prod_carelogic
+  - meridian_prod_carelogic
+  name: All
+
+
+# LOOKER ROLES
+- !LookerRoles
+  permission_set: User
+  model_set: All
+  teams:
+  - User
+  name: User
+- !LookerRoles
+  permission_set: Developer
+  model_set: All
+  teams: []
+  name: Developer
+- !LookerRoles
+  permission_set: Viewer
+  model_set: All
+  teams: []
+  name: Viewer
+
+
+# USER_ATTRIBUTES
+- !LookerUserAttribute
+  name: allowed_customer_schemas
+  uatype: string
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: landing_page
+  uatype: relative_url
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'True'
+  default_value: /browse
+  teams: []
+- !LookerUserAttribute
+  name: locale
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: looker_internal_email_domain_allowlist
+  uatype: string
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: number_format
+  uatype: string
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: signed_in_org
+  uatype: number
+  hidden_value: false
+  user_view: 'False'
+  user_edit: 'False'
+  default_value: ''
+  teams: []
+- !LookerUserAttribute
+  name: staff_id
+  uatype: number
+  hidden_value: false
+  user_view: 'True'
+  user_edit: 'False'
+  default_value: ''
+  teams: []
