@@ -11,7 +11,7 @@ This repo contains custom-tailored scripts for migrating Qualifacts Looker custo
 
 > NOTE: Before execution, review `current-customer-instance-configuration-mapping.csv` to see which instances currently contain which customer accounts, and `proposed-customer-instance-mapping.csv` to see which customer accounts should end up together.  The latter is based on overall usage and peak time analysis.
 
-![alt text](Isolated.png "Title")
+![Migration Process](migration-process.jpg "Migration Process")
 
 ## Installation
 
