@@ -7,9 +7,11 @@ This repo contains custom-tailored scripts for migrating Qualifacts Looker custo
 3. Detect duplicate slugs; if found, manually update
 4. Combine customer settings/content based on proposed instance mapping
 5. Run lmanage configurator to execute migration
-6. Update owner for scheduled plans and alerts to original owner
+6. Get customer mappings for folder id, viewer group id, and writer group id
+7. Update owner for scheduled plans and alerts to original owner
 
-> NOTE: Before execution, review `current-customer-instance-configuration-mapping.csv` to see which instances currently contain which customer accounts, and `proposed-customer-instance-mapping.csv` to see which customer accounts should end up together.  The latter is based on overall usage and peak time analysis.
+> NOTE: Before execution, review `current-customer-instance-configuration-mapping.csv` to see which instances currently contain which customer accounts, and `proposed-customer-instance-mapping.csv` to see which customer accounts should end up together.  The latter is based on overall usage and peak time analysis. For overall usage analysis and alternative proposed mappings, see: https://docs.google.com/spreadsheets/d/18bgF59iOuMUrNLJmiuJreQRfI9YMy_BZYlVHm4CJh90/edit?gid=1194315819#gid=1194315819
+
 
 ![Migration Process](migration-process.jpg "Migration Process")
 

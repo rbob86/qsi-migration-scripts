@@ -74,7 +74,7 @@ lmanage configurator \
 ```
 cd ../6-get-customer-mappings
 
-python get_customer_mappings.py --ini_file ../5-lmanage-configurator/ini-files/qsi166.ini --output-dir 166
+python get_customer_mappings.py --ini-file ../5-lmanage-configurator/ini-files/qsi166.ini --output-dir 166
 ```
 
 This will output a .csv containing all customer accounts, their respective folder id, and their respective viewer and writer group ids, like so:
