@@ -34,6 +34,37 @@ If **lmanage** is not accessible via the command line:
 pip install lmanage
 ```
 
+## Customer/Instance Mappings
+
+The following files can help determine which customers/instances to download and migrate to:
+
+- current-customer-instance-mapping.csv
+- proposed-customer-instance-mapping.csv
+
+Run the following to see a breakdown of customers from the proposed mapping and command output for steps 2 and 4:
+
+```
+python get_current_instances.py
+```
+
+This will result in an output like:
+
+```
+Instance No: 001
+Customers: AAMHC DECNXNS2 ILSOSUB OCMACC PAARCMANOR WACHLDC CACMMHC EARTH GAIT MAVOLAM MTHFH OHBHCCH OHRFSCF SDLSSSD WILDR
+Step 2 Command: python lmanage_parallel.py -i 013 024 046 050 061 092 103 117 120 123 127 134 137 151
+Step 4 Command: python consolidate_config_files.py --customers AAMHC DECNXNS2 ILSOSUB OCMACC PAARCMANOR WACHLDC CACMMHC EARTH GAIT MAVOLAM MTHFH OHBHCCH OHRFSCF SDLSSSD WILDR --instances qsi013 qsi024 qsi046 qsi050 qsi061 qsi092 qsi103 qsi117 qsi120 qsi123 qsi127 qsi134 qsi137 qsi151 --output-dir 001
+
+Instance No: 002
+Customers: AKACHMS DEMO INYTHOC OCNMH PAAUBER WACLRKC CAEXODUS CTCJR GARCVPL MAGADRA MIALLIANCE NJPREBH OHMATHP ORFAMSL PTHWY WAPOCCS
+Step 2 Command: python lmanage_parallel.py -i 049 078 081 083 089 096 098 099 105 119 120 121 126 134 139 143
+Step 4 Command: python consolidate_config_files.py --customers AKACHMS DEMO INYTHOC OCNMH PAAUBER WACLRKC CAEXODUS CTCJR GARCVPL MAGADRA MIALLIANCE NJPREBH OHMATHP ORFAMSL PTHWY WAPOCCS --instances qsi049 qsi078 qsi081 qsi083 qsi089 qsi096 qsi098 qsi099 qsi105 qsi119 qsi120 qsi121 qsi126 qsi134 qsi139 qsi143 --output-dir 002
+
+...
+```
+
+Use these step 2 and step 4 commands during the overall migration process for the desired instance.
+
 ## 1. Generating .ini files (optional)
 
 > NOTE: This step is optional because `1-create-ini-files/` already contains .ini files for all instances.  However, if you want to use credentials for a new user, you would run this process.
