@@ -12,6 +12,37 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
+## Get commands dynamically
+
+Run:
+
+```
+python get_commands.py
+```
+
+To get a list of commands generated for you for all of the proposed instance configurations.  In this case, you'll want to copy the ones for "Instance No: 001":
+
+```
+Instance No: 001
+Customers: AAMHC DECNXNS2 ILSOSUB OCMACC PAARCMANOR WACHLDC CACMMHC EARTH GAIT MAVOLAM MTHFH OHBHCCH OHRFSCF SDLSSSD WILDR
+
+Commands:
+  Step 2
+  python lmanage_parallel.py -i 013 024 046 050 061 092 103 117 120 123 127 134 137 151
+
+  Step 4
+  python consolidate_config_files.py --customers AAMHC DECNXNS2 ILSOSUB OCMACC PAARCMANOR WACHLDC CACMMHC EARTH GAIT MAVOLAM MTHFH OHBHCCH OHRFSCF SDLSSSD WILDR --instances qsi013 qsi024 qsi046 qsi050 qsi061 qsi092 qsi103 qsi117 qsi120 qsi123 qsi127 qsi134 qsi137 qsi151 --output-dir 001
+
+  Step 5
+  lmanage configurator --config-dir ../4-consolidate-config-files/output/001 --ini-file ini-files/clqsi001.ini
+
+  Step 6
+  python get_customer_mappings.py --ini-file ../5-lmanage-configurator/ini-files/clqsi001.ini --output-dir 001
+
+  Step 7
+  python update_content_owner.py --mapping ../4-consolidate-config-files/output/001/owner-mapping.json --ini-file ../5-lmanage-configurator/ini-files/clqsi001.ini
+  ```
+
 ## 1. Create .ini files
 
 _No action needed._
@@ -69,10 +100,20 @@ lmanage configurator \
   --ini-file ini-files/clqsi001.ini
 ```
 
-## 6. Update plan/alert owners
+## 6. Get customer folder/group mappings
 
 ```
-cd ../6-update-content-owner
+cd ../6-get-customer-mappings
+
+python get_customer_mappings.py --ini-file ../5-lmanage-configurator/ini-files/clqsi001.ini --output-dir 001
+```
+
+This will output a .csv containing all customer accounts, their respective folder id, and their respective viewer and writer group ids.
+
+## 7. Update plan/alert owners
+
+```
+cd ../7-update-content-owner
 
 python update_content_owner.py \
   --mapping ../4-consolidate-config-files/output/001/owner-mapping.json \

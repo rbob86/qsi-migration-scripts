@@ -69,10 +69,35 @@ lmanage configurator \
   --ini-file ini-files/qsi166.ini
 ```
 
-## 6. Update plan/alert owners
+## 6. Get customer folder/group mappings
 
 ```
-cd ../6-update-content-owner
+cd ../6-get-customer-mappings
+
+python get_customer_mappings.py --ini_file ../5-lmanage-configurator/ini-files/qsi166.ini --output-dir 166
+```
+
+This will output a .csv containing all customer accounts, their respective folder id, and their respective viewer and writer group ids, like so:
+
+```
+customer,instance,folder_id,viewer_group_id,writer_group_id
+DEMO11,https://looker-166.qualifacts.org,3759,71,59
+DEMO12,https://looker-166.qualifacts.org,3744,74,73
+DEMO13,https://looker-166.qualifacts.org,3819,60,57
+DEMO15,https://looker-166.qualifacts.org,3684,68,65
+DEMO2,https://looker-166.qualifacts.org,3668,46,35
+DEMO3,https://looker-166.qualifacts.org,3729,58,61
+DEMO4,https://looker-166.qualifacts.org,3804,67,62
+DEMO5,https://looker-166.qualifacts.org,3714,55,64
+DEMO6,https://looker-166.qualifacts.org,3789,72,63
+DEMO7,https://looker-166.qualifacts.org,3699,69,66
+DEMO,https://looker-166.qualifacts.org,3774,56,70
+```
+
+## 7. Update plan/alert owners
+
+```
+cd ../7-update-content-owner
 
 python update_content_owner.py \
   --mapping ../4-consolidate-config-files/output/166/owner-mapping.json \

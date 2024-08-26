@@ -64,6 +64,9 @@ Commands:
   lmanage configurator --config-dir ../4-consolidate-config-files/output/001 --ini-file ini-files/clqsi001.ini
 
   Step 6
+  python get_customer_mappings.py --ini-file ../5-lmanage-configurator/ini-files/clqsi001.ini --output-dir 001
+
+  Step 7
   python update_content_owner.py --mapping ../4-consolidate-config-files/output/001/owner-mapping.json --ini-file ../5-lmanage-configurator/ini-files/clqsi001.ini
 
 -----------------
@@ -82,6 +85,9 @@ Commands:
   lmanage configurator --config-dir ../4-consolidate-config-files/output/002 --ini-file ini-files/clqsi002.ini
 
   Step 6
+  python get_customer_mappings.py --ini-file ../5-lmanage-configurator/ini-files/clqsi002.ini --output-dir 002
+
+  Step 7
   python update_content_owner.py --mapping ../4-consolidate-config-files/output/002/owner-mapping.json --ini-file ../5-lmanage-configurator/ini-files/clqsi002.ini
 
 ...
@@ -212,12 +218,49 @@ lmanage configurator \
 
 > NOTE: Ensure the use of an official service account for the ini-file credentials instead of a personal account, so saved content's metadata will not show the owner or created by as an employee.
 
-## 6. Update Scheduled Plan/Alert Owner
+## 6. Get Customer Group/Folder Mappings
+
+For each migrated customer account we want to know the following of them:
+
+- Name/Folder Name
+- Folder ID
+- Viewer Group ID
+- Writer Group ID
+
+For this, you can run the following:
+
+```
+cd 6-get-customer-mappings
+
+python get_customer_mappings.py
+```
+
+This will save a .csv similar to the following:
+
+```
+customer,instance,folder_id,viewer_group_id,writer_group_id
+DEMO11,https://looker-166.qualifacts.org,3759,71,59
+DEMO12,https://looker-166.qualifacts.org,3744,74,73
+DEMO13,https://looker-166.qualifacts.org,3819,60,57
+DEMO15,https://looker-166.qualifacts.org,3684,68,65
+DEMO2,https://looker-166.qualifacts.org,3668,46,35
+DEMO3,https://looker-166.qualifacts.org,3729,58,61
+DEMO4,https://looker-166.qualifacts.org,3804,67,62
+DEMO5,https://looker-166.qualifacts.org,3714,55,64
+DEMO6,https://looker-166.qualifacts.org,3789,72,63
+DEMO7,https://looker-166.qualifacts.org,3699,69,66
+DEMO,https://looker-166.qualifacts.org,3774,56,70
+```
+
+This data can be used to populate associated values in carelogic.
+
+
+## 7. Update Scheduled Plan/Alert Owner
 
 Once content is migrated to a target instance, the owner of scheduled plans and alerts for dashboards needs to be updated on that instance.  Review the owner-mapping.json file generated from step 4 to confirm that the owners match their associated scheduled plans and alerts.  Then, run:
 
 ```
-cd 6-update-content-owner
+cd 7-update-content-owner
 
 python update_content_owner.py \
   --mapping-dir [dir name containing owner-mapping.json from step #4] \
