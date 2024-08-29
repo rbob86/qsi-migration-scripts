@@ -15,7 +15,7 @@ with open('current-customer-instance-mapping.csv', mode='r') as file:
 # Function to find the current instances for each customer in a given row
 def find_current_instances(instance_row):
     instances = set()  # Use a set to ensure uniqueness across all customers in the row
-    customers = instance_row['customers'].split(',')
+    customers = instance_row['Customers'].split(',')
     for customer in customers:
         customer = customer.strip()
         if customer in customer_to_url:
@@ -26,9 +26,9 @@ def find_current_instances(instance_row):
 with open('proposed-customer-instance-mapping.csv', mode='r') as file:
     reader = csv.DictReader(file)
     for row in reader:
-        instance_no = f"{int(row['instance_no']):03d}"
+        instance_no = f"{int(row['Instance No.']):03d}"
         current_instances = find_current_instances(row)
-        customers = row['customers'].replace(',', '')
+        customers = row['Customers'].replace(',', '')
         qsi_instances = [f"qsi{i}" for i in current_instances]
 
         print(f"Instance No: {instance_no}")
