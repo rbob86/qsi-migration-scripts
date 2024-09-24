@@ -101,8 +101,8 @@
 # MODEL SETS
 - !LookerModelSet
   models:
-    - bi_carelogic
-  name: bi_carelogic
+    - standard_carelogic
+  name: standard_carelogic
 
 # LOOKER ROLES
 - !LookerRoles
@@ -123,12 +123,12 @@
   name: Viewer
 - !LookerRoles
   permission_set: Report Viewer
-  model_set: bi_carelogic
+  model_set: standard_carelogic
   teams: []
   name: Report Viewer
 - !LookerRoles
   permission_set: Report Writer
-  model_set: bi_carelogic
+  model_set: standard_carelogic
   teams: []
   name: Report Writer
 

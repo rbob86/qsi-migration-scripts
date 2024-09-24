@@ -4,7 +4,7 @@ from yaml_constructors import LookObject, DashboardObject
 
 
 class ContentManager:
-    MODEL_NAME = "bi_carelogic"
+    MODEL_NAME = "standard_carelogic"
 
     def __init__(self):
         self.current_content = []

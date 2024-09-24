@@ -181,6 +181,18 @@ class AlertDestinationObject:
         self.destination_type = destination_type
         self.email_address = email_address
 
+class AlertAppliedDashboardFilterObject:
+    def __init__(self, filter_title, field_name, filter_value, filter_description):
+        self.filter_title = filter_title
+        self.field_name = field_name
+        self.filter_value = filter_value
+        self.filter_description = filter_description
+
+class AlertFieldFilterObject:
+    def __init__(self, field_name, field_value, filter_value):
+        self.field_name = field_name
+        self.field_value = field_value
+        self.filter_value = filter_value
 
 class AlertObject:
     def __init__(
@@ -303,12 +315,29 @@ def construct_scheduled_plan(loader, node):
 
 def construct_alert_field_object(loader, node):
     values = loader.construct_mapping(node)
+    filters = values.pop("filter", [])
+    if filters:
+        filters = [
+            AlertFieldFilterObject(**f) if isinstance(f, dict) else f
+            for f in filters
+        ]
+    values["filter"] = filters
     return AlertFieldObject(**values)
+
+
+def construct_alert_field_filter_object(loader, node):
+    values = loader.construct_mapping(node)
+    return AlertFieldFilterObject(**values)
 
 
 def construct_alert_destination_object(loader, node):
     values = loader.construct_mapping(node)
     return AlertDestinationObject(**values)
+
+
+def construct_alert_applied_dashboard_filter_object(loader, node):
+    values = loader.construct_mapping(node)
+    return AlertAppliedDashboardFilterObject(**values)
 
 
 def construct_alert_object(loader, node):
@@ -319,11 +348,18 @@ def construct_alert_object(loader, node):
             AlertDestinationObject(**dest) if isinstance(dest, dict) else dest
             for dest in destinations
         ]
+    dashboard_filters = values.pop("applied_dashboard_filters", [])
+    if dashboard_filters:
+        dashboard_filters = [
+            AlertAppliedDashboardFilterObject(**d) if isinstance(d, dict) else d
+            for d in dashboard_filters
+        ]
     field = values.pop("field", None)
     if field and not isinstance(field, AlertFieldObject):
         field = AlertFieldObject(**field)
     values["destinations"] = destinations
     values["field"] = field
+    values["applied_dashboard_filters"] = dashboard_filters
     return AlertObject(**values)
 
 
@@ -381,6 +417,14 @@ def represent_alert_field_object(dumper, data):
     return dumper.represent_mapping("!AlertFieldObject", data.__dict__)
 
 
+def represent_alert_applied_dashboard_filter_object(dumper, data):
+    return dumper.represent_mapping("!AlertAppliedDashboardFilterObject", data.__dict__)
+
+
+def represent_alert_field_filter_object(dumper, data):
+    return dumper.represent_mapping("!AlertFieldFilterObject", data.__dict__)
+
+
 def represent_alert_destination_object(dumper, data):
     return dumper.represent_mapping("!AlertDestinationObject", data.__dict__)
 
@@ -413,6 +457,8 @@ yaml.add_constructor("!UserPublic", construct_user_public)
 yaml.add_constructor("!ScheduledPlanDestination", construct_scheduled_plan_destination)
 yaml.add_constructor("!ScheduledPlan", construct_scheduled_plan)
 yaml.add_constructor("!AlertFieldObject", construct_alert_field_object)
+yaml.add_constructor("!AlertAppliedDashboardFilterObject", construct_alert_applied_dashboard_filter_object)
+yaml.add_constructor("!AlertFieldFilterObject", construct_alert_field_filter_object)
 yaml.add_constructor("!AlertDestinationObject", construct_alert_destination_object)
 yaml.add_constructor("!AlertObject", construct_alert_object)
 yaml.add_constructor("!DashboardObject", construct_dashboard_object)
@@ -427,6 +473,8 @@ yaml.add_representer(UserPublic, represent_user_public)
 yaml.add_representer(ScheduledPlanDestination, represent_scheduled_plan_destination)
 yaml.add_representer(ScheduledPlan, represent_scheduled_plan)
 yaml.add_representer(AlertFieldObject, represent_alert_field_object)
+yaml.add_representer(AlertAppliedDashboardFilterObject, represent_alert_applied_dashboard_filter_object)
+yaml.add_representer(AlertFieldFilterObject, represent_alert_field_filter_object)
 yaml.add_representer(AlertDestinationObject, represent_alert_destination_object)
 yaml.add_representer(AlertObject, represent_alert_object)
 yaml.add_representer(DashboardObject, represent_dashboard_object)

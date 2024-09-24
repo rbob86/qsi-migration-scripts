@@ -119,13 +119,12 @@ def update_owner_mapping(
     else:
         item_to_save.update(
             {
-                "applied_dashboard_filters": item.applied_dashboard_filters,
                 "cron": item.cron,
                 "comparison_type": item.comparison_type,
                 "threshold": item.threshold,
                 "field_title": item.field.title,
                 "field_name": item.field.name,
-                "field_filter": item.field.filter,
+                "field_filter": [f.__dict__ for f in item.field.filter],
             }
         )
 
@@ -138,7 +137,8 @@ def update_owner_mapping(
             "user_attributes": user_info["user_attributes"],
             "external_user_id": user_info["external_user_id"],
             "group_name": user_info["group_name"],
-            "plans" if is_plan else "alerts": [item_to_save],
+            "plans": [item_to_save] if is_plan else [],
+            "alerts": [item_to_save] if not is_plan else []
         }
     else:
         owner_mapping[owner_id]["plans" if is_plan else "alerts"].append(item_to_save)

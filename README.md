@@ -218,6 +218,10 @@ lmanage configurator \
   --ini-file ini-files/clqsi001.ini
 ```
 
+lmanage configurator \
+  --config-dir ../4-consolidate-config-files/output/166 \
+  --ini-file ini-files/qsi166.ini
+
 > NOTE: Ensure the use of an official service account for the ini-file credentials instead of a personal account, so saved content's metadata will not show the owner or created by as an employee.
 
 ## 6. Get Customer Group/Folder Mappings
@@ -234,7 +238,15 @@ For this, you can run the following:
 ```
 cd 6-get-customer-mappings
 
-python get_customer_mappings.py
+python get_customer_mappings.py \
+  --ini-file [ini file of target instance] \
+  --output-dir [name of output subdirectory to store mapping csv]
+```
+
+For example:
+
+```
+python get_customer_mappings.py --ini-file ../5-lmanage-configurator/ini-files/qsi166.ini --output-dir 166
 ```
 
 This will save a .csv similar to the following:
