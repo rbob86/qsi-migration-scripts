@@ -44,18 +44,23 @@ def create_embed_user(sdk, instance_url, user, folder_mapping):
     group = sdk.search_groups(name=user["group_name"])[0]
     group_id = group.id
 
-    # Find a dashboard id
-    dashboard_info = user["plans"][0] if len(user["plans"]) > 0 else user["alerts"][0]
+    # Find a dashboard or look id
+    content_example = user["plans"][0] if len(user["plans"]) > 0 else user["alerts"][0]
     folder_key = get_folder_key(
-        dashboard_info["parent_folder_name"], dashboard_info["folder_name"]
+        content_example["parent_folder_name"], content_example["folder_name"]
     )
-    dashboard_id = sdk.search_dashboards(
-        title=dashboard_info["dashboard_title"], folder_id=folder_mapping[folder_key]
-    )[0].id
+    if content_example["is_dashboard"]:
+        dashboard_id = sdk.search_dashboards(
+            title=content_example["content_title"], folder_id=folder_mapping[folder_key]
+        )[0].id
+        target_url = f"{instance_url}/dashboards/{dashboard_id}"
+    else:
+        look_id = sdk.search_looks(title=content_example["content_title"], folder_id=folder_mapping[folder_key])[0].id
+        target_url = f"{instance_url}/looks/{look_id}"
 
     # Build user params
     params = {
-        "target_url": f"{instance_url}/dashboards/{dashboard_id}",
+        "target_url": target_url,
         "session_length": 100,
         "external_user_id": user["external_user_id"],
         "first_name": user["first_name"],
@@ -98,9 +103,16 @@ def create_embed_user(sdk, instance_url, user, folder_mapping):
 def get_dashboard(item, folder_mapping):
     folder_key = get_folder_key(item["parent_folder_name"], item["folder_name"])
     dashboard = sdk.search_dashboards(
-        title=item["dashboard_title"], folder_id=folder_mapping[folder_key]
+        title=item["content_title"], folder_id=folder_mapping[folder_key]
     )[0]
     return dashboard
+
+def get_look(item, folder_mapping):
+    folder_key = get_folder_key(item["parent_folder_name"], item["folder_name"])
+    look = sdk.search_looks(
+        title=item["content_title"], folder_id=folder_mapping[folder_key]
+    )[0]
+    return look
 
 
 def are_alert_field_filters_equal(array1, array2):
@@ -176,20 +188,36 @@ if __name__ == "__main__":
 
         if len(owner["plans"]) > 0:
             for plan in owner["plans"]:
-                dashboard = get_dashboard(plan, folder_mapping)
-                dashboard_plans = sdk.scheduled_plans_for_dashboard(
-                    dashboard.id, all_users=True
-                )
-                target_plan = [p for p in dashboard_plans if p.name == plan["plan_name"]][0]
+                if plan["is_dashboard"]:
+                    dashboard = get_dashboard(plan, folder_mapping)
+                    dashboard_plans = sdk.scheduled_plans_for_dashboard(
+                        dashboard.id, all_users=True
+                    )
+                    target_plan = [p for p in dashboard_plans if p.name == plan["plan_name"]][0]
 
-                sdk.update_scheduled_plan(
-                    scheduled_plan_id=target_plan.id,
-                    body=models40.WriteScheduledPlan(user_id=user_id),
-                )
+                    sdk.update_scheduled_plan(
+                        scheduled_plan_id=target_plan.id,
+                        body=models40.WriteScheduledPlan(user_id=user_id),
+                    )
 
-                print(
-                    f"\t{folder_key}/{dashboard.title} owner updated for scheduled plan \"{plan['plan_name']}\""
-                )
+                    print(
+                        f"\tDashboard {folder_key}/{dashboard.title} owner updated for scheduled plan \"{plan['plan_name']}\""
+                    )
+                else:
+                    look = get_look(plan, folder_mapping)
+                    look_plans = sdk.scheduled_plans_for_look(
+                        look.id, all_users=True
+                    )
+                    target_plan = [p for p in look_plans if p.name == plan["plan_name"]][0]
+
+                    sdk.update_scheduled_plan(
+                        scheduled_plan_id=target_plan.id,
+                        body=models40.WriteScheduledPlan(user_id=user_id),
+                    )
+
+                    print(
+                        f"\tLook {folder_key}/{look.title} owner updated for scheduled plan \"{plan['plan_name']}\""
+                    )
 
         if len(owner["alerts"]) > 0:
             for alert in owner["alerts"]:
