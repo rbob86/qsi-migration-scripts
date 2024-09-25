@@ -62,6 +62,9 @@ class ContentManager:
 
     def get_current_content(self):
         return self.current_content
+    
+    def get_current_looks(self):
+        return [l for l in self.current_content if isinstance(l, LookObject)]
 
     def get_current_dashboards(self):
         return [d for d in self.current_content if isinstance(d, DashboardObject)]

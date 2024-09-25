@@ -57,6 +57,25 @@ def prepare_instances(instance_list, api_keys):
     ]
 
 
+def get_look_owner_mapping(sdk, look, folder_mapping):
+    owner_mapping = {}
+    folder_info = get_folder_info(look.legacy_folder_id, folder_mapping)
+
+    for plan in look.scheduled_plans:
+        update_owner_mapping(
+            owner_mapping,
+            sdk,
+            plan.user_id,
+            plan,
+            look.title,
+            folder_info,
+            is_plan=True,
+            is_dashboard=False
+        )
+
+    return owner_mapping
+
+
 def get_dashboard_owner_mapping(sdk, dashboard, folder_mapping):
     owner_mapping = {}
     dashboard_title = extract_dashboard_title(dashboard.lookml)
@@ -73,6 +92,7 @@ def get_dashboard_owner_mapping(sdk, dashboard, folder_mapping):
             dashboard_title,
             folder_info,
             is_plan=True,
+            is_dashboard=True
         )
 
     for alert in dashboard.alerts:
@@ -84,6 +104,7 @@ def get_dashboard_owner_mapping(sdk, dashboard, folder_mapping):
             dashboard_title,
             folder_info,
             is_plan=False,
+            is_dashboard=True
         )
 
     return owner_mapping
@@ -106,10 +127,11 @@ def get_folder_info(folder_id, folder_mapping):
 
 
 def update_owner_mapping(
-    owner_mapping, sdk, owner_id, item, dashboard_title, folder_info, is_plan=True
+    owner_mapping, sdk, owner_id, item, content_title, folder_info, is_plan=True, is_dashboard=True
 ):
     item_to_save = {
-        "dashboard_title": dashboard_title,
+        "content_title": content_title,
+        "is_dashboard": is_dashboard,
         "folder_name": folder_info["folder_name"],
         "parent_folder_name": folder_info["parent_folder_name"],
     }
@@ -197,10 +219,16 @@ def main():
         instance = instances[index]
         sdk = init_looker_sdk(instance)
         folder_mapping = folder_manager.get_current_folder_mapping()
+
         dashboards = content_manager.get_current_dashboards()
+        looks = content_manager.get_current_looks()
 
         for dashboard in dashboards:
             owner_mapping = get_dashboard_owner_mapping(sdk, dashboard, folder_mapping)
+            all_owner_mapping.extend(owner_mapping.values())
+
+        for look in looks:
+            owner_mapping = get_look_owner_mapping(sdk, look, folder_mapping)
             all_owner_mapping.extend(owner_mapping.values())
 
         content_manager.update_content_folder_ids()
