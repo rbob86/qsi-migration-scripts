@@ -103,22 +103,33 @@ def get_dashboard(item, folder_mapping):
     return dashboard
 
 
+def are_alert_field_filters_equal(array1, array2):
+    # Check if the lengths of the two arrays are equal
+    if len(array1) != len(array2):
+        return False
+
+    # Sort arrays (optional, but useful if the order doesn't matter)
+    array1_sorted = sorted(array1, key=lambda x: (x.field_name, x.field_value, x.filter_value))
+    array2_sorted = sorted(array2, key=lambda x: (x.field_name, x.field_value, x.filter_value))
+
+    # Compare each object in the arrays
+    for obj1, obj2 in zip(array1_sorted, array2_sorted):
+        if obj1.field_name != obj2.field_name or obj1.field_value != obj2.field_value or obj1.filter_value != obj2.filter_value:
+            return False
+
+    return True
+
+
 def is_alert_match(alert_one, alert_two, dashboard_element_ids):
-    is_dashboard_filter_match = set(alert_one.applied_dashboard_filters) == set(
-        alert_two["applied_dashboard_filters"]
-    )
-    is_field_filter_match = set(alert_one.field.filter) == set(
-        alert_two["field_filter"]
-    )
+    is_field_filter_match = are_alert_field_filters_equal(alert_one.field.filter, alert_two["field_filter"])
     belongs_to_dashboard = alert_one.dashboard_element_id in dashboard_element_ids
 
     if (
-        not is_dashboard_filter_match
-        or not is_field_filter_match
+        not is_field_filter_match
         or not belongs_to_dashboard
     ):
         return False
-
+    
     return (
         alert_one.cron == alert_two["cron"]
         and alert_one.comparison_type.value == alert_two["comparison_type"]
@@ -126,7 +137,6 @@ def is_alert_match(alert_one, alert_two, dashboard_element_ids):
         and alert_one.field.title == alert_two["field_title"]
         and alert_one.field.name == alert_two["field_name"]
     )
-
 
 
 if __name__ == "__main__":
@@ -141,7 +151,7 @@ if __name__ == "__main__":
 
     folder_mapping = {}
     base_url = get_base_url_from_ini(args.ini_file)
-    alerts = sdk.search_alerts()
+    alerts = sdk.search_alerts(all_owners=True)
 
     for owner in owner_info:
         print(f"Updating owner to {owner['first_name']} {owner['last_name']}...")
