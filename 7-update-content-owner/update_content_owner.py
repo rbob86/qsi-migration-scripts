@@ -86,7 +86,7 @@ def create_embed_user(sdk, instance_url, user, folder_mapping):
             "see_user_dashboards",
             "send_to_integration",
         ],
-        "models": ["bi_carelogic"],
+        "models": ["standard_carelogic"],
         "group_ids": [group_id],
         "user_attributes": user["user_attributes"],
     }
