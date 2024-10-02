@@ -58,9 +58,8 @@ def create_embed_user(sdk, instance_url, user, folder_mapping):
         content_example["parent_folder_name"], content_example["folder_name"]
     )
     if content_example["is_dashboard"]:
-        print(remove_surrounding_single_quotes(content_example["content_title"]))
         dashboard_id = sdk.search_dashboards(
-            title=remove_surrounding_single_quotes(content_example["content_title"]),
+            title=remove_surrounding_quotes(content_example["content_title"]),
             folder_id=folder_mapping[folder_key],
         )[0].id
         target_url = f"{instance_url}/dashboards/{dashboard_id}"
@@ -115,7 +114,7 @@ def create_embed_user(sdk, instance_url, user, folder_mapping):
 def get_dashboard(item, folder_mapping):
     folder_key = get_folder_key(item["parent_folder_name"], item["folder_name"])
     dashboard = sdk.search_dashboards(
-        title=remove_surrounding_single_quotes(item["content_title"]),
+        title=remove_surrounding_quotes(item["content_title"]),
         folder_id=folder_mapping[folder_key],
     )[0]
     return dashboard
@@ -124,16 +123,17 @@ def get_dashboard(item, folder_mapping):
 def get_look(item, folder_mapping):
     folder_key = get_folder_key(item["parent_folder_name"], item["folder_name"])
     look = sdk.search_looks(
-        title=remove_surrounding_single_quotes(item["content_title"]),
+        title=remove_surrounding_quotes(item["content_title"]),
         folder_id=folder_mapping[folder_key],
     )[0]
     return look
 
 
-def remove_surrounding_single_quotes(title):
+def remove_surrounding_quotes(title):
     if title.startswith("'") and title.endswith("'"):
         title = title[1:-1]
-    return title
+
+    return title.strip('"')
 
 
 def are_alert_field_filters_equal(array1, array2):
@@ -158,8 +158,6 @@ def are_alert_field_filters_equal(array1, array2):
             x["filter_value"] or "",
         ),
     )
-
-    print(array2_sorted)
 
     # Compare each object in the arrays
     for obj1, obj2 in zip(array1_sorted, array2_sorted):
