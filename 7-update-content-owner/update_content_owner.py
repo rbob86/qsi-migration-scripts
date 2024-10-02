@@ -7,10 +7,18 @@ from looker_sdk import error, models40
 
 
 def parse_arguments():
-    parser = argparse.ArgumentParser(description="Update Looker instance with new owner mappings.")
-    parser.add_argument('--mapping', required=True, help='Path to the owner-mapping.json file.')
-    parser.add_argument('--ini-file', required=True, help='Path to the ini file for the Looker SDK configuration.')
-    
+    parser = argparse.ArgumentParser(
+        description="Update Looker instance with new owner mappings."
+    )
+    parser.add_argument(
+        "--mapping", required=True, help="Path to the owner-mapping.json file."
+    )
+    parser.add_argument(
+        "--ini-file",
+        required=True,
+        help="Path to the ini file for the Looker SDK configuration.",
+    )
+
     return parser.parse_args()
 
 
@@ -19,7 +27,7 @@ def get_base_url_from_ini(ini_file):
     config.read(ini_file)
 
     # Assuming the ini file has a section like [Looker] or similar
-    base_url = config.get('Looker', 'base_url')
+    base_url = config.get("Looker", "base_url")
     return base_url
 
 
@@ -50,12 +58,16 @@ def create_embed_user(sdk, instance_url, user, folder_mapping):
         content_example["parent_folder_name"], content_example["folder_name"]
     )
     if content_example["is_dashboard"]:
+        print(remove_surrounding_single_quotes(content_example["content_title"]))
         dashboard_id = sdk.search_dashboards(
-            title=content_example["content_title"], folder_id=folder_mapping[folder_key]
+            title=remove_surrounding_single_quotes(content_example["content_title"]),
+            folder_id=folder_mapping[folder_key],
         )[0].id
         target_url = f"{instance_url}/dashboards/{dashboard_id}"
     else:
-        look_id = sdk.search_looks(title=content_example["content_title"], folder_id=folder_mapping[folder_key])[0].id
+        look_id = sdk.search_looks(
+            title=content_example["content_title"], folder_id=folder_mapping[folder_key]
+        )[0].id
         target_url = f"{instance_url}/looks/{look_id}"
 
     # Build user params
@@ -103,16 +115,25 @@ def create_embed_user(sdk, instance_url, user, folder_mapping):
 def get_dashboard(item, folder_mapping):
     folder_key = get_folder_key(item["parent_folder_name"], item["folder_name"])
     dashboard = sdk.search_dashboards(
-        title=item["content_title"], folder_id=folder_mapping[folder_key]
+        title=remove_surrounding_single_quotes(item["content_title"]),
+        folder_id=folder_mapping[folder_key],
     )[0]
     return dashboard
+
 
 def get_look(item, folder_mapping):
     folder_key = get_folder_key(item["parent_folder_name"], item["folder_name"])
     look = sdk.search_looks(
-        title=item["content_title"], folder_id=folder_mapping[folder_key]
+        title=remove_surrounding_single_quotes(item["content_title"]),
+        folder_id=folder_mapping[folder_key],
     )[0]
     return look
+
+
+def remove_surrounding_single_quotes(title):
+    if title.startswith("'") and title.endswith("'"):
+        title = title[1:-1]
+    return title
 
 
 def are_alert_field_filters_equal(array1, array2):
@@ -121,27 +142,46 @@ def are_alert_field_filters_equal(array1, array2):
         return False
 
     # Sort arrays (optional, but useful if the order doesn't matter)
-    array1_sorted = sorted(array1, key=lambda x: (x.field_name, x.field_value, x.filter_value))
-    array2_sorted = sorted(array2, key=lambda x: (x.field_name, x.field_value, x.filter_value))
+    array1_sorted = sorted(
+        array1, key=lambda x: (x.field_name, x.field_value, x.filter_value)
+    )
+    for obj in array2:
+        obj["field_name"] = obj["field_name"] or ""
+        obj["field_value"] = obj["field_value"] or ""
+        obj["filter_value"] = obj["filter_value"] or ""
+
+    array2_sorted = sorted(
+        array2,
+        key=lambda x: (
+            x["field_name"] or "",
+            x["field_value"] or "",
+            x["filter_value"] or "",
+        ),
+    )
+
+    print(array2_sorted)
 
     # Compare each object in the arrays
     for obj1, obj2 in zip(array1_sorted, array2_sorted):
-        if obj1.field_name != obj2.field_name or obj1.field_value != obj2.field_value or obj1.filter_value != obj2.filter_value:
+        if (
+            obj1.field_name != obj2["field_name"]
+            or obj1.field_value != obj2["field_value"]
+            or obj1.filter_value != obj2["filter_value"]
+        ):
             return False
 
     return True
 
 
 def is_alert_match(alert_one, alert_two, dashboard_element_ids):
-    is_field_filter_match = are_alert_field_filters_equal(alert_one.field.filter, alert_two["field_filter"])
+    is_field_filter_match = are_alert_field_filters_equal(
+        alert_one.field.filter, alert_two["field_filter"]
+    )
     belongs_to_dashboard = alert_one.dashboard_element_id in dashboard_element_ids
 
-    if (
-        not is_field_filter_match
-        or not belongs_to_dashboard
-    ):
+    if not is_field_filter_match or not belongs_to_dashboard:
         return False
-    
+
     return (
         alert_one.cron == alert_two["cron"]
         and alert_one.comparison_type.value == alert_two["comparison_type"]
@@ -171,13 +211,17 @@ if __name__ == "__main__":
         if len(owner["plans"]) > 0:
             item_details = owner["plans"]
             for item in item_details:
-                folder_key = get_folder_key(item["parent_folder_name"], item["folder_name"])
+                folder_key = get_folder_key(
+                    item["parent_folder_name"], item["folder_name"]
+                )
                 if folder_key not in folder_mapping:
                     add_folder_to_folder_mapping(sdk, folder_mapping, item)
         if len(owner["alerts"]) > 0:
             item_details = owner["alerts"]
             for item in item_details:
-                folder_key = get_folder_key(item["parent_folder_name"], item["folder_name"])
+                folder_key = get_folder_key(
+                    item["parent_folder_name"], item["folder_name"]
+                )
                 if folder_key not in folder_mapping:
                     add_folder_to_folder_mapping(sdk, folder_mapping, item)
 
@@ -193,7 +237,9 @@ if __name__ == "__main__":
                     dashboard_plans = sdk.scheduled_plans_for_dashboard(
                         dashboard.id, all_users=True
                     )
-                    target_plan = [p for p in dashboard_plans if p.name == plan["plan_name"]][0]
+                    target_plan = [
+                        p for p in dashboard_plans if p.name == plan["plan_name"]
+                    ][0]
 
                     sdk.update_scheduled_plan(
                         scheduled_plan_id=target_plan.id,
@@ -205,10 +251,10 @@ if __name__ == "__main__":
                     )
                 else:
                     look = get_look(plan, folder_mapping)
-                    look_plans = sdk.scheduled_plans_for_look(
-                        look.id, all_users=True
-                    )
-                    target_plan = [p for p in look_plans if p.name == plan["plan_name"]][0]
+                    look_plans = sdk.scheduled_plans_for_look(look.id, all_users=True)
+                    target_plan = [
+                        p for p in look_plans if p.name == plan["plan_name"]
+                    ][0]
 
                     sdk.update_scheduled_plan(
                         scheduled_plan_id=target_plan.id,
